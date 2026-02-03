@@ -3,8 +3,9 @@ import { prisma } from "@/lib/prisma";
 
 export async function GET(
   _req: Request,
-  { params }: { params: { slug: string } }
+  ctx: { params: { slug: string } | Promise<{ slug: string }> }
 ) {
+  const params = await Promise.resolve(ctx.params);
   const product = await prisma.product.findUnique({ where: { slug: params.slug } });
   if (!product) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
