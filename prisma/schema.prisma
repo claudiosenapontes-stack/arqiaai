@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+
+  // from vendor sheet/pdf
+  vendorSku   String?  @unique
+  // ARQIA internal SKU
+  arqiaSku    String?  @unique
+  environment String?  // indoor | outdoor
+  productType String?  // sofa | chair | table | ottoman | lounger | bed | misc
+
+  title       String
+  subtitle    String?
+  description String?
+
+  priceCents  Int
+  currency    String   @default("USD")
+
+  images      String   @default("[]") // JSON array of URLs
+  materials   String   @default("[]") // JSON array
+
+  dimensions  String?  // pretty string (inches)
+  dimensionsRaw String? // raw text block from PDF
+
+  leadTime    String?  // e.g. "6-8 weeks"
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Order {
+  id              String   @id @default(cuid())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  status          String   @default("pending")
+
+  customerEmail   String?
+  customerName    String?
+
+  currency        String   @default("USD")
+  subtotalCents   Int
+  shippingCents   Int      @default(0) // calculated after purchase
+  taxCents        Int      @default(0)
+  totalCents      Int
+
+  items           String   // JSON array of {productId, title, qty, priceCents}
+
+  stripeSessionId String?  @unique
+  stripePaymentIntentId String?
+}

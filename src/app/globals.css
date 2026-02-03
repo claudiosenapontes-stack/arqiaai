@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+:root {
+  --arqia-olive: #505642;
+  --arqia-white: #ffffff;
+  --arqia-ink: #0d0d0d;
+
+  --arqia-brass-light: #E0CEA9;
+  --arqia-brass-dark: #B7955B;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--arqia-white);
+    color: var(--arqia-ink);
+  }
+}

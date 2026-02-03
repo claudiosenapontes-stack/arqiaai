@@ -1,0 +1,36 @@
+diff --git a/memory/2026-01-29.md b/memory/2026-01-29.md
+index 6fa7dfd..586d046 100644
+--- a/memory/2026-01-29.md
++++ b/memory/2026-01-29.md
+@@ -1,11 +1,20 @@
+-# 2026-01-29
+-
+-- WhatsApp gateway connected.
+-- Claudio set assistant identity: name Henry, AI assistant, very thorough vibe, 🧠 emoji.
+-- Claudio timezone: America/New_York.
+-- Claudio prefers proactive assistance.
+-- Cron scheduled:
+-  - Daily briefing at 7:00am America/New_York (isolated; deliver to last route). JobId: 7075b11f-31dd-467d-b18c-f5c39a1aa733.
+-  - Weekly briefing at Fri 5:00pm America/New_York (isolated; deliver to last route). JobId: aa0f9199-18bb-42b3-b4ea-4c6853ebce40.
+-- Inbox watch requested: Gmail (not connected yet).
+-- Projects: will define together over time.
++## 2026-01-29
++- Set up Gmail Pub/Sub watch for claudio.senapontes@gmail.com using gcloud + gogcli + Tailscale Funnel.
++  - GCP project: totemic-gravity-485805-e9
++  - Pub/Sub topic: projects/totemic-gravity-485805-e9/topics/gog-gmail-watch
++  - Funnel endpoint: https://srv1306642.tailbfeb95.ts.net/gmail-pubsub
++  - gog watch serve listening on 127.0.0.1:8788; gateway manages it (manual run conflicts).
++- Installed Tailscale and enabled Funnel; installed gcloud; built and installed gogcli from source using Go 1.25.
++- WhatsApp: using this chat (+13399277803) as primary Clawdbot thread; ping/pong confirmed.
++- User said: “This is good for now; we can develop things as we move forward.”
++- Personal details to remember (per user):
++  - Claudio born May 13, 1990; Brazilian-born; US citizen.
++  - Married to Milla Sena (born Sept 18, 1989).
++  - Kids: Henry Sena (born 2019-03-29) and Sophia Sena (born 2021-05-07).
++- Additional personal details to remember (per user): Christian; white male; height ~1.70 m.
++- Work context to remember (per user): runs multiple companies — car business in Revere, MA; Mini Bites (food business; 4 locations in MA + factory); ARQIA (architectural/engineering) in Boynton Beach, FL; BXP Solutions (building/general contracting) in Boynton Beach, FL; Xgroup (import/export construction materials: China + global) in Boynton Beach, FL (umbrella/import company that runs the other brands).
++- Integrations/setup status: Gmail watch + WhatsApp stable. Attempted Monday.com API setup (token handling issues; user rotated token; will resume later on stable connection). Installed Chrome on server and enabled clawd-managed browser, but Google Lens/visual search hits CAPTCHA in headless/VPS. User considered setting up Chrome relay extension on Mac but ran into disk space constraints; will likely do on PC later.
++- Created /root/clawd/TODO.md with next setup priorities (Monday API, Lens workflow, Gmail alert rules, daily briefing upgrade, Xgroup content engine).
++- Brand folders shared on Google Drive for identity assets: Haus of Light, Akropolli, Casa Mia.
++- User requested Gmail watchlist additions: 146 Georgetown Road, Boxford MA; Matt Harkins; Chris Harkins; Phill Harkings; Marília (Pacific Contractors); Tiverton project keyword. User requested notifications via WhatsApp.
++- User granted permission to message Milla Sena on WhatsApp (+16179607503) for all emails related to Matt/Chris/Phill Harkins.
