@@ -35,7 +35,8 @@ export async function POST(req: Request) {
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
-  const stripe = new Stripe(secret, { apiVersion: "2024-06-20" });
+  // Stripe SDK v20 types apiVersion as a literal string; use the current SDK-supported version
+  const stripe = new Stripe(secret, { apiVersion: "2026-01-28.clover" });
 
   const subtotalCents = calcSubtotalCents(cart);
 
