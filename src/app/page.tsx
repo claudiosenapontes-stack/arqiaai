@@ -2,6 +2,8 @@ import { SiteHeader } from '@/components/SiteHeader'
 import { HomeTilesLayer } from '@/components/HomeTilesLayer'
 import { HomeSimpleTriptych } from '@/components/HomeSimpleTriptych'
 import { SignatureScrollSequence } from '@/components/SignatureScrollSequence'
+import { BlogPreviewSection } from '@/components/BlogPreviewSection'
+import { BWMapSection } from '@/components/BWMapSection'
 import Image from 'next/image'
 
 export default function Home() {
@@ -75,6 +77,12 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Blog */}
+      <BlogPreviewSection />
+
+      {/* Map */}
+      <BWMapSection address="2900 High Ridge Road, Boynton Beach, FL" />
 
       {/* Back to the simple Materials/Craft/Delivery triptych */}
       <HomeSimpleTriptych />
