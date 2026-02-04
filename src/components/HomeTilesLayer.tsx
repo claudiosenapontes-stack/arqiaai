@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { BrandWatermark } from '@/components/BrandWatermark'
+import { ServicesParallaxSection } from '@/components/ServicesParallaxSection'
 
 const COLLECTIONS = [
   {
@@ -195,69 +196,7 @@ export function HomeTilesLayer() {
 
           {/* Full-width static background image; cards/titles float and move while the photo stays fixed */}
           {/* Full-bleed static background image (no white sides); cards/titles/buttons float above */}
-          {/* Full-bleed wrapper (break out of max-w container) */}
-          <div className="relative mt-10 left-1/2 right-1/2 -mx-[50vw] w-screen overflow-hidden">
-            <div className="relative min-h-[140vh]">
-              {/* Sticky backdrop (static feel) — truly full-width */}
-              <div className="pointer-events-none sticky top-0 h-screen w-full">
-                <div className="absolute inset-0">
-                  <img src="/mock/furniture-5.jpg" alt="" className="h-full w-full object-cover" />
-                  <div aria-hidden className="absolute inset-0 bg-black/28" />
-                  <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/10 to-black/55" />
-                </div>
-              </div>
-
-              {/* Foreground content scrolls over the fixed-feel image */}
-              <div className="relative z-10 mx-auto -mt-[70vh] max-w-6xl px-6 pb-16">
-                <div className="grid gap-4 md:grid-cols-3">
-                  {SERVICES.map((s) => (
-                    <Link
-                      key={s.title}
-                      href={s.href}
-                      className={
-                        'group rounded-3xl p-6 backdrop-blur transition duration-300 ease-out ' +
-                        'border border-[color:var(--arqia-brass-light)]/55 ' +
-                        'bg-[linear-gradient(135deg,rgba(255,255,255,0.18),rgba(255,255,255,0.10),rgba(224,206,169,0.10))] ' +
-                        'shadow-[0_18px_50px_rgba(0,0,0,0.25)] ' +
-                        'hover:border-[color:var(--arqia-brass-light)]/85 hover:bg-[linear-gradient(135deg,rgba(255,255,255,0.24),rgba(255,255,255,0.12),rgba(224,206,169,0.14))] hover:scale-[1.01]'
-                      }
-                    >
-                      <div className="text-xs uppercase tracking-[0.3em] text-white/80">Service</div>
-                      <div className="mt-3 font-serif text-2xl text-white">{s.title}</div>
-                      <div className="mt-3 text-sm text-white/80">{s.subtitle}</div>
-                      <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-xs font-light uppercase tracking-[0.25em] text-white/90 transition group-hover:border-[color:var(--arqia-brass-light)]/70 group-hover:text-[color:var(--arqia-brass-light)]">
-                        Learn more <span className="transition group-hover:translate-x-0.5">→</span>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-
-                <div className="mt-10 flex flex-wrap gap-3">
-                  <Link
-                    href="/services"
-                    className={
-                      'rounded-full px-6 py-3 text-xs font-light uppercase tracking-[0.25em] text-white/90 ' +
-                      // glass feel
-                      'border border-white/25 bg-white/10 backdrop-blur-md ' +
-                      'shadow-[0_10px_30px_rgba(0,0,0,0.25)] ' +
-                      // subtle brass sheen
-                      'bg-[linear-gradient(135deg,rgba(224,206,169,0.20),rgba(255,255,255,0.08),rgba(183,149,91,0.16))] ' +
-                      'hover:border-[color:var(--arqia-brass-light)]/70 hover:text-[color:var(--arqia-brass-light)] ' +
-                      'hover:shadow-[0_14px_38px_rgba(0,0,0,0.3)]'
-                    }
-                  >
-                    Explore Services
-                  </Link>
-                  <Link
-                    href="/contact"
-                    className="rounded-full border border-[color:var(--arqia-brass-light)]/55 bg-white/0 px-6 py-3 text-xs font-light uppercase tracking-[0.25em] text-[color:var(--arqia-brass-light)] backdrop-blur hover:border-[color:var(--arqia-brass-light)]/85"
-                  >
-                    Contact
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
+          <ServicesParallaxSection services={SERVICES} backgroundSrc="/mock/furniture-5.jpg" />
         </div>
       </section>
     </section>
