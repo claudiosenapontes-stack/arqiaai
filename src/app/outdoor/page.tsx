@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { SiteHeader } from '@/components/SiteHeader'
 import { TopFilters } from '@/components/TopFilters'
 import { ProductHeroCard } from '@/components/ProductHeroCard'
@@ -20,9 +21,10 @@ function Editorial({ title, body, img }: { title: string; body: string; img: str
   )
 }
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Outdoor Furniture',
   description: 'Outdoor furniture curated for refined spaces — member and retail pricing available.',
+  alternates: { canonical: '/outdoor' },
 }
 
 export default function OutdoorPage() {
@@ -62,16 +64,7 @@ export default function OutdoorPage() {
             title="Product Name"
             member="$2,499"
             retail="$2,999"
-            img="/mock/furniture-2.jpg"
-            inquiryEmail="design@arqiaai.com"
-          />
-
-          <ProductHeroCard
-            category="Outdoor"
-            title="Product Name"
-            member="$2,499"
-            retail="$2,999"
-            img="/mock/furniture-1.jpg"
+            img="/mock/furniture-5.jpg"
             inquiryEmail="design@arqiaai.com"
           />
         </div>

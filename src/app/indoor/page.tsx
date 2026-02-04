@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { SiteHeader } from '@/components/SiteHeader'
 import { TopFilters } from '@/components/TopFilters'
 import { ProductHeroCard } from '@/components/ProductHeroCard'
@@ -20,9 +21,10 @@ function Editorial({ title, body, img }: { title: string; body: string; img: str
   )
 }
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Indoor Furniture',
   description: 'Indoor furniture curated for refined spaces — member and retail pricing available.',
+  alternates: { canonical: '/indoor' },
 }
 
 export default function IndoorPage() {

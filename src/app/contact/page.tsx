@@ -1,31 +1,28 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { SiteHeader } from "@/components/SiteHeader";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description: "Contact ARQIA for design, sourcing, and product inquiries.",
+  alternates: { canonical: "/contact" },
+};
+
 export default function ContactPage() {
   return (
-    <main className="mx-auto max-w-3xl px-6 py-12">
-      <h1 className="text-3xl font-semibold tracking-tight">Contact</h1>
-      <p className="mt-2 text-muted-foreground">
-        Tell us what you’re looking for — we’ll respond with next steps.
-      </p>
-
-      <form className="mt-10 space-y-4 rounded-xl border p-6">
-        <div>
-          <label className="text-sm font-medium">Name</label>
-          <input className="mt-1 w-full rounded-md border px-3 py-2" placeholder="Your name" />
-        </div>
-        <div>
-          <label className="text-sm font-medium">Email</label>
-          <input className="mt-1 w-full rounded-md border px-3 py-2" placeholder="you@email.com" />
-        </div>
-        <div>
-          <label className="text-sm font-medium">Message</label>
-          <textarea className="mt-1 w-full rounded-md border px-3 py-2" rows={5} placeholder="Furniture request or service inquiry" />
-        </div>
-        <button type="button" className="rounded-md bg-black px-5 py-3 text-white">
-          Send (next)
-        </button>
-        <p className="text-xs text-muted-foreground">
-          Next: wire this form to email + CRM + calendar booking.
+    <main className="min-h-screen bg-white">
+      <SiteHeader />
+      <section className="mx-auto max-w-6xl px-6 py-16">
+        <h1 className="font-serif text-5xl tracking-tight">Contact</h1>
+        <p className="mt-4 max-w-2xl text-neutral-600">
+          Email: <a className="underline" href="mailto:design@arqiaai.com">design@arqiaai.com</a>
         </p>
-      </form>
+
+        <div className="mt-8 flex flex-wrap gap-3">
+          <Link href="/services" className="rounded-md border px-5 py-3">Services</Link>
+          <Link href="/products" className="rounded-md border px-5 py-3">Shop</Link>
+        </div>
+      </section>
     </main>
   );
 }

@@ -1,15 +1,45 @@
-import type { MetadataRoute } from 'next'
+import type { MetadataRoute } from "next";
+import { prisma } from "@/lib/prisma";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(/\/$/, '')
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000").replace(/\/$/, "");
 
-  // TODO: When products live in DB, generate per-product + per-collection URLs here.
-  const routes = ['/', '/indoor', '/outdoor', '/services', '/contact', '/decor', '/rugs', '/lighting']
+  const staticRoutes = [
+    "/",
+    "/products",
+    "/indoor",
+    "/outdoor",
+    "/decor",
+    "/rugs",
+    "/lighting",
+    "/services",
+    "/contact",
+  ];
 
-  return routes.map((path) => ({
+  const items: MetadataRoute.Sitemap = staticRoutes.map((path) => ({
     url: `${siteUrl}${path}`,
     lastModified: new Date(),
-    changeFrequency: 'weekly',
-    priority: path === '/' ? 1 : 0.7,
-  }))
+    changeFrequency: "weekly",
+    priority: path === "/" ? 1 : path === "/products" ? 0.9 : 0.7,
+  }));
+
+  try {
+    const products = await prisma.product.findMany({
+      select: { slug: true, updatedAt: true },
+      orderBy: { updatedAt: "desc" },
+    });
+
+    for (const p of products) {
+      items.push({
+        url: `${siteUrl}/products/${p.slug}`,
+        lastModified: p.updatedAt,
+        changeFrequency: "weekly",
+        priority: 0.8,
+      });
+    }
+  } catch {
+    // If DB is unreachable, still serve the static sitemap.
+  }
+
+  return items;
 }

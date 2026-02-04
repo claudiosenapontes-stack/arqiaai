@@ -1,4 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Payment received",
+  description: "Payment received. We’ll follow up to calculate shipping and schedule delivery.",
+  robots: { index: false, follow: false },
+  alternates: { canonical: "/checkout/success" },
+};
 
 export default function SuccessPage({
   searchParams,
@@ -13,9 +21,7 @@ export default function SuccessPage({
       </p>
       <div className="mt-8 rounded-lg border p-4 text-sm">
         <div className="font-medium">Stripe session</div>
-        <div className="mt-1 text-muted-foreground break-all">
-          {searchParams.session_id ?? "(missing)"}
-        </div>
+        <div className="mt-1 text-muted-foreground break-all">{searchParams.session_id ?? "(missing)"}</div>
       </div>
       <div className="mt-10 flex gap-4">
         <Link className="rounded-md bg-black px-5 py-3 text-white" href="/">

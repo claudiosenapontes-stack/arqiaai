@@ -12,9 +12,6 @@ export const metadata: Metadata = {
     template: "%s · ARQIA",
   },
   description: "Architectural Intelligence for refined spaces.",
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
     title: "ARQIA",
     description: "Architectural Intelligence for refined spaces.",
