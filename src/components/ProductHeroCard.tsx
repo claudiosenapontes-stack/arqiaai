@@ -1,5 +1,7 @@
 'use client'
 
+import Link from 'next/link'
+
 export function ProductHeroCard({
   category,
   title,
@@ -7,6 +9,7 @@ export function ProductHeroCard({
   retail,
   img,
   inquiryEmail,
+  href,
 }: {
   category: string
   title: string
@@ -14,6 +17,7 @@ export function ProductHeroCard({
   retail: string
   img: string
   inquiryEmail: string
+  href?: string
 }) {
   return (
     <div className="product-hero-fullbleed group overflow-hidden rounded-2xl border border-black/10 bg-white">
@@ -40,9 +44,19 @@ export function ProductHeroCard({
               </div>
 
               <div className="mt-4 flex flex-wrap gap-3">
-                <button className="rounded-full bg-white/90 px-5 py-2.5 text-sm text-black backdrop-blur">
-                  View
-                </button>
+                {href ? (
+                  <Link
+                    href={href}
+                    className="rounded-full bg-white/90 px-5 py-2.5 text-sm text-black backdrop-blur"
+                  >
+                    View
+                  </Link>
+                ) : (
+                  <button className="rounded-full bg-white/90 px-5 py-2.5 text-sm text-black backdrop-blur">
+                    View
+                  </button>
+                )}
+
                 <button className="rounded-full border border-white/30 bg-white/10 px-5 py-2.5 text-sm text-white backdrop-blur">
                   Save
                 </button>

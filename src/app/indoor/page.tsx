@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { SiteHeader } from '@/components/SiteHeader'
 import { TopFilters } from '@/components/TopFilters'
 import { ProductHeroCard } from '@/components/ProductHeroCard'
+import { MOCK_PRODUCTS, formatUsd } from '@/lib/mockCatalog'
 
 function Editorial({ title, body, img }: { title: string; body: string; img: string }) {
   return (
@@ -35,23 +36,20 @@ export default function IndoorPage() {
 
       <section className="mx-auto max-w-6xl px-6 py-12">
         <div className="space-y-10">
-          <ProductHeroCard
-            category="Indoor"
-            title="Product Name"
-            member="$1,999"
-            retail="$2,399"
-            img="/mock/furniture-1.jpg"
-            inquiryEmail="design@arqiaai.com"
-          />
-
-          <ProductHeroCard
-            category="Indoor"
-            title="Product Name"
-            member="$1,999"
-            retail="$2,399"
-            img="/mock/furniture-2.jpg"
-            inquiryEmail="design@arqiaai.com"
-          />
+          {MOCK_PRODUCTS.filter((p) => p.environment === 'indoor')
+            .slice(0, 2)
+            .map((p) => (
+              <ProductHeroCard
+                key={p.slug}
+                category={p.categoryLabel}
+                title={p.title}
+                member={formatUsd(p.memberPriceCents)}
+                retail={formatUsd(p.retailPriceCents)}
+                img={p.img}
+                href={`/products/${p.slug}`}
+                inquiryEmail="design@arqiaai.com"
+              />
+            ))}
 
           <Editorial
             title="Materials, restraint, and proportion"
@@ -59,32 +57,21 @@ export default function IndoorPage() {
             img="/mock/material-1.jpg"
           />
 
-          <ProductHeroCard
-            category="Indoor"
-            title="Product Name"
-            member="$1,999"
-            retail="$2,399"
-            img="/mock/furniture-3.jpg"
-            inquiryEmail="design@arqiaai.com"
-          />
+          {MOCK_PRODUCTS.filter((p) => p.environment === 'indoor')
+            .slice(2)
+            .map((p) => (
+              <ProductHeroCard
+                key={p.slug}
+                category={p.categoryLabel}
+                title={p.title}
+                member={formatUsd(p.memberPriceCents)}
+                retail={formatUsd(p.retailPriceCents)}
+                img={p.img}
+                href={`/products/${p.slug}`}
+                inquiryEmail="design@arqiaai.com"
+              />
+            ))}
 
-          <ProductHeroCard
-            category="Indoor"
-            title="Product Name"
-            member="$1,999"
-            retail="$2,399"
-            img="/mock/furniture-4.jpg"
-            inquiryEmail="design@arqiaai.com"
-          />
-
-          <ProductHeroCard
-            category="Indoor"
-            title="Product Name"
-            member="$1,999"
-            retail="$2,399"
-            img="/mock/furniture-5.jpg"
-            inquiryEmail="design@arqiaai.com"
-          />
         </div>
       </section>
     </main>

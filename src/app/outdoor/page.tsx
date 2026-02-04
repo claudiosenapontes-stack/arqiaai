@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { SiteHeader } from '@/components/SiteHeader'
 import { TopFilters } from '@/components/TopFilters'
 import { ProductHeroCard } from '@/components/ProductHeroCard'
+import { MOCK_PRODUCTS, formatUsd } from '@/lib/mockCatalog'
 
 function Editorial({ title, body, img }: { title: string; body: string; img: string }) {
   return (
@@ -35,23 +36,20 @@ export default function OutdoorPage() {
 
       <section className="mx-auto max-w-6xl px-6 py-12">
         <div className="space-y-10">
-          <ProductHeroCard
-            category="Outdoor"
-            title="Product Name"
-            member="$2,499"
-            retail="$2,999"
-            img="/mock/furniture-4.jpg"
-            inquiryEmail="design@arqiaai.com"
-          />
-
-          <ProductHeroCard
-            category="Outdoor"
-            title="Product Name"
-            member="$2,499"
-            retail="$2,999"
-            img="/mock/furniture-3.jpg"
-            inquiryEmail="design@arqiaai.com"
-          />
+          {MOCK_PRODUCTS.filter((p) => p.environment === 'outdoor')
+            .slice(0, 2)
+            .map((p) => (
+              <ProductHeroCard
+                key={p.slug}
+                category={p.categoryLabel}
+                title={p.title}
+                member={formatUsd(p.memberPriceCents)}
+                retail={formatUsd(p.retailPriceCents)}
+                img={p.img}
+                href={`/products/${p.slug}`}
+                inquiryEmail="design@arqiaai.com"
+              />
+            ))}
 
           <Editorial
             title="Outdoor, refined"
@@ -59,15 +57,21 @@ export default function OutdoorPage() {
             img="/mock/material-2.jpg"
           />
 
-          <ProductHeroCard
-            category="Outdoor"
-            title="Product Name"
-            member="$2,499"
-            retail="$2,999"
-            img="/mock/furniture-5.jpg"
-            inquiryEmail="design@arqiaai.com"
-          />
-        </div>
+          {MOCK_PRODUCTS.filter((p) => p.environment === 'outdoor')
+            .slice(2)
+            .map((p) => (
+              <ProductHeroCard
+                key={p.slug}
+                category={p.categoryLabel}
+                title={p.title}
+                member={formatUsd(p.memberPriceCents)}
+                retail={formatUsd(p.retailPriceCents)}
+                img={p.img}
+                href={`/products/${p.slug}`}
+                inquiryEmail="design@arqiaai.com"
+              />
+            ))}
+</div>
       </section>
     </main>
   )
