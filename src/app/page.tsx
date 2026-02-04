@@ -6,7 +6,7 @@ import { HomeSimpleTriptych } from '@/components/HomeSimpleTriptych'
 export default function Home() {
   return (
     <main className="min-h-screen bg-white">
-      <SiteHeader />
+      <SiteHeader overlay />
 
       {/* Hero */}
       <section className="relative">

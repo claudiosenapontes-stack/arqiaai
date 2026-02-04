@@ -13,7 +13,7 @@ const NAV = [
   { href: '/contact', label: 'Contact' },
 ]
 
-export function SiteHeader() {
+export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
   const [solid, setSolid] = useState(false)
   const [hovered, setHovered] = useState(false)
   const [touchLike, setTouchLike] = useState(false)
@@ -42,7 +42,8 @@ export function SiteHeader() {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className={
-        'sticky top-0 z-50 transition-all duration-300 ' +
+        (overlay ? 'fixed left-0 right-0 top-0 ' : 'sticky top-0 ') +
+        'z-50 transition-all duration-300 ' +
         (solid
           ? 'border-b border-black/10 bg-white/92 backdrop-blur shadow-[0_8px_30px_rgba(0,0,0,0.06)]'
           : 'border-b border-transparent bg-transparent')
