@@ -96,13 +96,13 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
           >
             <span
               className={
-                'font-serif text-[22px] tracking-[0.28em] antialiased ' +
-                (solidText ? 'text-neutral-900' : 'text-[color:var(--arqia-brass-light)]')
+                'font-serif text-[26px] tracking-[0.28em] antialiased ' +
+                (solidText ? 'text-neutral-900' : 'text-white')
               }
             >
               ARQIA
             </span>
-            <span className={'mt-1 text-[10px] tracking-[0.22em] ' + (solidText ? 'text-neutral-600' : 'text-white/70')}>
+            <span className={'mt-1 text-[11px] tracking-[0.22em] ' + (solidText ? 'text-neutral-600' : 'text-white/75')}>
               ARCHITECTURAL INTELLIGENCE
             </span>
           </Link>
