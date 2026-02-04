@@ -46,7 +46,10 @@ export default function Home() {
       {/* Back to the simple Materials/Craft/Delivery triptych */}
       <HomeSimpleTriptych />
 
-      <footer className="border-t border-black/10">
+      <footer className="relative overflow-hidden border-t border-black/10">
+        <div aria-hidden className="pointer-events-none absolute -right-16 -bottom-28 opacity-[0.04]">
+          <img src="/arqia-mark-520.png" alt="" className="h-72 w-auto" />
+        </div>
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-10 text-xs text-neutral-500">
           <div>© {new Date().getFullYear()} ARQIA</div>
           <div>Design@arqiaai.com</div>

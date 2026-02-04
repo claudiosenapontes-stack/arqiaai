@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { ParallaxImage } from '@/components/Parallax'
+import { BrandWatermark } from '@/components/BrandWatermark'
 
 const COLLECTIONS = [
   {
@@ -166,8 +167,10 @@ export function HomeTilesLayer() {
         ))}
       </div>
 
-      {/* Services (3-tile row, no big image) */}
-      <section className="border-t border-black/10">
+      {/* Services (cards floating above a parallax background) */}
+      <section className="relative border-t border-black/10">
+        <BrandWatermark opacity={0.035} size={360} className="mix-blend-multiply" />
+
         <div className="mx-auto max-w-6xl px-6 py-16">
           <div>
             <div className="text-xs uppercase tracking-[0.3em] text-neutral-500">Services</div>
