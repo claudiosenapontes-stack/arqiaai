@@ -58,49 +58,49 @@ export function BWMapSection({
 
   return (
     <section className="product-hero-fullbleed border-y border-black/5 bg-white">
-      <div className="mx-auto max-w-6xl px-6 py-16">
-        <div className="grid gap-10 md:grid-cols-2 md:items-start">
-          <div>
-            <div className="text-xs uppercase tracking-[0.3em] text-neutral-500">Visit</div>
-            <h2 className="mt-3 font-serif text-4xl tracking-tight text-neutral-900 md:text-5xl">
-              Boynton Beach
-            </h2>
-            <p className="mt-4 text-sm leading-relaxed text-neutral-600 md:text-base">
-              {address}
-            </p>
-            <div className="mt-6">
-              <a
-                href={`https://www.openstreetmap.org/search?query=${encode(address)}`}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-6 py-3 text-xs font-light uppercase tracking-[0.25em] text-neutral-800"
-              >
-                Open in Maps <span>→</span>
-              </a>
-            </div>
-          </div>
-
-          <div className="overflow-hidden rounded-3xl border border-black/10 bg-white">
-            {iframeSrc ? (
-              <iframe
-                title="Map"
-                src={iframeSrc}
-                className="h-[420px] w-full"
-                style={{
-                  border: 0,
-                  filter: 'grayscale(1) contrast(1.1)',
-                }}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            ) : (
-              <div className="flex h-[420px] items-center justify-center bg-neutral-50 text-sm text-neutral-500">
-                Loading map…
-              </div>
-            )}
+      {/* Text on top */}
+      <div className="mx-auto max-w-6xl px-6 pb-8 pt-16">
+        <div className="max-w-2xl">
+          <div className="text-xs uppercase tracking-[0.3em] text-neutral-500">Visit</div>
+          <h2 className="mt-3 font-serif text-4xl tracking-tight text-neutral-900 md:text-5xl">
+            Boynton Beach
+          </h2>
+          <p className="mt-4 text-sm leading-relaxed text-neutral-600 md:text-base">{address}</p>
+          <div className="mt-6">
+            <a
+              href={`https://www.openstreetmap.org/search?query=${encode(address)}`}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-6 py-3 text-xs font-light uppercase tracking-[0.25em] text-neutral-800"
+            >
+              Open in Maps <span>→</span>
+            </a>
           </div>
         </div>
       </div>
+
+      {/* Full-width map */}
+      <div className="left-1/2 right-1/2 -mx-[50vw] w-screen overflow-hidden border-t border-black/5 bg-white">
+        {iframeSrc ? (
+          <iframe
+            title="Map"
+            src={iframeSrc}
+            className="h-[560px] w-full"
+            style={{
+              border: 0,
+              filter: 'grayscale(1) contrast(1.1)',
+            }}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        ) : (
+          <div className="flex h-[560px] items-center justify-center bg-neutral-50 text-sm text-neutral-500">
+            Loading map…
+          </div>
+        )}
+      </div>
+
+      <div className="mx-auto max-w-6xl px-6 pb-16" />
     </section>
   )
 }
