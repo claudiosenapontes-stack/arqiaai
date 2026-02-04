@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { ParallaxImage } from '@/components/Parallax'
 import { BrandWatermark } from '@/components/BrandWatermark'
 
 const COLLECTIONS = [
@@ -181,57 +180,58 @@ export function HomeTilesLayer() {
             </p>
           </div>
 
-          {/* Parallax services block: background image full-bleed, cards float above */}
-          <div className="mt-10 overflow-hidden rounded-[2rem] border border-black/10 bg-black/5">
-            <div className="relative h-[110vh]">
-              <ParallaxImage
-                src="/mock/furniture-5.jpg"
-                alt="ARQIA services"
-                className="absolute inset-0 h-full w-full"
-                strength={0.22}
-              />
-              <div aria-hidden className="absolute inset-0 bg-black/25" />
-              <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/10 to-black/45" />
+          {/* Full-width static background image; cards/titles float and move while the photo stays fixed */}
+          <div className="mt-10 overflow-hidden rounded-[2rem] border border-black/10">
+            <div className="relative min-h-[140vh]">
+              {/* Sticky backdrop (static feel) */}
+              <div className="pointer-events-none sticky top-0 h-screen w-full">
+                <div className="absolute inset-0">
+                  <img
+                    src="/mock/furniture-5.jpg"
+                    alt=""
+                    className="h-full w-full object-cover"
+                  />
+                  <div aria-hidden className="absolute inset-0 bg-black/30" />
+                  <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/10 to-black/55" />
+                </div>
+              </div>
 
-              <div className="relative z-10 mx-auto h-full max-w-6xl px-6">
-                <div className="sticky top-28 pt-12">
-                  <div className="grid gap-4 md:grid-cols-3">
-                    {SERVICES.map((s) => (
-                      <Link
-                        key={s.title}
-                        href={s.href}
-                        className="group rounded-3xl border border-white/20 bg-white/85 p-6 backdrop-blur transition hover:border-white/35"
-                      >
-                        <div className="text-xs uppercase tracking-[0.3em] text-neutral-500">Service</div>
-                        <div className="mt-3 font-serif text-2xl text-neutral-900">{s.title}</div>
-                        <div className="mt-3 text-sm text-neutral-700">{s.subtitle}</div>
-                        <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-black/15 px-4 py-2 text-xs font-light uppercase tracking-[0.25em] text-neutral-900 transition group-hover:border-black/30">
-                          Learn more <span className="transition group-hover:translate-x-0.5">→</span>
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
+              {/* Foreground content scrolls over the fixed-feel image */}
+              <div className="relative z-10 mx-auto -mt-[70vh] max-w-6xl px-6 pb-16">
+                <div className="grid gap-4 md:grid-cols-3">
+                  {SERVICES.map((s) => (
+                    <Link
+                      key={s.title}
+                      href={s.href}
+                      className="group rounded-3xl border border-white/20 bg-white/85 p-6 backdrop-blur transition hover:border-white/35 hover:bg-white/90"
+                    >
+                      <div className="text-xs uppercase tracking-[0.3em] text-neutral-500">Service</div>
+                      <div className="mt-3 font-serif text-2xl text-neutral-900">{s.title}</div>
+                      <div className="mt-3 text-sm text-neutral-700">{s.subtitle}</div>
+                      <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-black/15 px-4 py-2 text-xs font-light uppercase tracking-[0.25em] text-neutral-900 transition group-hover:border-black/30">
+                        Learn more <span className="transition group-hover:translate-x-0.5">→</span>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
 
-                  <div className="mt-10 flex flex-wrap gap-3">
-                    <Link
-                      href="/services"
-                      className="rounded-full bg-black px-6 py-3 text-xs font-light uppercase tracking-[0.25em] text-white"
-                    >
-                      Explore Services
-                    </Link>
-                    <Link
-                      href="/contact"
-                      className="rounded-full border border-white/25 bg-white/0 px-6 py-3 text-xs font-light uppercase tracking-[0.25em] text-white hover:border-white/45"
-                    >
-                      Contact
-                    </Link>
-                  </div>
+                <div className="mt-10 flex flex-wrap gap-3">
+                  <Link
+                    href="/services"
+                    className="rounded-full bg-black/80 px-6 py-3 text-xs font-light uppercase tracking-[0.25em] text-white backdrop-blur hover:bg-black"
+                  >
+                    Explore Services
+                  </Link>
+                  <Link
+                    href="/contact"
+                    className="rounded-full border border-white/25 bg-white/0 px-6 py-3 text-xs font-light uppercase tracking-[0.25em] text-white backdrop-blur hover:border-white/45"
+                  >
+                    Contact
+                  </Link>
                 </div>
               </div>
             </div>
           </div>
-
-          {/* CTAs moved into the parallax block above */}
         </div>
       </section>
     </section>
