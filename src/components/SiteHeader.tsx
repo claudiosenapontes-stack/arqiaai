@@ -20,19 +20,26 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
 
   useEffect(() => {
     let lastY = window.scrollY
+    const hasHover = window.matchMedia?.('(hover: hover)').matches ?? true
 
     const onScroll = () => {
       const y = window.scrollY
       setSolidText(y > 24)
 
-      // Hide while scrolling down (and not near top); show when scrolling up.
-      const goingDown = y > lastY
-      if (y < 40) {
-        setHidden(false)
-      } else if (goingDown && y > 120) {
-        setHidden(true)
-      } else if (!goingDown) {
-        setHidden(false)
+      if (hasHover) {
+        // Desktop: keep header hidden during scroll/content reading.
+        // Reveal only on hover (except near the very top).
+        setHidden(y >= 40)
+      } else {
+        // Touch devices: no hover — use scroll intent.
+        const goingDown = y > lastY
+        if (y < 40) {
+          setHidden(false)
+        } else if (goingDown && y > 120) {
+          setHidden(true)
+        } else if (!goingDown) {
+          setHidden(false)
+        }
       }
 
       lastY = y
