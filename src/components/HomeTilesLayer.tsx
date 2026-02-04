@@ -107,7 +107,7 @@ function StackedImageStrip({
         <div className="mx-auto max-w-6xl px-6 py-10">
           <div className="max-w-xl">
             {topKicker ? (
-              <div className="text-xs uppercase tracking-[0.3em] text-arqia-olive/45">{topKicker}</div>
+              <div className="text-xs uppercase tracking-[0.3em] text-[color:#AEB89A] drop-shadow-[0_1px_8px_rgba(0,0,0,0.35)]">{topKicker}</div>
             ) : null}
 
             {bigTitle ? (
