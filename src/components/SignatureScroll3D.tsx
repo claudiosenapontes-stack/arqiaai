@@ -17,24 +17,19 @@ type Beat = {
 
 const BEATS: Beat[] = [
   {
-    eyebrow: 'Indoor',
-    title: 'Refined interiors, sourced with precision.',
-    body: 'Quiet silhouettes, natural materials, clear specifications.',
+    eyebrow: 'Material',
+    title: 'Material, selected with restraint.',
+    body: 'Natural wood, quiet upholstery—refined, intentional, precise.',
   },
   {
-    eyebrow: 'Outdoor',
-    title: 'Weather-ready pieces with architectural restraint.',
-    body: 'Performance fabrics, durable finishes, cohesive palettes.',
+    eyebrow: 'Craft',
+    title: 'Craft, with architectural discipline.',
+    body: 'Form, joinery, and finish—built to endure and feel effortless.',
   },
   {
-    eyebrow: 'Services',
-    title: 'Design support for projects that need clarity.',
-    body: 'Space planning, procurement, coordination, and delivery.',
-  },
-  {
-    eyebrow: 'Delivery',
-    title: 'White-glove logistics, clean install, no noise.',
-    body: 'Scheduling, assembly, placement, and packaging removal.',
+    eyebrow: 'Collections',
+    title: 'Explore collections.',
+    body: 'An editorial way to browse by space—then go deeper.',
   },
 ]
 
@@ -131,7 +126,8 @@ export function SignatureScroll3D() {
       ScrollTrigger.create({
         trigger: el,
         start: 'top top',
-        end: '+=240%',
+        // Keep the entrance short: fast handoff into the editorial collections.
+        end: '+=160%',
         pin: true,
         scrub: 1,
         onUpdate: (self) => {
