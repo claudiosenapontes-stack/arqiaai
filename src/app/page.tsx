@@ -2,7 +2,6 @@ import { SiteHeader } from '@/components/SiteHeader'
 import { HomeTilesLayer } from '@/components/HomeTilesLayer'
 import { HomeSimpleTriptych } from '@/components/HomeSimpleTriptych'
 import { SignatureScrollSequence } from '@/components/SignatureScrollSequence'
-import { SiteFooter } from '@/components/SiteFooter'
 import Image from 'next/image'
 
 export default function Home() {
@@ -27,9 +26,10 @@ export default function Home() {
         <div className="relative z-10 mx-auto flex min-h-screen max-w-6xl items-end px-6 pb-16 pt-28">
           <div className="max-w-3xl">
             <h1 className="font-serif font-light text-5xl leading-tight tracking-tight text-white md:text-7xl">
-              Architectural Intelligence
-              <br />
-              for refined spaces.
+              <span className="font-sans font-extralight uppercase tracking-[0.28em] text-[color:var(--arqia-brass-light)]">
+                Architectural Intelligence
+              </span>
+              <span className="block">for refined spaces.</span>
             </h1>
             <p className="mt-5 max-w-xl text-sm text-white/80 md:text-base">
               Furniture and design services with quiet luxury sensibility.
