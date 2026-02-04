@@ -25,7 +25,6 @@ export default function Home() {
 
           <div className="relative z-10 mx-auto flex h-full max-w-6xl items-end px-6 pb-16">
             <div className="max-w-2xl">
-              <div className="text-xs uppercase tracking-[0.3em] text-white/70">ARQIA</div>
               <h1 className="mt-4 font-serif text-5xl leading-tight tracking-tight text-white md:text-6xl">
                 Architectural Intelligence for refined spaces.
               </h1>
@@ -63,16 +62,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Scroll cue */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-6 z-10 flex justify-center">
-            <a
-              href="#collections"
-              className="pointer-events-auto inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/40 bg-white/5 text-white backdrop-blur transition hover:border-white/70 hover:bg-white/10"
-              aria-label="Scroll to collections"
-            >
-              <span className="text-lg">↓</span>
-            </a>
-          </div>
         </div>
       </section>
 
