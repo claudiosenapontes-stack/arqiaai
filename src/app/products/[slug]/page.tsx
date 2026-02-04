@@ -4,6 +4,13 @@ import { notFound } from 'next/navigation'
 import { MOCK_PRODUCTS, formatUsd } from '@/lib/mockCatalog'
 import { SimilarCarousel } from '@/components/SimilarCarousel'
 
+// Pre-render known product pages so we don't depend on server runtime.
+export const dynamic = 'force-static'
+
+export function generateStaticParams() {
+  return MOCK_PRODUCTS.map((p) => ({ slug: p.slug }))
+}
+
 export async function generateMetadata({
   params,
 }: {
