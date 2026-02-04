@@ -44,6 +44,38 @@ export default function Home() {
       {/* One unified tile layer (Indoor/Outdoor/etc.) */}
       <HomeTilesLayer />
 
+      {/* Editorial block (after Services section inside HomeTilesLayer) */}
+      <section className="product-hero-fullbleed overflow-hidden border-y border-black/5 bg-white">
+        <div className="grid min-h-[520px] md:grid-cols-2">
+          <div className="flex items-center px-6 py-14 md:px-16 md:py-16">
+            <div className="mx-auto w-full max-w-xl">
+              <div className="text-xs uppercase tracking-[0.3em] text-neutral-500">Editorial</div>
+              <h3 className="mt-4 font-serif text-4xl tracking-tight text-neutral-900 md:text-5xl">
+                Materials, restraint, and proportion
+              </h3>
+              <p className="mt-5 text-sm leading-relaxed text-neutral-600 md:text-base">
+                A curated set of silhouettes, tuned for quiet luxury. Larger imagery, fewer choices per
+                screen—better decisions.
+              </p>
+              <div className="mt-8">
+                <a
+                  href="/products"
+                  className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-6 py-3 text-xs font-light uppercase tracking-[0.25em] text-neutral-800"
+                >
+                  Browse the shop <span className="transition">→</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="relative min-h-[320px] md:min-h-[520px]">
+            <Image src="/mock/furniture-2.jpg" alt="Materials and restraint" fill className="object-cover" />
+            <div aria-hidden className="absolute inset-0 bg-black/10" />
+            <div aria-hidden className="absolute inset-0 bg-gradient-to-l from-black/25 via-black/10 to-transparent" />
+          </div>
+        </div>
+      </section>
+
       {/* Back to the simple Materials/Craft/Delivery triptych */}
       <HomeSimpleTriptych />
 
