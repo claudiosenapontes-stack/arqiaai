@@ -51,10 +51,12 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
   }, [])
 
   // RH-style: always visible, no white bar. Readability via subtle top gradient.
-  const tone = solidText ? 'text-neutral-800' : 'text-white/90'
-  const hoverTone = solidText ? 'hover:text-arqia-olive' : 'hover:text-[color:var(--arqia-brass-light)]'
-
   const isRevealed = !hidden || hoverReveal
+
+  // When the header is revealed (via hover), keep typography brass so it contrasts
+  // across mixed backgrounds. No background panel.
+  const tone = isRevealed ? 'text-[color:var(--arqia-brass-light)]' : (solidText ? 'text-neutral-800' : 'text-white/90')
+  const hoverTone = 'hover:text-[color:var(--arqia-brass-light)]'
 
   return (
     <>
