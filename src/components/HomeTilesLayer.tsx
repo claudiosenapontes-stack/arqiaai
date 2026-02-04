@@ -221,7 +221,16 @@ export function HomeTilesLayer() {
                 <div className="mt-10 flex flex-wrap gap-3">
                   <Link
                     href="/services"
-                    className="rounded-full bg-[linear-gradient(135deg,var(--arqia-brass-light),#f5eddc,var(--arqia-brass-dark))] px-6 py-3 text-xs font-light uppercase tracking-[0.25em] text-[color:var(--arqia-ink)] shadow-[0_10px_30px_rgba(0,0,0,0.25)] hover:shadow-[0_14px_38px_rgba(0,0,0,0.3)]"
+                    className={
+                      'rounded-full px-6 py-3 text-xs font-light uppercase tracking-[0.25em] text-white/90 ' +
+                      // glass feel
+                      'border border-white/25 bg-white/10 backdrop-blur-md ' +
+                      'shadow-[0_10px_30px_rgba(0,0,0,0.25)] ' +
+                      // subtle brass sheen
+                      'bg-[linear-gradient(135deg,rgba(224,206,169,0.20),rgba(255,255,255,0.08),rgba(183,149,91,0.16))] ' +
+                      'hover:border-[color:var(--arqia-brass-light)]/70 hover:text-[color:var(--arqia-brass-light)] ' +
+                      'hover:shadow-[0_14px_38px_rgba(0,0,0,0.3)]'
+                    }
                   >
                     Explore Services
                   </Link>
