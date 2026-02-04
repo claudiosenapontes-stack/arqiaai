@@ -181,17 +181,14 @@ export function HomeTilesLayer() {
           </div>
 
           {/* Full-width static background image; cards/titles float and move while the photo stays fixed */}
-          <div className="mt-10 overflow-hidden rounded-[2rem] border border-black/10">
+          {/* Full-width static background image; cards/titles/buttons float and move while the photo stays fixed */}
+          <div className="relative mt-10 overflow-hidden">
             <div className="relative min-h-[140vh]">
               {/* Sticky backdrop (static feel) */}
               <div className="pointer-events-none sticky top-0 h-screen w-full">
                 <div className="absolute inset-0">
-                  <img
-                    src="/mock/furniture-5.jpg"
-                    alt=""
-                    className="h-full w-full object-cover"
-                  />
-                  <div aria-hidden className="absolute inset-0 bg-black/30" />
+                  <img src="/mock/furniture-5.jpg" alt="" className="h-full w-full object-cover" />
+                  <div aria-hidden className="absolute inset-0 bg-black/28" />
                   <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/10 to-black/55" />
                 </div>
               </div>
@@ -203,12 +200,19 @@ export function HomeTilesLayer() {
                     <Link
                       key={s.title}
                       href={s.href}
-                      className="group rounded-3xl border border-white/20 bg-white/85 p-6 backdrop-blur transition hover:border-white/35 hover:bg-white/90"
+                      className={
+                        'group rounded-3xl p-6 backdrop-blur transition duration-300 ease-out ' +
+                        // brass frame + light gradient fill (no solid white box)
+                        'border border-[color:var(--arqia-brass-light)]/55 ' +
+                        'bg-[linear-gradient(135deg,rgba(255,255,255,0.18),rgba(255,255,255,0.10),rgba(224,206,169,0.10))] ' +
+                        'shadow-[0_18px_50px_rgba(0,0,0,0.25)] ' +
+                        'hover:border-[color:var(--arqia-brass-light)]/85 hover:bg-[linear-gradient(135deg,rgba(255,255,255,0.24),rgba(255,255,255,0.12),rgba(224,206,169,0.14))] hover:scale-[1.01]'
+                      }
                     >
-                      <div className="text-xs uppercase tracking-[0.3em] text-neutral-500">Service</div>
-                      <div className="mt-3 font-serif text-2xl text-neutral-900">{s.title}</div>
-                      <div className="mt-3 text-sm text-neutral-700">{s.subtitle}</div>
-                      <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-black/15 px-4 py-2 text-xs font-light uppercase tracking-[0.25em] text-neutral-900 transition group-hover:border-black/30">
+                      <div className="text-xs uppercase tracking-[0.3em] text-white/80">Service</div>
+                      <div className="mt-3 font-serif text-2xl text-white">{s.title}</div>
+                      <div className="mt-3 text-sm text-white/80">{s.subtitle}</div>
+                      <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-xs font-light uppercase tracking-[0.25em] text-white/90 transition group-hover:border-[color:var(--arqia-brass-light)]/70 group-hover:text-[color:var(--arqia-brass-light)]">
                         Learn more <span className="transition group-hover:translate-x-0.5">→</span>
                       </div>
                     </Link>
@@ -218,13 +222,13 @@ export function HomeTilesLayer() {
                 <div className="mt-10 flex flex-wrap gap-3">
                   <Link
                     href="/services"
-                    className="rounded-full bg-black/80 px-6 py-3 text-xs font-light uppercase tracking-[0.25em] text-white backdrop-blur hover:bg-black"
+                    className="rounded-full bg-[linear-gradient(135deg,var(--arqia-brass-light),#f5eddc,var(--arqia-brass-dark))] px-6 py-3 text-xs font-light uppercase tracking-[0.25em] text-[color:var(--arqia-ink)] shadow-[0_10px_30px_rgba(0,0,0,0.25)] hover:shadow-[0_14px_38px_rgba(0,0,0,0.3)]"
                   >
                     Explore Services
                   </Link>
                   <Link
                     href="/contact"
-                    className="rounded-full border border-white/25 bg-white/0 px-6 py-3 text-xs font-light uppercase tracking-[0.25em] text-white backdrop-blur hover:border-white/45"
+                    className="rounded-full border border-[color:var(--arqia-brass-light)]/55 bg-white/0 px-6 py-3 text-xs font-light uppercase tracking-[0.25em] text-[color:var(--arqia-brass-light)] backdrop-blur hover:border-[color:var(--arqia-brass-light)]/85"
                   >
                     Contact
                   </Link>
