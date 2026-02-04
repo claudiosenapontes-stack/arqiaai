@@ -24,6 +24,11 @@ const BEATS: Beat[] = [
     body: 'Form, joinery, and finish—built to endure and feel effortless.',
   },
   {
+    eyebrow: 'Design',
+    title: 'Design, guided by proportion.',
+    body: 'Sourcing, specification, and layout support for refined spaces.',
+  },
+  {
     eyebrow: 'Collections',
     title: 'Explore collections.',
     body: 'An editorial way to browse by space—then go deeper.',
@@ -59,7 +64,7 @@ export function SignatureScrollSequence() {
         trigger: el,
         start: 'top top',
         // Short entrance → fast handoff into Collections.
-        end: '+=160%',
+        end: '+=190%',
         pin: true,
         scrub: 1,
         onUpdate: (self) => {
