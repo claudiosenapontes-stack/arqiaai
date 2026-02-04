@@ -15,10 +15,7 @@ const NAV = [
 
 export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
   const [solidText, setSolidText] = useState(false)
-  const [hovered, setHovered] = useState(false)
-  const [touchLike, setTouchLike] = useState(false)
 
-  // We never paint a white header background. We only switch text color based on scroll.
   useEffect(() => {
     const onScroll = () => setSolidText(window.scrollY > 24)
     onScroll()
@@ -26,73 +23,67 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Ensure header is discoverable on touch devices (no hover).
-  useEffect(() => {
-    const mq = window.matchMedia('(hover: none), (pointer: coarse)')
-    const update = () => setTouchLike(!!mq.matches)
-    update()
-    mq.addEventListener?.('change', update)
-    return () => mq.removeEventListener?.('change', update)
-  }, [])
-
-  // Home hero: reveal menu on hover at top; once scrolled, keep it visible.
-  const showMenu = hovered || touchLike || solidText
-
-  const navTone = solidText ? 'text-neutral-800' : 'text-white/90'
-  const navHover = solidText ? 'hover:text-arqia-olive' : 'hover:text-[color:var(--arqia-brass-light)]'
+  // RH-style: always visible, no white bar. Readability via subtle top gradient.
+  const tone = solidText ? 'text-neutral-800' : 'text-white/90'
+  const hoverTone = solidText ? 'hover:text-arqia-olive' : 'hover:text-[color:var(--arqia-brass-light)]'
 
   return (
     <header
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
       className={(overlay ? 'fixed left-0 right-0 top-0 ' : 'sticky top-0 ') + 'z-50 bg-transparent'}
     >
-      {/* Invisible hover strip so user can discover the nav with a quick hover at the top */}
-      {!showMenu ? <div className="h-10" /> : null}
-
+      {/* Top fade for legibility (not a bar) */}
       <div
+        aria-hidden
         className={
-          'mx-auto max-w-6xl px-6 transition-all duration-300 ' +
-          (showMenu ? 'py-4 opacity-100 translate-y-0' : 'py-2 opacity-0 -translate-y-1 pointer-events-none')
+          'pointer-events-none absolute inset-x-0 top-0 h-28 transition-opacity duration-300 ' +
+          (solidText ? 'opacity-0' : 'opacity-100 bg-gradient-to-b from-black/40 via-black/15 to-transparent')
         }
-      >
-        <div className="flex items-center justify-between gap-6">
-          <Link href="/" className="flex items-center">
-            <img
-              src="/arqia-logo.jpg"
-              alt="ARQIA"
-              className={
-                'h-7 w-auto transition ' +
-                (solidText ? '' : 'drop-shadow-[0_1px_10px_rgba(0,0,0,0.45)]')
-              }
-            />
+      />
+
+      <div className={'mx-auto max-w-6xl px-6 ' + (overlay ? 'pt-6 pb-4' : 'py-4')}>
+        <div className={'relative flex items-center justify-between ' + tone}>
+          {/* Left spacer (we can put hamburger/search later) */}
+          <div className="w-24" />
+
+          {/* Center logo */}
+          <Link
+            href="/"
+            className={
+              'absolute left-1/2 -translate-x-1/2 flex items-center transition ' +
+              (solidText ? '' : 'drop-shadow-[0_1px_12px_rgba(0,0,0,0.45)]')
+            }
+            aria-label="ARQIA home"
+          >
+            <img src="/arqia-logo.jpg" alt="ARQIA" className="h-7 w-auto" />
           </Link>
 
-          <nav className={'hidden items-center gap-6 text-[13px] font-light tracking-[0.22em] uppercase md:flex ' + navTone}>
+          {/* Desktop nav */}
+          <nav className={'hidden items-center gap-6 text-[12px] font-light uppercase tracking-[0.24em] md:flex ' + tone}>
             {NAV.map((n) => (
-              <Link key={n.href} href={n.href} className={'transition ' + navHover}>
+              <Link key={n.href} href={n.href} className={'transition ' + hoverTone}>
                 {n.label}
               </Link>
             ))}
           </nav>
 
+          {/* Right: cart */}
           <Link
             href="/cart"
             className={
-              'rounded-full px-4 py-1.5 text-sm transition backdrop-blur ' +
+              'ml-auto rounded-full px-4 py-1.5 text-sm transition backdrop-blur ' +
               (solidText
-                ? 'border border-black/15 bg-white/0 text-neutral-800 ' + navHover
-                : 'border border-white/35 bg-white/5 text-white ' + navHover)
+                ? 'border border-black/15 bg-white/0 text-neutral-800 hover:border-arqia-olive/60 hover:text-arqia-olive'
+                : 'border border-white/35 bg-white/5 text-white hover:border-[color:var(--arqia-brass-light)] hover:text-[color:var(--arqia-brass-light)]')
             }
           >
             Cart
           </Link>
         </div>
 
-        {/* Mobile nav */}
-        <div className={'md:hidden mt-3 flex gap-4 overflow-x-auto text-[13px] font-light tracking-[0.2em] uppercase ' + navTone}>
+        {/* Mobile nav (second row) */}
+        <div className={'mt-4 flex gap-4 overflow-x-auto text-[12px] font-light uppercase tracking-[0.22em] md:hidden ' + tone}>
           {NAV.map((n) => (
-            <Link key={n.href} href={n.href} className={'whitespace-nowrap transition ' + navHover}>
+            <Link key={n.href} href={n.href} className={'whitespace-nowrap transition ' + hoverTone}>
               {n.label}
             </Link>
           ))}
