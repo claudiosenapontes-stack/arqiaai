@@ -99,6 +99,19 @@ function StackedImageStrip({
             />
             <div className="absolute inset-0 bg-black/10 transition duration-500 group-hover:bg-black/25" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/20 to-transparent" />
+
+            {/* Add the brand mark on every second hero image (idx === 1) */}
+            {idx === 1 ? (
+              <div aria-hidden className="pointer-events-none absolute bottom-6 right-6 md:bottom-10 md:right-10">
+                <img
+                  src="/arqia-mark-240.png"
+                  srcSet="/arqia-mark-120.png 120w, /arqia-mark-180.png 180w, /arqia-mark-240.png 240w, /arqia-mark-360.png 360w"
+                  sizes="(min-width: 768px) 56px, 44px"
+                  alt=""
+                  className="h-11 w-auto opacity-75 drop-shadow-[0_2px_16px_rgba(0,0,0,0.35)] md:h-14"
+                />
+              </div>
+            ) : null}
           </div>
         ))}
       </div>
