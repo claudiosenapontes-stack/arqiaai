@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="44" viewBox="0 0 260 44" role="img" aria-label="ARQIA">
+  <title>ARQIA</title>
+  <rect width="260" height="44" fill="none"/>
+  <!-- Wordmark as SVG text (vector, but relies on the site font). If you provide an official logo file, we can swap to true outline paths. -->
+  <text x="0" y="26" font-family="Playfair Display, ui-serif, Georgia, serif" font-size="24" letter-spacing="4" fill="#E0CEA9">ARQIA</text>
+  <text x="1" y="40" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="10" letter-spacing="2.2" fill="#FFFFFF" opacity="0.75">ARCHITECTURAL INTELLIGENCE</text>
+</svg>

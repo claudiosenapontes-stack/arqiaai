@@ -28,9 +28,7 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
   const hoverTone = solidText ? 'hover:text-arqia-olive' : 'hover:text-[color:var(--arqia-brass-light)]'
 
   return (
-    <header
-      className={(overlay ? 'fixed left-0 right-0 top-0 ' : 'sticky top-0 ') + 'z-50 bg-transparent'}
-    >
+    <header className={(overlay ? 'fixed left-0 right-0 top-0 ' : 'sticky top-0 ') + 'z-50 bg-transparent'}>
       {/* Top fade for legibility (not a bar) */}
       <div
         aria-hidden
@@ -41,33 +39,18 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
       />
 
       <div className={'mx-auto max-w-6xl px-6 ' + (overlay ? 'pt-6 pb-4' : 'py-4')}>
-        <div className={'relative flex items-center justify-between ' + tone}>
-          {/* Left spacer (we can put hamburger/search later) */}
-          <div className="w-24" />
-
-          {/* Center logo */}
+        <div className={'flex items-center gap-6 ' + tone}>
+          {/* Left-aligned logo */}
           <Link
             href="/"
             aria-label="ARQIA home"
-            className={
-              'absolute left-1/2 -translate-x-1/2 flex flex-col items-center leading-none transition ' +
-              (solidText ? '' : 'drop-shadow-[0_1px_12px_rgba(0,0,0,0.45)]')
-            }
+            className={'flex items-center transition ' + (solidText ? '' : 'drop-shadow-[0_1px_12px_rgba(0,0,0,0.45)]')}
           >
-            <div className="font-serif text-[22px] tracking-[0.18em] uppercase text-[color:var(--arqia-brass-light)]">
-              ARQIA
-            </div>
-            <div className={
-              'mt-1 text-[10px] tracking-[0.22em] uppercase ' +
-              (solidText ? 'text-neutral-500' : 'text-white/70')
-            }
-            >
-              Architectural Intelligence
-            </div>
+            <img src="/arqia-wordmark.svg" alt="ARQIA" className="h-9 w-auto" />
           </Link>
 
-          {/* Desktop nav */}
-          <nav className={'hidden items-center gap-6 text-[12px] font-light uppercase tracking-[0.24em] md:flex ' + tone}>
+          {/* Desktop nav (center-ish) */}
+          <nav className={'hidden flex-1 items-center justify-center gap-6 text-[12px] font-light uppercase tracking-[0.24em] md:flex ' + tone}>
             {NAV.map((n) => (
               <Link key={n.href} href={n.href} className={'transition ' + hoverTone}>
                 {n.label}
