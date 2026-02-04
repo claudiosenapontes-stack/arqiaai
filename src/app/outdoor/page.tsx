@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { SiteHeader } from '@/components/SiteHeader'
 import { TopFilters } from '@/components/TopFilters'
 import { ProductHeroCard } from '@/components/ProductHeroCard'
+import { SimilarCarousel } from '@/components/SimilarCarousel'
 import { MOCK_PRODUCTS, formatUsd } from '@/lib/mockCatalog'
 
 function Editorial({ title, body, img }: { title: string; body: string; img: string }) {
@@ -36,41 +37,39 @@ export default function OutdoorPage() {
 
       <section className="mx-auto max-w-6xl px-6 py-12">
         <div className="space-y-10">
-          {MOCK_PRODUCTS.filter((p) => p.environment === 'outdoor')
-            .slice(0, 2)
-            .map((p) => (
-              <ProductHeroCard
-                key={p.slug}
-                category={p.categoryLabel}
-                title={p.title}
-                member={formatUsd(p.memberPriceCents)}
-                retail={formatUsd(p.retailPriceCents)}
-                img={p.img}
-                href={`/products/${p.slug}`}
-                inquiryEmail="design@arqiaai.com"
-              />
-            ))}
+          {(() => {
+            const products = MOCK_PRODUCTS.filter((p) => p.environment === 'outdoor')
+            return products.map((p, idx) => {
+              const similars = products.filter((x) => x.slug !== p.slug)
+              const pair = [similars[(idx * 2) % similars.length], similars[(idx * 2 + 1) % similars.length]].filter(Boolean)
+              return (
+                <div key={p.slug} className="space-y-8">
+                  <ProductHeroCard
+                    category={p.categoryLabel}
+                    title={p.title}
+                    member={formatUsd(p.memberPriceCents)}
+                    retail={formatUsd(p.retailPriceCents)}
+                    img={p.img}
+                    href={`/products/${p.slug}`}
+                    inquiryEmail="design@arqiaai.com"
+                  />
 
-          <Editorial
-            title="Outdoor, refined"
-            body="A commercial browsing flow, but with editorial pacing—larger imagery, alternating layout, and occasional features."
-            img="/mock/material-2.jpg"
-          />
-
-          {MOCK_PRODUCTS.filter((p) => p.environment === 'outdoor')
-            .slice(2)
-            .map((p) => (
-              <ProductHeroCard
-                key={p.slug}
-                category={p.categoryLabel}
-                title={p.title}
-                member={formatUsd(p.memberPriceCents)}
-                retail={formatUsd(p.retailPriceCents)}
-                img={p.img}
-                href={`/products/${p.slug}`}
-                inquiryEmail="design@arqiaai.com"
-              />
-            ))}
+                  {idx < products.length - 1 ? (
+                    <SimilarCarousel
+                      label="Similar pieces"
+                      items={pair.map((s) => ({
+                        slug: s.slug,
+                        title: s.title,
+                        subtitle: s.subtitle,
+                        img: s.img,
+                        href: `/products/${s.slug}`,
+                      }))}
+                    />
+                  ) : null}
+                </div>
+              )
+            })
+          })()}
 </div>
       </section>
     </main>
