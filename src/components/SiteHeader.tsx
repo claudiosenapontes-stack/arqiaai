@@ -116,10 +116,12 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
           <Link
             href="/cart"
             className={
-              'ml-auto rounded-full px-6 py-2 text-sm transition backdrop-blur ' +
-              (solidText
-                ? 'border border-black/15 bg-white/0 text-neutral-800 hover:border-arqia-olive/60 hover:text-arqia-olive'
-                : 'border border-white/35 bg-white/5 text-white hover:border-[color:var(--arqia-brass-light)] hover:text-[color:var(--arqia-brass-light)]')
+              'ml-auto rounded-full px-6 py-2 text-sm transition duration-300 ease-out ' +
+              // Always keep Cart as a premium brass gradient pill for visibility (no dark/black state).
+              'border border-white/20 text-[color:var(--arqia-ink)] ' +
+              'bg-[linear-gradient(135deg,var(--arqia-brass-light),#f5eddc, var(--arqia-brass-dark))] ' +
+              'shadow-[0_10px_30px_rgba(0,0,0,0.18)] ' +
+              'hover:shadow-[0_14px_38px_rgba(0,0,0,0.24)] hover:scale-[1.02]'
             }
           >
             View Cart
