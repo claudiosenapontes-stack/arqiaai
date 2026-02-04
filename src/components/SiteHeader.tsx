@@ -27,9 +27,9 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
       setSolidText(y > 24)
 
       if (hasHover) {
-        // Desktop: header is hidden by default.
-        // Reveal ONLY on hover (top strip / header).
-        setHidden(true)
+        // Desktop: show the header on the first screen (hero), then hide.
+        // After the hero, reveal only on hover.
+        setHidden(y >= window.innerHeight * 0.85)
       } else {
         // Touch devices: no hover — use scroll intent.
         const goingDown = y > lastY
