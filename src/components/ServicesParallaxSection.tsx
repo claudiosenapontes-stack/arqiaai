@@ -64,7 +64,7 @@ export function ServicesParallaxSection({
         </div>
 
         {/* Foreground content scrolls over the fixed-feel image and drifts opposite direction */}
-        <div ref={fgRef} className="relative z-10 mx-auto -mt-[74vh] max-w-6xl px-6 pb-24 will-change-transform">
+        <div ref={fgRef} className="relative z-10 mx-auto -mt-[80vh] max-w-6xl px-6 pb-40 will-change-transform">
           <div className="grid gap-4 md:grid-cols-3">
             {services.map((s) => (
               <Link
