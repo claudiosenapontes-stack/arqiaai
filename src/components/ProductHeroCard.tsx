@@ -28,47 +28,51 @@ export function ProductHeroCard({
           className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.05]"
         />
 
-        {/* overlay */}
-        <div className="absolute inset-x-0 bottom-0">
-          <div className="bg-gradient-to-t from-black/55 via-black/20 to-transparent p-6">
-            <div className="max-w-md">
-              <div className="text-[11px] uppercase tracking-[0.3em] text-white/70">{category}</div>
-              <div className="mt-2 font-serif text-3xl tracking-tight text-white">{title}</div>
-              <div className="mt-2">
-                <div className="text-sm text-white">
-                  <span className="text-white/70">Member</span> {member}
+        {/* overlay (bigger type, vertically centered, left aligned) */}
+        <div className="absolute inset-0">
+          <div className="flex h-full items-center">
+            <div className="w-full bg-gradient-to-t from-black/60 via-black/22 to-transparent px-6 py-10 md:px-10 md:py-14">
+              <div className="max-w-2xl">
+                <div className="text-xs uppercase tracking-[0.34em] text-white/75 md:text-sm">{category}</div>
+                <div className="mt-3 font-serif text-4xl leading-[1.05] tracking-tight text-white md:text-6xl">
+                  {title}
                 </div>
-                <div className="mt-0.5 text-xs text-white/70">
-                  <span className="text-white/70">Retail</span> {retail}
+                <div className="mt-4 space-y-1">
+                  <div className="text-base text-white md:text-lg">
+                    <span className="text-white/70">Member</span> {member}
+                  </div>
+                  <div className="text-sm text-white/75 md:text-base">
+                    <span className="text-white/70">Retail</span> {retail}
+                  </div>
                 </div>
-              </div>
 
-              <div className="mt-4 flex flex-wrap gap-3">
-                {href ? (
-                  <Link
-                    href={href}
-                    className="rounded-full bg-white/90 px-5 py-2.5 text-sm text-black backdrop-blur"
-                  >
-                    View
-                  </Link>
-                ) : (
-                  <button className="rounded-full bg-white/90 px-5 py-2.5 text-sm text-black backdrop-blur">
-                    View
+                <div className="mt-6 flex flex-wrap gap-3">
+                  {href ? (
+                    <Link
+                      href={href}
+                      className="rounded-full bg-white/92 px-7 py-3 text-base text-black backdrop-blur md:text-lg"
+                    >
+                      View
+                    </Link>
+                  ) : (
+                    <button className="rounded-full bg-white/92 px-7 py-3 text-base text-black backdrop-blur md:text-lg">
+                      View
+                    </button>
+                  )}
+
+                  <button className="rounded-full border border-white/30 bg-white/10 px-7 py-3 text-base text-white backdrop-blur md:text-lg">
+                    Save
                   </button>
-                )}
+                </div>
 
-                <button className="rounded-full border border-white/30 bg-white/10 px-5 py-2.5 text-sm text-white backdrop-blur">
-                  Save
-                </button>
-              </div>
-
-              <div className="mt-4">
-                <a
-                  href={`mailto:${inquiryEmail}?subject=Professional%20Membership%20Inquiry`}
-                  className="inline-flex items-center rounded-full border border-white/25 bg-white/10 px-4 py-2 text-[11px] text-white/80 backdrop-blur transition hover:bg-white/15"
-                >
-                  Inquire about Professional Membership
-                </a>
+                <div className="mt-5">
+                  <a
+                    href={`mailto:${inquiryEmail}?subject=Professional%20Membership%20Inquiry`}
+                    className="inline-flex items-center rounded-full border border-white/25 bg-white/10 px-6 py-3 text-sm text-white/85 backdrop-blur transition hover:bg-white/15 md:text-base"
+                  >
+                    Inquire about Professional Membership
+                  </a>
+                </div>
               </div>
             </div>
           </div>
