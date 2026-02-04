@@ -1,7 +1,7 @@
-import Link from 'next/link'
 import { SiteHeader } from '@/components/SiteHeader'
 import { HomeTilesLayer } from '@/components/HomeTilesLayer'
 import { HomeSimpleTriptych } from '@/components/HomeSimpleTriptych'
+import { SignatureScroll3D } from '@/components/SignatureScroll3D'
 
 export default function Home() {
   return (
@@ -32,38 +32,15 @@ export default function Home() {
                 Furniture and design services with quiet luxury sensibility.
               </p>
 
-              <div className="mt-8 flex flex-wrap gap-3">
-                {/* Light framed CTAs with ARQIA olive hover accents */}
-                <Link
-                  href="/indoor"
-                  className="rounded-full border border-white/35 bg-white/5 px-6 py-3 text-sm font-light text-white backdrop-blur transition hover:border-[color:var(--arqia-brass-light)] hover:bg-white/10 hover:text-[color:var(--arqia-brass-light)]"
-                >
-                  Explore Indoor
-                </Link>
-                <Link
-                  href="/outdoor"
-                  className="rounded-full border border-white/35 bg-white/5 px-6 py-3 text-sm font-light text-white backdrop-blur transition hover:border-[color:var(--arqia-brass-light)] hover:bg-white/10 hover:text-[color:var(--arqia-brass-light)]"
-                >
-                  Explore Outdoor
-                </Link>
-                <Link
-                  href="/services"
-                  className="rounded-full border border-white/35 bg-white/5 px-6 py-3 text-sm font-light text-white backdrop-blur transition hover:border-[color:var(--arqia-brass-light)] hover:bg-white/10 hover:text-[color:var(--arqia-brass-light)]"
-                >
-                  Schedule a Call
-                </Link>
-                <a
-                  href="#collections"
-                  className="rounded-full border border-white/35 bg-white/5 px-6 py-3 text-sm font-light text-white backdrop-blur transition hover:border-[color:var(--arqia-brass-light)] hover:bg-white/10 hover:text-[color:var(--arqia-brass-light)]"
-                >
-                  Explore Collections
-                </a>
-              </div>
+              {/* CTAs removed — replaced by signature scroll section below */}
             </div>
           </div>
 
         </div>
       </section>
+
+      {/* Signature Apple-style scroll moment (hybrid: keep existing layout, add one premium section) */}
+      <SignatureScroll3D />
 
       {/* One unified tile layer (Indoor/Outdoor/etc.) */}
       <HomeTilesLayer />
