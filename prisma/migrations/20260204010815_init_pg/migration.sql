@@ -1,7 +1,11 @@
 -- CreateTable
 CREATE TABLE "Product" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "slug" TEXT NOT NULL,
+    "vendorSku" TEXT,
+    "arqiaSku" TEXT,
+    "environment" TEXT,
+    "productType" TEXT,
     "title" TEXT NOT NULL,
     "subtitle" TEXT,
     "description" TEXT,
@@ -10,16 +14,19 @@ CREATE TABLE "Product" (
     "images" TEXT NOT NULL DEFAULT '[]',
     "materials" TEXT NOT NULL DEFAULT '[]',
     "dimensions" TEXT,
+    "dimensionsRaw" TEXT,
     "leadTime" TEXT,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Product_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Order" (
-    "id" TEXT NOT NULL PRIMARY KEY,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL,
+    "id" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
     "status" TEXT NOT NULL DEFAULT 'pending',
     "customerEmail" TEXT,
     "customerName" TEXT,
@@ -30,11 +37,19 @@ CREATE TABLE "Order" (
     "totalCents" INTEGER NOT NULL,
     "items" TEXT NOT NULL,
     "stripeSessionId" TEXT,
-    "stripePaymentIntentId" TEXT
+    "stripePaymentIntentId" TEXT,
+
+    CONSTRAINT "Order_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Product_slug_key" ON "Product"("slug");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Product_vendorSku_key" ON "Product"("vendorSku");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Product_arqiaSku_key" ON "Product"("arqiaSku");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Order_stripeSessionId_key" ON "Order"("stripeSessionId");
