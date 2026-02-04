@@ -3,6 +3,7 @@ import { SiteHeader } from '@/components/SiteHeader'
 import { TopFilters } from '@/components/TopFilters'
 import { ProductHeroCard } from '@/components/ProductHeroCard'
 import { SimilarCarousel } from '@/components/SimilarCarousel'
+import { EditorialSplit } from '@/components/EditorialSplit'
 import { MOCK_PRODUCTS, formatUsd } from '@/lib/mockCatalog'
 
 function Editorial({ title, body, img }: { title: string; body: string; img: string }) {
@@ -64,6 +65,14 @@ export default function IndoorPage() {
                         img: s.img,
                         href: `/products/${s.slug}`,
                       }))}
+                    />
+                  ) : null}
+
+                  {idx === 1 ? (
+                    <EditorialSplit
+                      title="Materials, restraint, and proportion"
+                      body="A curated set of silhouettes, tuned for quiet luxury. Larger imagery, fewer choices per screen—better decisions."
+                      img="/mock/material-1.jpg"
                     />
                   ) : null}
                 </div>

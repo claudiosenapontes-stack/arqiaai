@@ -3,6 +3,7 @@ import { SiteHeader } from '@/components/SiteHeader'
 import { TopFilters } from '@/components/TopFilters'
 import { ProductHeroCard } from '@/components/ProductHeroCard'
 import { SimilarCarousel } from '@/components/SimilarCarousel'
+import { EditorialSplit } from '@/components/EditorialSplit'
 import { MOCK_PRODUCTS, formatUsd } from '@/lib/mockCatalog'
 
 function Editorial({ title, body, img }: { title: string; body: string; img: string }) {
@@ -64,6 +65,15 @@ export default function OutdoorPage() {
                         img: s.img,
                         href: `/products/${s.slug}`,
                       }))}
+                    />
+                  ) : null}
+
+                  {idx === 0 ? (
+                    <EditorialSplit
+                      title="Outdoor, refined"
+                      body="A commercial browsing flow, with editorial pacing—larger imagery, fewer choices per screen, better decisions."
+                      img="/mock/material-2.jpg"
+                      flip
                     />
                   ) : null}
                 </div>
