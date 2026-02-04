@@ -50,8 +50,8 @@ export function ServicesParallaxSection({
   }, [])
 
   return (
-    <div ref={wrapRef} className="relative mt-10 left-1/2 right-1/2 -mx-[50vw] w-screen overflow-hidden">
-      <div className="relative min-h-[140vh]">
+    <div ref={wrapRef} className="relative mt-6 left-1/2 right-1/2 -mx-[50vw] w-screen overflow-hidden">
+      <div className="relative min-h-[120vh]">
         {/* Sticky backdrop (static feel), but with subtle parallax drift */}
         <div className="pointer-events-none sticky top-0 h-screen w-full">
           <div className="absolute inset-0 overflow-hidden">
@@ -64,7 +64,7 @@ export function ServicesParallaxSection({
         </div>
 
         {/* Foreground content scrolls over the fixed-feel image and drifts opposite direction */}
-        <div ref={fgRef} className="relative z-10 mx-auto -mt-[88vh] max-w-6xl px-6 pb-48 will-change-transform">
+        <div ref={fgRef} className="relative z-10 mx-auto -mt-[88vh] max-w-6xl px-6 pb-24 will-change-transform">
           <div className="grid gap-4 md:grid-cols-3">
             {services.map((s) => (
               <Link
