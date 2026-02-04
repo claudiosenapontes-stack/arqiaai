@@ -15,7 +15,7 @@ const NAV = [
 
 export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
   const [solidText, setSolidText] = useState(false)
-  const [hidden, setHidden] = useState(false)
+  const [hidden, setHidden] = useState(true)
   const [hoverReveal, setHoverReveal] = useState(false)
 
   useEffect(() => {
@@ -27,9 +27,9 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
       setSolidText(y > 24)
 
       if (hasHover) {
-        // Desktop: keep header hidden during scroll/content reading.
-        // Reveal only on hover (except near the very top).
-        setHidden(y >= 40)
+        // Desktop: header is hidden by default.
+        // Reveal ONLY on hover (top strip / header).
+        setHidden(true)
       } else {
         // Touch devices: no hover — use scroll intent.
         const goingDown = y > lastY
@@ -60,7 +60,7 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
     <>
       {/* Hover strip: keeps a tiny hit-area at the very top so the header can re-appear on hover (desktop). */}
       <div
-        className={(overlay ? 'fixed' : 'fixed') + ' left-0 right-0 top-0 z-50 h-3'}
+        className={(overlay ? 'fixed' : 'fixed') + ' left-0 right-0 top-0 z-50 h-2'}
         onMouseEnter={() => setHoverReveal(true)}
         onMouseLeave={() => setHoverReveal(false)}
       />
