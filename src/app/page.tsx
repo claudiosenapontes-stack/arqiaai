@@ -47,7 +47,6 @@ export default function Home() {
       {/* Back to the simple Materials/Craft/Delivery triptych */}
       <HomeSimpleTriptych />
 
-      <SiteFooter />
     </main>
   )
 }
