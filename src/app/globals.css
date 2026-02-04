@@ -19,3 +19,16 @@
     color: var(--arqia-ink);
   }
 }
+
+/* Full-bleed utility: break out of max-w containers (used for product hero cards). */
+.product-hero-fullbleed {
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;
+  border-left: none;
+  border-right: none;
+  border-radius: 0;
+}

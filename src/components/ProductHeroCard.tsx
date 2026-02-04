@@ -16,7 +16,7 @@ export function ProductHeroCard({
   inquiryEmail: string
 }) {
   return (
-    <div className="group overflow-hidden rounded-2xl border border-black/10 bg-white">
+    <div className="product-hero-fullbleed group overflow-hidden rounded-2xl border border-black/10 bg-white">
       <div className="relative aspect-[16/10] w-full overflow-hidden bg-neutral-100">
         <img
           alt={title}
