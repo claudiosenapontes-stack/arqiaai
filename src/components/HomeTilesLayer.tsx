@@ -181,11 +181,11 @@ export function HomeTilesLayer() {
           </div>
 
           {/* Full-width static background image; cards/titles float and move while the photo stays fixed */}
-          {/* Full-width static background image; cards/titles/buttons float and move while the photo stays fixed */}
+          {/* Full-bleed static background image (no white sides); cards/titles/buttons float above */}
           <div className="relative mt-10 overflow-hidden">
             <div className="relative min-h-[140vh]">
-              {/* Sticky backdrop (static feel) */}
-              <div className="pointer-events-none sticky top-0 h-screen w-full">
+              {/* Sticky backdrop (static feel) — full-bleed across viewport */}
+              <div className="pointer-events-none sticky top-0 h-screen w-screen left-1/2 -translate-x-1/2 relative">
                 <div className="absolute inset-0">
                   <img src="/mock/furniture-5.jpg" alt="" className="h-full w-full object-cover" />
                   <div aria-hidden className="absolute inset-0 bg-black/28" />
@@ -202,7 +202,6 @@ export function HomeTilesLayer() {
                       href={s.href}
                       className={
                         'group rounded-3xl p-6 backdrop-blur transition duration-300 ease-out ' +
-                        // brass frame + light gradient fill (no solid white box)
                         'border border-[color:var(--arqia-brass-light)]/55 ' +
                         'bg-[linear-gradient(135deg,rgba(255,255,255,0.18),rgba(255,255,255,0.10),rgba(224,206,169,0.10))] ' +
                         'shadow-[0_18px_50px_rgba(0,0,0,0.25)] ' +
