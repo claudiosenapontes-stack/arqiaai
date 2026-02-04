@@ -32,7 +32,7 @@ export function SimilarCarousel({
   if (safeItems.length === 0) return null
 
   return (
-    <section className="product-hero-fullbleed bg-white">
+    <section className="product-hero-fullbleed overflow-hidden bg-white">
       {/* Header */}
       <div className="mx-auto max-w-6xl px-6 pt-10">
         <div className="flex items-center justify-between gap-4">
@@ -56,42 +56,74 @@ export function SimilarCarousel({
         </div>
       </div>
 
-      {/* Full-bleed slides (no frame boxes) */}
+      {/* Editorial-style full-width carousel; alternate text/image sides */}
       <div
         ref={scrollerRef}
-        className="mt-6 flex snap-x snap-mandatory gap-0 overflow-x-auto pb-0 [scrollbar-width:none]"
+        className="mt-6 flex snap-x snap-mandatory overflow-x-auto pb-0 [scrollbar-width:none]"
         style={{ WebkitOverflowScrolling: 'touch' }}
       >
-        {safeItems.map((p) => (
-          <Link
-            key={p.slug}
-            href={p.href}
-            className="group relative w-[92vw] shrink-0 snap-start overflow-hidden bg-neutral-100 md:w-[50vw]"
-          >
-            <div className="relative aspect-[21/9] md:aspect-[16/9]">
-              <img
-                alt={p.title}
-                src={p.img}
-                className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]"
-              />
-              <div className="absolute inset-0 bg-black/10" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent" />
-
-              {/* Divider line between halves on desktop */}
-              <div aria-hidden className="pointer-events-none absolute right-0 top-0 hidden h-full w-px bg-white/10 md:block" />
-
-              <div className="absolute inset-x-0 bottom-0 p-10">
-                <div className="max-w-xl">
-                  <div className="font-serif text-4xl tracking-tight text-white md:text-5xl">{p.title}</div>
-                  {p.subtitle ? <div className="mt-3 text-base text-white/80">{p.subtitle}</div> : null}
-                  <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-6 py-2 text-xs font-light uppercase tracking-[0.25em] text-white/90 backdrop-blur">
-                    View <span className="transition group-hover:translate-x-0.5">→</span>
+        {safeItems.map((p, idx) => {
+          const flip = idx % 2 === 1
+          return (
+            <Link
+              key={p.slug}
+              href={p.href}
+              className="group w-screen shrink-0 snap-start"
+            >
+              <div
+                className={
+                  'grid min-h-[520px] md:grid-cols-2 ' + (flip ? 'md:[direction:rtl]' : '')
+                }
+              >
+                {/* Text */}
+                <div
+                  className={
+                    'flex items-center px-6 py-14 md:px-16 md:py-16 ' +
+                    (flip ? 'md:[direction:ltr]' : '')
+                  }
+                >
+                  <div className="mx-auto w-full max-w-xl">
+                    <div className="text-xs uppercase tracking-[0.3em] text-neutral-500">Similar</div>
+                    <div className="mt-4 font-serif text-4xl tracking-tight text-neutral-900 md:text-5xl">
+                      {p.title}
+                    </div>
+                    {p.subtitle ? (
+                      <div className="mt-5 text-sm leading-relaxed text-neutral-600 md:text-base">
+                        {p.subtitle}
+                      </div>
+                    ) : null}
+                    <div className="mt-7 inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-6 py-2 text-xs font-light uppercase tracking-[0.25em] text-neutral-800">
+                      View <span className="transition group-hover:translate-x-0.5">→</span>
+                    </div>
                   </div>
                 </div>
+
+                {/* Image */}
+                <div
+                  className={
+                    'relative min-h-[320px] md:min-h-[520px] ' + (flip ? 'md:[direction:ltr]' : '')
+                  }
+                >
+                  <img
+                    alt={p.title}
+                    src={p.img}
+                    className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.02]"
+                  />
+                  <div aria-hidden className="absolute inset-0 bg-black/10" />
+                  <div
+                    aria-hidden
+                    className={
+                      'absolute inset-0 ' +
+                      (flip
+                        ? 'bg-gradient-to-r from-black/25 via-black/10 to-transparent'
+                        : 'bg-gradient-to-l from-black/25 via-black/10 to-transparent')
+                    }
+                  />
+                </div>
               </div>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          )
+        })}
       </div>
     </section>
   )
