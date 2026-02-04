@@ -98,7 +98,7 @@ function StackedImageStrip({
               src={src}
               className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.06]"
             />
-            <div className="absolute inset-0 bg-black/10 transition duration-500 group-hover:bg-black/20" />
+            <div className="absolute inset-0 bg-black/10 transition duration-500 group-hover:bg-black/25" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/20 to-transparent" />
           </div>
         ))}
@@ -130,8 +130,9 @@ function StackedImageStrip({
             <p className="mt-3 text-sm text-white/80">{subtitle}</p>
 
             <div className="mt-6 inline-flex items-center">
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/35 bg-white/5 px-5 py-2 text-xs font-light uppercase tracking-[0.25em] text-white/85 backdrop-blur transition group-hover:border-[color:var(--arqia-brass-light)] group-hover:bg-white/10 group-hover:text-[color:var(--arqia-brass-light)]/70">
-                Explore <span className="transition group-hover:translate-x-0.5">→</span>
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/35 bg-white/5 px-5 py-2 text-xs font-light uppercase tracking-[0.25em] text-white/85 backdrop-blur transition duration-300 ease-out group-hover:border-[color:var(--arqia-brass-light)] group-hover:bg-white/10 group-hover:text-[color:var(--arqia-brass-light)]/80 group-hover:scale-[1.02]">
+                Explore
+                <span className="transition duration-300 ease-out group-hover:translate-x-1">→</span>
               </div>
             </div>
           </div>
