@@ -89,22 +89,16 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
           <Link
             href="/"
             aria-label="ARQIA home"
-            className={
-              'flex flex-col leading-none transition ' +
-              (solidText ? '' : 'drop-shadow-[0_1px_12px_rgba(0,0,0,0.45)]')
-            }
+            className={'flex items-center transition ' + (solidText ? '' : 'drop-shadow-[0_1px_12px_rgba(0,0,0,0.45)]')}
           >
-            <span
-              className={
-                'font-serif text-[26px] tracking-[0.28em] antialiased ' +
-                (solidText ? 'text-neutral-900' : 'text-white')
-              }
-            >
-              ARQIA
-            </span>
-            <span className={'mt-1 text-[11px] tracking-[0.22em] ' + (solidText ? 'text-neutral-600' : 'text-white/75')}>
-              ARCHITECTURAL INTELLIGENCE
-            </span>
+            <img
+              src={solidText ? '/arqia-logo-520.png' : '/arqia-logo-520.png'}
+              srcSet="/arqia-logo-360.png 360w, /arqia-logo-520.png 520w, /arqia-logo-780.png 780w, /arqia-logo-1040.png 1040w"
+              sizes="(min-width: 768px) 240px, 200px"
+              alt="ARQIA"
+              className="h-10 w-auto"
+              style={{ imageRendering: 'auto' }}
+            />
           </Link>
 
           {/* Desktop nav (center-ish) */}
