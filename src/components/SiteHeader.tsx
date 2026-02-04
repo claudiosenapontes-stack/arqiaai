@@ -15,9 +15,29 @@ const NAV = [
 
 export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
   const [solidText, setSolidText] = useState(false)
+  const [hidden, setHidden] = useState(false)
+  const [hoverReveal, setHoverReveal] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setSolidText(window.scrollY > 24)
+    let lastY = window.scrollY
+
+    const onScroll = () => {
+      const y = window.scrollY
+      setSolidText(y > 24)
+
+      // Hide while scrolling down (and not near top); show when scrolling up.
+      const goingDown = y > lastY
+      if (y < 40) {
+        setHidden(false)
+      } else if (goingDown && y > 120) {
+        setHidden(true)
+      } else if (!goingDown) {
+        setHidden(false)
+      }
+
+      lastY = y
+    }
+
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
@@ -27,8 +47,26 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
   const tone = solidText ? 'text-neutral-800' : 'text-white/90'
   const hoverTone = solidText ? 'hover:text-arqia-olive' : 'hover:text-[color:var(--arqia-brass-light)]'
 
+  const isRevealed = !hidden || hoverReveal
+
   return (
-    <header className={(overlay ? 'fixed left-0 right-0 top-0 ' : 'sticky top-0 ') + 'z-50 bg-transparent'}>
+    <>
+      {/* Hover strip: keeps a tiny hit-area at the very top so the header can re-appear on hover (desktop). */}
+      <div
+        className={(overlay ? 'fixed' : 'fixed') + ' left-0 right-0 top-0 z-50 h-3'}
+        onMouseEnter={() => setHoverReveal(true)}
+        onMouseLeave={() => setHoverReveal(false)}
+      />
+
+      <header
+        onMouseEnter={() => setHoverReveal(true)}
+        onMouseLeave={() => setHoverReveal(false)}
+        className={
+          (overlay ? 'fixed left-0 right-0 top-0 ' : 'fixed left-0 right-0 top-0 ') +
+          'z-50 bg-transparent transition-all duration-300 ' +
+          (isRevealed ? 'translate-y-0 opacity-100' : '-translate-y-8 opacity-0 pointer-events-none')
+        }
+      >
       {/* Top fade for legibility (not a bar) */}
       <div
         aria-hidden
@@ -82,5 +120,6 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
         </div>
       </div>
     </header>
+    </>
   )
 }
