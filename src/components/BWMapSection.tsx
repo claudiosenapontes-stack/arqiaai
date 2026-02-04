@@ -80,7 +80,7 @@ export function BWMapSection({
       </div>
 
       {/* Full-width map */}
-      <div className="left-1/2 right-1/2 -mx-[50vw] w-screen overflow-hidden border-t border-black/5 bg-white">
+      <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen overflow-hidden border-t border-black/5 bg-white">
         {iframeSrc ? (
           <iframe
             title="Map"
