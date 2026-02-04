@@ -62,13 +62,13 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
           <Link
             href="/cart"
             className={
-              'ml-auto rounded-full px-4 py-1.5 text-sm transition backdrop-blur ' +
+              'ml-auto rounded-full px-6 py-2 text-sm transition backdrop-blur ' +
               (solidText
                 ? 'border border-black/15 bg-white/0 text-neutral-800 hover:border-arqia-olive/60 hover:text-arqia-olive'
                 : 'border border-white/35 bg-white/5 text-white hover:border-[color:var(--arqia-brass-light)] hover:text-[color:var(--arqia-brass-light)]')
             }
           >
-            Cart
+            View Cart
           </Link>
         </div>
 
