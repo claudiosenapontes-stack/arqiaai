@@ -111,7 +111,7 @@ function StackedImageStrip({
             ) : null}
 
             {bigTitle ? (
-              <div className="mt-3 text-4xl md:text-5xl font-extralight uppercase tracking-[0.28em] text-white/80">
+              <div className="mt-3 text-4xl md:text-5xl font-extralight uppercase tracking-[0.28em] text-arqia-brassLight">
                 {bigTitle}
               </div>
             ) : null}
