@@ -89,52 +89,46 @@ export function SignatureScrollSequence() {
   }, [])
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative isolate overflow-hidden bg-[#0d0f0e] text-white"
-      aria-label="ARQIA signature scroll"
-    >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(224,206,169,0.18),transparent_55%),radial-gradient(circle_at_70%_70%,rgba(116,128,96,0.14),transparent_50%)]"
-      />
-      <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/45 via-black/10 to-black/45" />
+    <section ref={sectionRef} className="relative isolate min-h-screen overflow-hidden bg-black text-white" aria-label="ARQIA signature scroll">
+      {/* Full-bleed hero video */}
+      <div className="absolute inset-0">
+        <video
+          ref={videoRef}
+          className="h-full w-full object-cover"
+          src="/sequence/chairA_v1.mp4"
+          preload="auto"
+          playsInline
+          muted
+        />
+        {/* Luxury overlays for readability */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 bg-black/35" />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(224,206,169,0.16),transparent_55%),radial-gradient(circle_at_70%_70%,rgba(116,128,96,0.12),transparent_55%)]"
+        />
+        <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/55 via-black/15 to-black/55" />
+      </div>
 
-      <div className="mx-auto grid min-h-[92vh] max-w-6xl grid-cols-1 items-center gap-10 px-6 py-16 md:grid-cols-12">
-        {/* Copy */}
-        <div className="relative z-10 md:col-span-5">
-          <div className="text-[11px] font-light uppercase tracking-[0.28em] text-white/70">{beat.eyebrow}</div>
-          <h2 className="mt-4 font-serif text-4xl leading-tight tracking-tight md:text-5xl">{beat.title}</h2>
-          <p className="mt-4 max-w-md text-sm leading-relaxed text-white/75 md:text-base">{beat.body}</p>
+      {/* Copy overlay */}
+      <div className="relative z-10 mx-auto flex min-h-screen max-w-6xl items-end px-6 pb-16 pt-28">
+        <div className="max-w-xl">
+          <div className="text-[11px] font-light uppercase tracking-[0.28em] text-white/75">{beat.eyebrow}</div>
+          <h1 className="mt-4 font-serif text-5xl leading-tight tracking-tight md:text-6xl">{beat.title}</h1>
+          <p className="mt-4 max-w-md text-sm leading-relaxed text-white/80 md:text-base">{beat.body}</p>
 
-          <div className="mt-10 flex items-center gap-3 text-xs text-white/55">
-            <div className="h-px w-12 bg-white/20" />
+          <div className="mt-10 flex items-center gap-3 text-xs text-white/60">
+            <div className="h-px w-12 bg-white/25" />
             <div>
               {beatIndex + 1} / {BEATS.length}
             </div>
           </div>
-        </div>
 
-        {/* Rendered sequence (video scrub) */}
-        <div className="relative z-10 md:col-span-7">
-          <div className="aspect-[4/3] w-full overflow-hidden rounded-3xl border border-white/10 bg-black/20 shadow-[0_30px_90px_rgba(0,0,0,0.55)]">
-            <video
-              ref={videoRef}
-              className="h-full w-full object-cover"
-              src="/sequence/chairA_v1.mp4"
-              preload="auto"
-              playsInline
-              muted
-            />
-          </div>
-          <div className="mt-3 text-[11px] font-light tracking-wide text-white/40">
-            Rendered sequence (v1 placeholder) — will be replaced with Chair A craft build.
-          </div>
+          <div className="mt-8 text-[11px] font-light uppercase tracking-[0.28em] text-white/55">Scroll</div>
         </div>
       </div>
 
       <noscript>
-        <div className="mx-auto max-w-6xl px-6 pb-10 text-xs text-white/60">Enable JavaScript to view the interactive scroll sequence.</div>
+        <div className="relative z-10 mx-auto max-w-6xl px-6 pb-10 text-xs text-white/60">Enable JavaScript to view the interactive hero sequence.</div>
       </noscript>
     </section>
   )

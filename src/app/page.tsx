@@ -8,38 +8,7 @@ export default function Home() {
     <main className="min-h-screen bg-white">
       <SiteHeader overlay />
 
-      {/* Hero */}
-      <section className="relative">
-        <div className="relative h-[72vh] w-full overflow-hidden bg-neutral-100">
-          <div className="absolute inset-0">
-            <img
-              alt="ARQIA editorial"
-              src="/mock/furniture-1.jpg"
-              className="h-full w-full object-cover"
-            />
-          </div>
-
-          {/* Overlays to keep type readable + add luxury mood (text-on-image) */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/25 to-transparent" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(224,206,169,0.18),transparent_45%),radial-gradient(circle_at_70%_60%,rgba(80,86,66,0.18),transparent_50%)]" />
-
-          <div className="relative z-10 mx-auto flex h-full max-w-6xl items-end px-6 pb-16">
-            <div className="max-w-2xl">
-              <h1 className="mt-4 font-serif text-5xl leading-tight tracking-tight text-white md:text-6xl">
-                Architectural Intelligence for refined spaces.
-              </h1>
-              <p className="mt-4 max-w-xl text-sm text-white/80 md:text-base">
-                Furniture and design services with quiet luxury sensibility.
-              </p>
-
-              {/* CTAs removed — replaced by signature scroll section below */}
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      {/* Signature Apple-style scroll moment (hybrid: keep existing layout, add one premium section) */}
+      {/* Hero = full-bleed signature video moment (scroll-scrubbed). */}
       <SignatureScrollSequence />
 
       {/* One unified tile layer (Indoor/Outdoor/etc.) */}
