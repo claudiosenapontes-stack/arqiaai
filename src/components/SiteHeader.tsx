@@ -82,9 +82,22 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
           <Link
             href="/"
             aria-label="ARQIA home"
-            className={'flex items-center transition ' + (solidText ? '' : 'drop-shadow-[0_1px_12px_rgba(0,0,0,0.45)]')}
+            className={
+              'flex flex-col leading-none transition ' +
+              (solidText ? '' : 'drop-shadow-[0_1px_12px_rgba(0,0,0,0.45)]')
+            }
           >
-            <img src="/arqia-wordmark.svg" alt="ARQIA" className="h-9 w-auto" />
+            <span
+              className={
+                'font-serif text-[22px] tracking-[0.28em] antialiased ' +
+                (solidText ? 'text-neutral-900' : 'text-[color:var(--arqia-brass-light)]')
+              }
+            >
+              ARQIA
+            </span>
+            <span className={'mt-1 text-[10px] tracking-[0.22em] ' + (solidText ? 'text-neutral-600' : 'text-white/70')}>
+              ARCHITECTURAL INTELLIGENCE
+            </span>
           </Link>
 
           {/* Desktop nav (center-ish) */}
