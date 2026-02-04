@@ -1,7 +1,7 @@
 import { SiteHeader } from '@/components/SiteHeader'
 import { HomeTilesLayer } from '@/components/HomeTilesLayer'
 import { HomeSimpleTriptych } from '@/components/HomeSimpleTriptych'
-import { SignatureScroll3D } from '@/components/SignatureScroll3D'
+import { SignatureScrollSequence } from '@/components/SignatureScrollSequence'
 
 export default function Home() {
   return (
@@ -40,7 +40,7 @@ export default function Home() {
       </section>
 
       {/* Signature Apple-style scroll moment (hybrid: keep existing layout, add one premium section) */}
-      <SignatureScroll3D />
+      <SignatureScrollSequence />
 
       {/* One unified tile layer (Indoor/Outdoor/etc.) */}
       <HomeTilesLayer />
