@@ -195,10 +195,11 @@ export function HomeTilesLayer() {
 
           {/* Full-width static background image; cards/titles float and move while the photo stays fixed */}
           {/* Full-bleed static background image (no white sides); cards/titles/buttons float above */}
-          <div className="relative mt-10 overflow-hidden">
+          {/* Full-bleed wrapper (break out of max-w container) */}
+          <div className="relative mt-10 left-1/2 right-1/2 -mx-[50vw] w-screen overflow-hidden">
             <div className="relative min-h-[140vh]">
-              {/* Sticky backdrop (static feel) — full-bleed across viewport */}
-              <div className="pointer-events-none sticky top-0 h-screen w-screen left-1/2 -translate-x-1/2 relative">
+              {/* Sticky backdrop (static feel) — truly full-width */}
+              <div className="pointer-events-none sticky top-0 h-screen w-full">
                 <div className="absolute inset-0">
                   <img src="/mock/furniture-5.jpg" alt="" className="h-full w-full object-cover" />
                   <div aria-hidden className="absolute inset-0 bg-black/28" />
