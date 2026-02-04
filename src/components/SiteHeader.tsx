@@ -92,8 +92,8 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
             className={'flex items-center transition ' + (solidText ? '' : 'drop-shadow-[0_1px_12px_rgba(0,0,0,0.45)]')}
           >
             <img
-              src={solidText ? '/arqia-logo-520.png' : '/arqia-logo-520.png'}
-              srcSet="/arqia-logo-360.png 360w, /arqia-logo-520.png 520w, /arqia-logo-780.png 780w, /arqia-logo-1040.png 1040w"
+              src={solidText ? '/arqia-logo2-520.png' : '/arqia-logo2-520.png'}
+              srcSet="/arqia-logo2-360.png 360w, /arqia-logo2-520.png 520w, /arqia-logo2-780.png 780w, /arqia-logo2-1040.png 1040w"
               sizes="(min-width: 768px) 240px, 200px"
               alt="ARQIA"
               className="h-10 w-auto"
