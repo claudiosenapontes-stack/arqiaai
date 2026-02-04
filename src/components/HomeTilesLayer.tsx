@@ -193,11 +193,10 @@ export function HomeTilesLayer() {
               Design support, trade partnerships, and delivery—built for projects that need precision.
             </p>
           </div>
-
-          {/* Full-width static background image; cards/titles float and move while the photo stays fixed */}
-          {/* Full-bleed static background image (no white sides); cards/titles/buttons float above */}
-          <ServicesParallaxSection services={SERVICES} backgroundSrc="/mock/furniture-5.jpg" />
         </div>
+
+        {/* Full-bleed (like Collections): background spans edge-to-edge; services float above */}
+        <ServicesParallaxSection services={SERVICES} backgroundSrc="/mock/furniture-5.jpg" />
       </section>
     </section>
   )
