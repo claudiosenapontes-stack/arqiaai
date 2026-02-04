@@ -48,13 +48,22 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
           {/* Center logo */}
           <Link
             href="/"
+            aria-label="ARQIA home"
             className={
-              'absolute left-1/2 -translate-x-1/2 flex items-center transition ' +
+              'absolute left-1/2 -translate-x-1/2 flex flex-col items-center leading-none transition ' +
               (solidText ? '' : 'drop-shadow-[0_1px_12px_rgba(0,0,0,0.45)]')
             }
-            aria-label="ARQIA home"
           >
-            <img src="/arqia-logo.jpg" alt="ARQIA" className="h-7 w-auto" />
+            <div className="font-serif text-[22px] tracking-[0.18em] uppercase text-[color:var(--arqia-brass-light)]">
+              ARQIA
+            </div>
+            <div className={
+              'mt-1 text-[10px] tracking-[0.22em] uppercase ' +
+              (solidText ? 'text-neutral-500' : 'text-white/70')
+            }
+            >
+              Architectural Intelligence
+            </div>
           </Link>
 
           {/* Desktop nav */}
