@@ -112,14 +112,14 @@ function StackedImageStrip({
             ) : null}
 
             {bigTitle ? (
-              <div className="mt-3 text-4xl md:text-5xl font-extralight uppercase tracking-[0.28em] text-[color:var(--arqia-brass-light)]">
+              <div className="mt-3 text-3xl md:text-4xl font-extralight uppercase tracking-[0.28em] text-[color:var(--arqia-brass-light)]">
                 {bigTitle}
               </div>
             ) : null}
 
             <div
               className={
-                'font-serif text-3xl md:text-4xl tracking-tight text-white ' +
+                'font-serif text-2xl md:text-3xl tracking-tight text-white ' +
                 ((topKicker || bigTitle) ? 'mt-2' : 'mt-3')
               }
             >
