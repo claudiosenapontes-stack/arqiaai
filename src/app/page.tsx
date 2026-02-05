@@ -46,7 +46,7 @@ export default function Home() {
         <div className="relative z-10 mx-auto flex min-h-screen max-w-6xl items-end px-6 pb-16 pt-28">
           <div className="max-w-3xl">
             <h1 className="font-serif font-light text-4xl leading-tight tracking-tight text-white md:text-6xl">
-              <span className="font-sans font-extralight uppercase tracking-[0.08em] text-[color:var(--arqia-brass-light)]">
+              <span className="font-sans font-extralight uppercase tracking-[0.08em] text-[color:var(--arqia-brass-light)] text-3xl md:text-5xl">
                 Architectural Intelligence
               </span>
               <span className="block">for refined spaces.</span>
