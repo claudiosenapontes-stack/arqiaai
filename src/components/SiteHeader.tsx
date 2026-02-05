@@ -1,7 +1,4 @@
-'use client'
-
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
 
 const NAV = [
   { href: '/indoor', label: 'Indoor' },
@@ -14,111 +11,24 @@ const NAV = [
 ]
 
 export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
-  const [solidText, setSolidText] = useState(false)
-  const [hidden, setHidden] = useState(true)
-  const [hoverReveal, setHoverReveal] = useState(false)
-
-  useEffect(() => {
-    const hasHover = window.matchMedia?.('(hover: hover)').matches ?? true
-
-    // Mobile Safari can feel "shaky" if we re-render on every scroll.
-    // Throttle state updates to animation frames and avoid hide/show animations on touch.
-    let lastY = window.scrollY
-    let raf = 0
-    let lastSolid = false
-    let lastHidden = false
-
-    const compute = () => {
-      const y = window.scrollY
-      const solid = y > 24
-
-      // Desktop: hide after hero and reveal on hover.
-      // Touch devices: keep header visible (no scroll-intent hide) to prevent jitter.
-      const hiddenNext = hasHover ? y >= window.innerHeight * 0.85 : false
-
-      if (solid !== lastSolid) {
-        lastSolid = solid
-        setSolidText(solid)
-      }
-
-      if (hiddenNext !== lastHidden) {
-        lastHidden = hiddenNext
-        setHidden(hiddenNext)
-      }
-
-      lastY = y
-      raf = 0
-    }
-
-    const onScroll = () => {
-      // keep lastY updated in case we reintroduce intent logic later
-      lastY = window.scrollY
-      if (raf) return
-      raf = window.requestAnimationFrame(compute)
-    }
-
-    // init
-    lastSolid = window.scrollY > 24
-    lastHidden = hasHover ? window.scrollY >= window.innerHeight * 0.85 : false
-    setSolidText(lastSolid)
-    setHidden(lastHidden)
-
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => {
-      window.removeEventListener('scroll', onScroll)
-      if (raf) window.cancelAnimationFrame(raf)
-    }
-  }, [])
-
-  // RH-style: always visible, no white bar. Readability via subtle top gradient.
-  const isRevealed = !hidden || hoverReveal
-
-  // When the header is revealed (via hover), keep typography brass so it contrasts
-  // across mixed backgrounds. No background panel.
-  const tone = isRevealed ? 'text-[color:var(--arqia-brass-light)]' : (solidText ? 'text-neutral-800' : 'text-white/90')
-  const hoverTone = 'hover:text-[color:var(--arqia-brass-light)]'
+  // Hard reset: keep header stable to eliminate mobile jitter.
+  // No scroll listeners, no fixed+translate animations.
+  const tone = 'text-neutral-900'
+  const hoverTone = 'hover:text-[color:var(--arqia-brass-dark)]'
 
   return (
-    <>
-      {/* Hover strip: keeps a tiny hit-area at the very top so the header can re-appear on hover (desktop). */}
-      <div
-        className={(overlay ? 'fixed' : 'fixed') + ' left-0 right-0 top-0 z-50 h-2'}
-        onMouseEnter={() => setHoverReveal(true)}
-        onMouseLeave={() => setHoverReveal(false)}
-      />
-
-      <header
-        onMouseEnter={() => setHoverReveal(true)}
-        onMouseLeave={() => setHoverReveal(false)}
-        className={
-          (overlay ? 'fixed left-0 right-0 top-0 ' : 'fixed left-0 right-0 top-0 ') +
-          'z-50 bg-transparent transition-all duration-300 ' +
-          (isRevealed ? 'translate-y-0 opacity-100' : '-translate-y-8 opacity-0 pointer-events-none')
-        }
-      >
-      {/* Top fade for legibility (not a bar) */}
-      <div
-        aria-hidden
-        className={
-          'pointer-events-none absolute inset-x-0 top-0 h-48 transition-opacity duration-300 ' +
-          (solidText
-            ? // When scrolled (solidText), use a warm/brown tint so brass nav reads on light pages.
-              'opacity-100 bg-gradient-to-b from-[#6b5a3a]/55 via-[#6b5a3a]/18 to-transparent'
-            : // On hero, keep the darker fade for legibility.
-              'opacity-100 bg-gradient-to-b from-black/80 via-black/35 to-transparent')
-        }
-      />
-
+    <header
+      className={
+        (overlay ? 'absolute' : 'sticky') +
+        ' left-0 right-0 top-0 z-50 border-b border-black/10 bg-white/85 backdrop-blur-md'
+      }
+    >
       <div className={'mx-auto max-w-6xl px-6 ' + (overlay ? 'pt-6 pb-4' : 'py-4')}>
         <div className={'flex items-center gap-6 ' + tone}>
           {/* Left-aligned logo */}
-          <Link
-            href="/"
-            aria-label="ARQIA home"
-            className={'flex items-center transition ' + (solidText ? '' : 'drop-shadow-[0_1px_12px_rgba(0,0,0,0.45)]')}
-          >
+          <Link href="/" aria-label="ARQIA home" className="flex items-center">
             <img
-              src={solidText ? '/arqia-mark-240.png' : '/arqia-mark-240.png'}
+              src="/arqia-mark-240.png"
               srcSet="/arqia-mark-120.png 120w, /arqia-mark-180.png 180w, /arqia-mark-240.png 240w, /arqia-mark-360.png 360w, /arqia-mark-520.png 520w"
               sizes="(min-width: 768px) 56px, 48px"
               alt="ARQIA"
@@ -169,6 +79,5 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
         </div>
       </div>
     </header>
-    </>
   )
 }
