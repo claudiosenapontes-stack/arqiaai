@@ -49,6 +49,9 @@ export function SignatureScrollSequence() {
 
   useEffect(() => {
     if (prefersReducedMotion()) return
+    // Mobile: avoid pinned scroll effects (can create odd spacing/blank areas).
+    if (typeof window !== 'undefined' && window.innerWidth < 768) return
+
     const el = sectionRef.current
     const video = videoRef.current
     if (!el || !video) return
@@ -89,16 +92,22 @@ export function SignatureScrollSequence() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="relative isolate min-h-screen overflow-hidden bg-black text-white" aria-label="ARQIA signature scroll">
+    <section
+      ref={sectionRef}
+      className="relative isolate min-h-[80vh] overflow-hidden bg-black text-white md:min-h-screen"
+      aria-label="ARQIA signature scroll"
+    >
       {/* Full-bleed hero video */}
       <div className="absolute inset-0">
         <video
           ref={videoRef}
           className="h-full w-full object-cover"
           src="/sequence/chairA_v1.mp4"
-          preload="auto"
+          preload="metadata"
           playsInline
           muted
+          loop
+          autoPlay
         />
         {/* Luxury overlays for readability */}
         <div aria-hidden className="pointer-events-none absolute inset-0 bg-black/35" />
