@@ -108,7 +108,7 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
           </Link>
 
           {/* Desktop nav (center-ish) */}
-          <nav className={'hidden flex-1 items-center justify-center gap-8 text-[13px] font-light uppercase tracking-[0.26em] md:flex ' + tone}>
+          <nav className={'hidden flex-1 items-center justify-center gap-8 text-[14px] font-light uppercase tracking-[0.24em] md:flex ' + tone}>
             {NAV.map((n) => (
               <Link key={n.href} href={n.href} className={'transition ' + hoverTone}>
                 {n.label}
@@ -137,7 +137,7 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
         {/* Mobile nav (second row) */}
         <div
           className={
-            'mt-4 flex flex-wrap gap-x-5 gap-y-2 text-[12px] font-light uppercase tracking-[0.22em] md:hidden ' +
+            'mt-4 flex flex-wrap gap-x-5 gap-y-2 text-[13px] font-light uppercase tracking-[0.22em] md:hidden ' +
             tone
           }
         >
