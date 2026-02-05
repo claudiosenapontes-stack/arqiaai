@@ -31,6 +31,13 @@
   .h-screen { height: 100svh; }
 }
 
+/* iOS Safari (older): fallback to -webkit-fill-available to avoid address-bar resize jitter. */
+@supports (-webkit-touch-callout: none) {
+  html, body { height: -webkit-fill-available; }
+  .min-h-screen { min-height: -webkit-fill-available; }
+  .h-screen { height: -webkit-fill-available; }
+}
+
 /* Full-bleed utility: break out of max-w containers.
    Mobile: disable breakout to prevent iOS vw/svw jitter.
    Desktop: enable full-bleed breakout. */
