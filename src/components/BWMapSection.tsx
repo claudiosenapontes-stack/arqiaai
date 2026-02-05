@@ -85,7 +85,7 @@ export function BWMapSection({
           <iframe
             title="Map"
             src={iframeSrc}
-            className="h-[560px] w-full"
+            className="h-[440px] w-full"
             style={{
               border: 0,
               filter: 'grayscale(1) contrast(1.1)',
@@ -94,7 +94,7 @@ export function BWMapSection({
             referrerPolicy="no-referrer-when-downgrade"
           />
         ) : (
-          <div className="flex h-[560px] items-center justify-center bg-neutral-50 text-sm text-neutral-500">
+          <div className="flex h-[440px] items-center justify-center bg-neutral-50 text-sm text-neutral-500">
             Loading map…
           </div>
         )}
