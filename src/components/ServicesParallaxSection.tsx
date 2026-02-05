@@ -53,7 +53,7 @@ export function ServicesParallaxSection({
     <div
       ref={wrapRef}
       className="relative mt-6 overflow-hidden"
-      style={{ left: '50%', transform: 'translateX(-50%)', width: '100dvw' }}
+      style={{ left: '50%', transform: 'translateX(-50%)', width: '100svw' }}
     >
       <div className="relative min-h-[110vh] md:min-h-[120vh]">
         {/* Sticky backdrop (static feel), but with subtle parallax drift */}

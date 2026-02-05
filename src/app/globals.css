@@ -31,7 +31,7 @@
   left: 50%;
   transform: translateX(-50%);
   width: 100vw;
-  width: 100dvw;
+  width: 100svw;
   border-left: none;
   border-right: none;
   border-radius: 0;

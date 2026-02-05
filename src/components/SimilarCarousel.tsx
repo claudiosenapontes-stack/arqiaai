@@ -68,7 +68,7 @@ export function SimilarCarousel({
             <Link
               key={p.slug}
               href={p.href}
-              className="group w-[100vw] w-[100dvw] shrink-0 snap-start"
+              className="group w-[100vw] w-[100svw] shrink-0 snap-start"
             >
               <div
                 className={

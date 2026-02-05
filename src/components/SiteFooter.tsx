@@ -2,7 +2,7 @@ export function SiteFooter() {
   return (
     <footer className="relative overflow-hidden border-t border-black/10 bg-white">
       {/* subtle watermark */}
-      <div aria-hidden className="pointer-events-none absolute -right-16 -bottom-28 opacity-[0.035]">
+      <div aria-hidden className="pointer-events-none absolute -right-16 -bottom-28 opacity-[0.035] hidden md:block">
         <img src="/arqia-mark-520.png" alt="" className="h-72 w-auto" />
       </div>
 

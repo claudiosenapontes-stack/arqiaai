@@ -12,7 +12,7 @@ export function BrandWatermark({
   // Purely decorative watermark mark.
   return (
     <div aria-hidden className={`pointer-events-none absolute inset-0 ${className}`}>
-      <div className="absolute -right-24 -top-24">
+      <div className="absolute -right-24 -top-24 hidden md:block">
         <img
           src={`/arqia-mark-${size}.png`}
           alt=""
