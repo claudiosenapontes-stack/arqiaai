@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { SiteHeader } from '@/components/SiteHeader'
 import { TopFilters } from '@/components/TopFilters'
 import { ProductHeroCard } from '@/components/ProductHeroCard'
-import { SimilarCarousel } from '@/components/SimilarCarousel'
 import { EditorialSplit } from '@/components/EditorialSplit'
 import { MOCK_PRODUCTS, formatUsd } from '@/lib/mockCatalog'
 
@@ -54,19 +53,6 @@ export default function IndoorPage() {
                     href={`/products/${p.slug}`}
                     inquiryEmail="design@arqiaai.com"
                   />
-
-                  {idx < products.length - 1 ? (
-                    <SimilarCarousel
-                      label="Similar pieces"
-                      items={pair.map((s) => ({
-                        slug: s.slug,
-                        title: s.title,
-                        subtitle: s.subtitle,
-                        img: s.img,
-                        href: `/products/${s.slug}`,
-                      }))}
-                    />
-                  ) : null}
 
                   {idx === 1 ? (
                     <EditorialSplit
