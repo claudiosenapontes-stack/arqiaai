@@ -14,8 +14,22 @@ export default function Home() {
       {/* Hero (first impression) */}
       <section className="relative min-h-screen overflow-hidden bg-black">
         <div className="absolute inset-0">
-          {/* Cinemagraph-style motion: subtle pan/zoom via CSS (no heavy video payload yet) */}
-          <div className="hero-kenburns absolute inset-0">
+          {/* Real hero video (MP4/WebM) with image fallback */}
+          <video
+            className="absolute inset-0 h-full w-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster="/mock/furniture-1.jpg"
+          >
+            <source src="/hero/hero.webm" type="video/webm" />
+            <source src="/hero/hero.mp4" type="video/mp4" />
+          </video>
+
+          {/* Fallback image for very old browsers (or if video blocked) */}
+          <noscript>
             <Image
               src="/mock/furniture-1.jpg"
               alt="ARQIA editorial"
@@ -23,7 +37,8 @@ export default function Home() {
               priority
               className="object-cover"
             />
-          </div>
+          </noscript>
+
           <div aria-hidden className="absolute inset-0 bg-black/35" />
           <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/10 to-black/65" />
         </div>
