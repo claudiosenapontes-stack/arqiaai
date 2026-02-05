@@ -12,11 +12,15 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* Prevent layout "shake" when scrollbars appear/disappear */
+    scrollbar-gutter: stable;
+    overflow-x: clip;
   }
 
   body {
     background: var(--arqia-white);
     color: var(--arqia-ink);
+    overflow-x: clip;
   }
 }
 
