@@ -1,6 +1,8 @@
 'use client'
 
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import { toggleSaved, loadSaved } from '@/lib/saved'
 
 export function ProductHeroCard({
   category,
@@ -19,6 +21,14 @@ export function ProductHeroCard({
   inquiryEmail: string
   href?: string
 }) {
+  const slug = href?.split('/').pop() ?? ''
+  const [saved, setSaved] = useState(false)
+
+  useEffect(() => {
+    if (!slug) return
+    setSaved(loadSaved().includes(slug))
+  }, [slug])
+
   return (
     <div className="product-hero-fullbleed group overflow-hidden rounded-2xl border border-black/10 bg-white">
       <div className="relative aspect-[16/10] w-full overflow-hidden bg-neutral-100">
@@ -60,8 +70,22 @@ export function ProductHeroCard({
                     </button>
                   )}
 
-                  <button className="rounded-full border border-white/30 bg-white/10 px-7 py-3 text-base text-white backdrop-blur md:text-lg">
-                    Save
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      if (!slug) return
+                      const res = toggleSaved(slug)
+                      setSaved(res.saved)
+                    }}
+                    className={
+                      'rounded-full border px-7 py-3 text-base backdrop-blur md:text-lg ' +
+                      (saved
+                        ? 'border-[color:var(--arqia-brass-light)]/70 bg-[color:var(--arqia-brass-light)]/15 text-[color:var(--arqia-brass-light)]'
+                        : 'border-white/30 bg-white/10 text-white')
+                    }
+                  >
+                    {saved ? 'Saved' : 'Save'}
                   </button>
                 </div>
 
