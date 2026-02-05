@@ -25,16 +25,25 @@
 }
 
 /* Full-bleed utility: break out of max-w containers.
-   Use translate instead of +/-50vw margins to avoid subpixel horizontal jitter on mobile. */
+   Mobile: disable breakout to prevent iOS vw/svw jitter.
+   Desktop: enable full-bleed breakout. */
 .product-hero-fullbleed {
   position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100vw;
-  width: 100svw;
+  left: 0;
+  transform: none;
+  width: 100%;
   border-left: none;
   border-right: none;
   border-radius: 0;
+}
+
+@media (min-width: 768px) {
+  .product-hero-fullbleed {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    width: 100dvw;
+  }
 }
 
 /* (Hero motion was upgraded to real MP4/WebM; keep this file clean.) */
