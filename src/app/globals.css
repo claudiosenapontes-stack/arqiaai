@@ -12,25 +12,24 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    /* Prevent layout "shake" when scrollbars appear/disappear */
+    /* Prevent layout shifts / horizontal scroll jitter */
     scrollbar-gutter: stable;
-    overflow-x: clip;
+    overflow-x: hidden;
   }
 
   body {
     background: var(--arqia-white);
     color: var(--arqia-ink);
-    overflow-x: clip;
+    overflow-x: hidden;
   }
 }
 
-/* Full-bleed utility: break out of max-w containers (used for product hero cards). */
+/* Full-bleed utility: break out of max-w containers.
+   Use translate instead of +/-50vw margins to avoid subpixel horizontal jitter on mobile. */
 .product-hero-fullbleed {
   position: relative;
   left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
+  transform: translateX(-50%);
   width: 100vw;
   border-left: none;
   border-right: none;
