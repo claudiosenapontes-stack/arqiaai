@@ -108,7 +108,7 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
           </Link>
 
           {/* Desktop nav (center-ish) */}
-          <nav className={'hidden flex-1 items-center justify-center gap-8 text-[14px] font-light uppercase tracking-[0.24em] md:flex ' + tone}>
+          <nav className={'hidden flex-1 items-center justify-center gap-8 text-[16px] font-light uppercase tracking-[0.22em] md:flex ' + tone}>
             {NAV.map((n) => (
               <Link key={n.href} href={n.href} className={'transition ' + hoverTone}>
                 {n.label}
