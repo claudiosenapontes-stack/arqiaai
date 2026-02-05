@@ -14,13 +14,16 @@ export default function Home() {
       {/* Hero (first impression) */}
       <section className="relative min-h-screen overflow-hidden bg-black">
         <div className="absolute inset-0">
-          <Image
-            src="/mock/furniture-1.jpg"
-            alt="ARQIA editorial"
-            fill
-            priority
-            className="object-cover"
-          />
+          {/* Cinemagraph-style motion: subtle pan/zoom via CSS (no heavy video payload yet) */}
+          <div className="hero-kenburns absolute inset-0">
+            <Image
+              src="/mock/furniture-1.jpg"
+              alt="ARQIA editorial"
+              fill
+              priority
+              className="object-cover"
+            />
+          </div>
           <div aria-hidden className="absolute inset-0 bg-black/35" />
           <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/10 to-black/65" />
         </div>
