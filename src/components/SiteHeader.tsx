@@ -19,35 +19,55 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
   const [hoverReveal, setHoverReveal] = useState(false)
 
   useEffect(() => {
-    let lastY = window.scrollY
     const hasHover = window.matchMedia?.('(hover: hover)').matches ?? true
 
-    const onScroll = () => {
-      const y = window.scrollY
-      setSolidText(y > 24)
+    // Mobile Safari can feel "shaky" if we re-render on every scroll.
+    // Throttle state updates to animation frames and avoid hide/show animations on touch.
+    let lastY = window.scrollY
+    let raf = 0
+    let lastSolid = false
+    let lastHidden = false
 
-      if (hasHover) {
-        // Desktop: show the header on the first screen (hero), then hide.
-        // After the hero, reveal only on hover.
-        setHidden(y >= window.innerHeight * 0.85)
-      } else {
-        // Touch devices: no hover — use scroll intent.
-        const goingDown = y > lastY
-        if (y < 40) {
-          setHidden(false)
-        } else if (goingDown && y > 120) {
-          setHidden(true)
-        } else if (!goingDown) {
-          setHidden(false)
-        }
+    const compute = () => {
+      const y = window.scrollY
+      const solid = y > 24
+
+      // Desktop: hide after hero and reveal on hover.
+      // Touch devices: keep header visible (no scroll-intent hide) to prevent jitter.
+      const hiddenNext = hasHover ? y >= window.innerHeight * 0.85 : false
+
+      if (solid !== lastSolid) {
+        lastSolid = solid
+        setSolidText(solid)
+      }
+
+      if (hiddenNext !== lastHidden) {
+        lastHidden = hiddenNext
+        setHidden(hiddenNext)
       }
 
       lastY = y
+      raf = 0
     }
 
-    onScroll()
+    const onScroll = () => {
+      // keep lastY updated in case we reintroduce intent logic later
+      lastY = window.scrollY
+      if (raf) return
+      raf = window.requestAnimationFrame(compute)
+    }
+
+    // init
+    lastSolid = window.scrollY > 24
+    lastHidden = hasHover ? window.scrollY >= window.innerHeight * 0.85 : false
+    setSolidText(lastSolid)
+    setHidden(lastHidden)
+
     window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      if (raf) window.cancelAnimationFrame(raf)
+    }
   }, [])
 
   // RH-style: always visible, no white bar. Readability via subtle top gradient.
