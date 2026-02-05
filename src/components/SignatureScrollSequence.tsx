@@ -94,7 +94,7 @@ export function SignatureScrollSequence() {
   return (
     <section
       ref={sectionRef}
-      className="relative isolate min-h-[80vh] overflow-hidden bg-black text-white md:min-h-screen"
+      className="relative isolate min-h-[80vh] overflow-hidden bg-black text-white md:min-h-screen md:min-h-[100svh]"
       aria-label="ARQIA signature scroll"
     >
       {/* Full-bleed hero video */}
@@ -119,7 +119,7 @@ export function SignatureScrollSequence() {
       </div>
 
       {/* Copy overlay */}
-      <div className="relative z-10 mx-auto flex min-h-screen max-w-6xl items-end px-6 pb-16 pt-28">
+      <div className="relative z-10 mx-auto flex min-h-screen min-h-[100svh] max-w-6xl items-end px-6 pb-16 pt-28">
         <div className="max-w-xl">
           <div className="text-[11px] font-light uppercase tracking-[0.28em] text-white/75">{beat.eyebrow}</div>
           <h1 className="mt-4 font-serif text-5xl leading-tight tracking-tight md:text-6xl">{beat.title}</h1>

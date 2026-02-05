@@ -12,7 +12,7 @@ export default function Home() {
       <SiteHeader overlay />
 
       {/* Hero (first impression) */}
-      <section className="relative min-h-screen overflow-hidden bg-black">
+      <section className="relative min-h-screen min-h-[100svh] overflow-hidden bg-black">
         <div className="absolute inset-0">
           {/* Real hero video (MP4/WebM) with image fallback */}
           <video
@@ -43,7 +43,7 @@ export default function Home() {
           <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/10 to-black/65" />
         </div>
 
-        <div className="relative z-10 mx-auto flex min-h-screen max-w-6xl items-end px-6 pb-16 pt-28">
+        <div className="relative z-10 mx-auto flex min-h-screen min-h-[100svh] max-w-6xl items-end px-6 pb-16 pt-28">
           <div className="max-w-3xl">
             <h1 className="font-serif font-light text-4xl leading-tight tracking-tight text-white md:text-6xl">
               <span className="font-sans font-extralight uppercase tracking-[0.08em] text-[color:var(--arqia-brass-light)] text-3xl md:text-5xl">
