@@ -82,8 +82,10 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
         className={
           'pointer-events-none absolute inset-x-0 top-0 h-48 transition-opacity duration-300 ' +
           (solidText
-            ? 'opacity-0'
-            : 'opacity-100 bg-gradient-to-b from-black/80 via-black/35 to-transparent')
+            ? // When scrolled (solidText), add a subtle light fade so the hover-revealed header reads on white sections.
+              'opacity-100 bg-gradient-to-b from-white/85 via-white/35 to-transparent'
+            : // On hero, keep the darker fade for legibility.
+              'opacity-100 bg-gradient-to-b from-black/80 via-black/35 to-transparent')
         }
       />
 
