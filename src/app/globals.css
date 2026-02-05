@@ -37,6 +37,17 @@
   border-radius: 0;
 }
 
+@media (max-width: 767px) {
+  /* Hard override to prevent any lingering breakout rules causing jitter */
+  .product-hero-fullbleed {
+    left: 0 !important;
+    transform: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+  }
+}
+
 @media (min-width: 768px) {
   .product-hero-fullbleed {
     left: 50%;
