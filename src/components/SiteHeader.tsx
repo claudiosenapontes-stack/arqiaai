@@ -13,17 +13,20 @@ const NAV = [
 export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
   // Hard reset: keep header stable to eliminate mobile jitter.
   // No scroll listeners, no fixed+translate animations.
-  const tone = 'text-neutral-900'
-  const hoverTone = 'hover:text-[color:var(--arqia-brass-dark)]'
+  const tone = overlay ? 'text-white' : 'text-neutral-900'
+  const hoverTone = overlay ? 'hover:text-[color:var(--arqia-brass-light)]' : 'hover:text-[color:var(--arqia-brass-dark)]'
 
   return (
     <header
       className={
         (overlay ? 'absolute' : 'sticky') +
-        ' left-0 right-0 top-0 z-50 border-b border-black/10 bg-white/85 backdrop-blur-md'
+        ' left-0 right-0 top-0 z-50 ' +
+        (overlay
+          ? 'border-b border-white/10 bg-black/25 backdrop-blur-md'
+          : 'border-b border-black/10 bg-white/85 backdrop-blur-md')
       }
     >
-      <div className={'mx-auto max-w-6xl px-6 ' + (overlay ? 'pt-6 pb-4' : 'py-4')}>
+      <div className={'mx-auto max-w-6xl px-6 ' + (overlay ? 'pt-4 pb-3' : 'py-4')}>
         <div className={'flex items-center gap-6 ' + tone}>
           {/* Left-aligned logo */}
           <Link href="/" aria-label="ARQIA home" className="flex items-center">
@@ -38,7 +41,12 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
           </Link>
 
           {/* Desktop nav (center-ish) */}
-          <nav className={'hidden flex-1 items-center justify-center gap-8 text-[16px] font-light uppercase tracking-[0.22em] md:flex ' + tone}>
+          <nav
+            className={
+              'hidden flex-1 items-center justify-center gap-8 text-[16px] font-light uppercase tracking-[0.22em] md:flex ' +
+              tone
+            }
+          >
             {NAV.map((n) => (
               <Link key={n.href} href={n.href} className={'transition ' + hoverTone}>
                 {n.label}
@@ -67,7 +75,7 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
         {/* Mobile nav (second row) */}
         <div
           className={
-            'mt-4 flex flex-wrap gap-x-5 gap-y-2 text-[13px] font-light uppercase tracking-[0.22em] md:hidden ' +
+            'mt-3 flex flex-wrap gap-x-5 gap-y-2 text-[13px] font-light uppercase tracking-[0.18em] md:hidden ' +
             tone
           }
         >

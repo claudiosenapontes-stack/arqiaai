@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { toggleSaved, loadSaved } from '@/lib/saved'
 
 export function ProductHeroCard({
@@ -22,12 +22,8 @@ export function ProductHeroCard({
   href?: string
 }) {
   const slug = href?.split('/').pop() ?? ''
-  const [saved, setSaved] = useState(false)
-
-  useEffect(() => {
-    if (!slug) return
-    setSaved(loadSaved().includes(slug))
-  }, [slug])
+  // slug is stable for a given card; initialize from localStorage once.
+  const [saved, setSaved] = useState(() => (slug ? loadSaved().includes(slug) : false))
 
   return (
     <div className="product-hero-fullbleed group overflow-hidden rounded-2xl border border-black/10 bg-white">

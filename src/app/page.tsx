@@ -4,6 +4,7 @@ import { HomeSimpleTriptych } from '@/components/HomeSimpleTriptych'
 // SignatureScrollSequence disabled temporarily (mobile jitter)
 import { BlogPreviewSection } from '@/components/BlogPreviewSection'
 import { BWMapSection } from '@/components/BWMapSection'
+import Link from 'next/link'
 import Image from 'next/image'
 
 export default function Home() {
@@ -75,12 +76,12 @@ export default function Home() {
                 screen—better decisions.
               </p>
               <div className="mt-8">
-                <a
+                <Link
                   href="/products"
                   className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-6 py-3 text-xs font-light uppercase tracking-[0.25em] text-neutral-800"
                 >
                   Browse the shop <span className="transition">→</span>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
