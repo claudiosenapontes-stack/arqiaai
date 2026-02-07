@@ -15,7 +15,7 @@ const COLLECTIONS = [
     collectionName: 'CALMA',
     subtitle: 'Weather-ready pieces with quiet luxury restraint.',
     href: '/outdoor',
-    images: ['/collections/calma-1-20260207.png', '/collections/calma-2-20260207.png'],
+    images: ['/mock/collections/calma-1-20260207.png', '/mock/collections/calma-2-20260207.png'],
   },
   {
     title: 'Decor',
@@ -29,14 +29,14 @@ const COLLECTIONS = [
     collectionName: 'DUNE',
     subtitle: 'Texture, warmth, and scale (coming soon).',
     href: '/rugs',
-    images: ['/collections/dune-1-20260207.png', '/collections/dune-2-20260207.png'],
+    images: ['/mock/collections/dune-1-20260207.png', '/mock/collections/dune-2-20260207.png'],
   },
   {
     title: 'Lighting',
     collectionName: 'LUME',
     subtitle: 'Sculptural light as architecture (coming soon).',
     href: '/lighting',
-    images: ['/collections/lume-1-20260207.png', '/collections/lume-2-20260207.png'],
+    images: ['/mock/collections/lume-1-20260207.png', '/mock/collections/lume-2-20260207.png'],
   },
 ]
 
