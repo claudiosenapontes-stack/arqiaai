@@ -22,8 +22,8 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
         (overlay ? 'absolute' : 'sticky') +
         ' left-0 right-0 top-0 z-50 ' +
         (overlay
-          ? 'border-b border-white/10 bg-black/25 backdrop-blur-md'
-          : 'border-b border-black/10 bg-white/85 backdrop-blur-md')
+          ? 'border-b border-white/10 bg-gradient-to-b from-black/55 via-black/30 to-black/0 backdrop-blur-md'
+          : 'border-b border-black/10 bg-gradient-to-b from-white/95 via-white/85 to-white/65 backdrop-blur-md')
       }
     >
       <div className={'mx-auto max-w-6xl px-6 ' + (overlay ? 'pt-4 pb-3' : 'py-4')}>
