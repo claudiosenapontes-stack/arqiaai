@@ -15,7 +15,7 @@ const COLLECTIONS = [
     collectionName: 'CALMA',
     subtitle: 'Weather-ready pieces with quiet luxury restraint.',
     href: '/outdoor',
-    images: ['/mock/furniture-4.jpg', '/mock/furniture-3.jpg'],
+    images: ['/collections/calma-outdoor.jpg', '/collections/calma-outdoor-2.jpg'],
   },
   {
     title: 'Decor',
