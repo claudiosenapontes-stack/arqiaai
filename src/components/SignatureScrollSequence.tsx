@@ -53,40 +53,24 @@ export function SignatureScrollSequence() {
     if (typeof window !== 'undefined' && window.innerWidth < 768) return
 
     const el = sectionRef.current
-    const video = videoRef.current
-    if (!el || !video) return
-
-    let duration = 0
-    const onLoaded = () => {
-      duration = video.duration || 0
-    }
-    video.addEventListener('loadedmetadata', onLoaded)
+    if (!el) return
 
     const ctx = gsap.context(() => {
+      // No pinning + no manual video seeking (both can cause shaking/jitter on some browsers).
       ScrollTrigger.create({
         trigger: el,
-        start: 'top top',
-        // Short entrance → fast handoff into Collections.
-        end: '+=190%',
-        pin: true,
+        start: 'top bottom',
+        end: 'bottom top',
         scrub: 1,
         onUpdate: (self) => {
           const p = self.progress
-
           const idx = Math.min(BEATS.length - 1, Math.floor(p * BEATS.length))
           setBeatIndex(idx)
-
-          if (duration > 0) {
-            // Avoid seeking to exact end (can stall on some browsers)
-            const t = Math.min(duration - 0.05, Math.max(0, p * duration))
-            video.currentTime = t
-          }
         },
       })
     }, el)
 
     return () => {
-      video.removeEventListener('loadedmetadata', onLoaded)
       ctx.revert()
     }
   }, [])
