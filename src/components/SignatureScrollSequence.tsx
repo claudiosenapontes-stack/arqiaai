@@ -94,14 +94,14 @@ export function SignatureScrollSequence() {
   return (
     <section
       ref={sectionRef}
-      className="relative isolate min-h-[80vh] overflow-hidden bg-black text-white md:min-h-screen md:min-h-[100svh]"
+      className="relative isolate h-[100svh] overflow-hidden bg-black text-white"
       aria-label="ARQIA signature scroll"
     >
-      {/* Full-bleed hero video */}
+      {/* Background: video on desktop, static image on mobile to avoid iOS jitter */}
       <div className="absolute inset-0">
         <video
           ref={videoRef}
-          className="h-full w-full object-cover"
+          className="hidden h-full w-full object-cover md:block"
           src="/sequence/chairA_v1.mp4"
           preload="metadata"
           playsInline
@@ -109,6 +109,17 @@ export function SignatureScrollSequence() {
           loop
           autoPlay
         />
+
+        {/* Mobile fallback image */}
+        <div className="absolute inset-0 md:hidden">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/mock/furniture-2.jpg"
+            alt="ARQIA signature"
+            className="h-full w-full object-cover"
+          />
+        </div>
+
         {/* Luxury overlays for readability */}
         <div aria-hidden className="pointer-events-none absolute inset-0 bg-black/35" />
         <div
@@ -119,15 +130,26 @@ export function SignatureScrollSequence() {
       </div>
 
       {/* Copy overlay */}
-      <div className="relative z-10 mx-auto flex min-h-screen min-h-[100svh] max-w-6xl items-end px-6 pb-16 pt-28">
+      <div className="relative z-10 mx-auto flex h-full max-w-6xl items-end px-6 pb-16 pt-28">
         <div className="max-w-xl">
           <div className="text-[11px] font-light uppercase tracking-[0.28em] text-white/75">{beat.eyebrow}</div>
           <h1 className="mt-4 font-serif text-5xl leading-tight tracking-tight md:text-6xl">{beat.title}</h1>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-white/80 md:text-base">{beat.body}</p>
 
-          <div className="mt-10 flex items-center gap-3 text-xs text-white/60">
-            <div className="h-px w-12 bg-white/25" />
-            <div>
+          {/* Beads (beat indicators) */}
+          <div className="mt-10 flex items-center gap-4">
+            <div className="flex items-center gap-2" aria-label="Signature beats">
+              {BEATS.map((_, i) => (
+                <span
+                  key={i}
+                  className={
+                    'h-2 w-2 rounded-full border border-white/35 transition ' +
+                    (i === beatIndex ? 'bg-[color:var(--arqia-brass-light)] border-[color:var(--arqia-brass-light)]/80' : 'bg-white/10')
+                  }
+                />
+              ))}
+            </div>
+            <div className="text-xs text-white/60">
               {beatIndex + 1} / {BEATS.length}
             </div>
           </div>

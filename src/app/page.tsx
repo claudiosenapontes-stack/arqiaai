@@ -1,7 +1,7 @@
 import { SiteHeader } from '@/components/SiteHeader'
 import { HomeTilesLayer } from '@/components/HomeTilesLayer'
 import { HomeSimpleTriptych } from '@/components/HomeSimpleTriptych'
-// SignatureScrollSequence disabled temporarily (mobile jitter)
+import { SignatureScrollSequence } from '@/components/SignatureScrollSequence'
 import { BlogPreviewSection } from '@/components/BlogPreviewSection'
 import { BWMapSection } from '@/components/BWMapSection'
 import Link from 'next/link'
@@ -43,21 +43,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Signature section (temporary static image): avoids iOS pinned-scroll jitter */}
-      <section className="relative h-[100svh] overflow-hidden bg-black text-white" aria-label="ARQIA signature">
-        <div className="absolute inset-0">
-          <Image src="/mock/furniture-2.jpg" alt="ARQIA signature" fill className="object-cover" priority />
-          <div aria-hidden className="absolute inset-0 bg-black/35" />
-          <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/15 to-black/55" />
-        </div>
-        <div className="relative z-10 mx-auto flex h-full max-w-6xl items-end px-6 pb-16 pt-28">
-          <div className="max-w-xl">
-            <div className="text-[11px] font-light uppercase tracking-[0.28em] text-white/75">Material</div>
-            <h2 className="mt-4 font-serif text-5xl leading-tight tracking-tight md:text-6xl">Material, selected with restraint.</h2>
-            <p className="mt-4 max-w-md text-sm leading-relaxed text-white/80 md:text-base">Natural wood, quiet upholstery—refined, intentional, precise.</p>
-          </div>
-        </div>
-      </section>
+      {/* Signature Apple-style scroll moment (second section) */}
+      <SignatureScrollSequence />
 
       {/* One unified tile layer (Indoor/Outdoor/etc.) */}
       <HomeTilesLayer />
