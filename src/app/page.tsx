@@ -12,7 +12,7 @@ export default function Home() {
       <SiteHeader overlay />
 
       {/* Hero (first impression) */}
-      <section className="relative min-h-screen min-h-[100svh] overflow-hidden bg-black">
+      <section className="relative h-[100svh] overflow-hidden bg-black">
         <div className="absolute inset-0">
           {/* Static hero image (temporary): avoids iOS viewport/video jitter */}
           <Image
@@ -27,7 +27,7 @@ export default function Home() {
           <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/10 to-black/65" />
         </div>
 
-        <div className="relative z-10 mx-auto flex min-h-screen min-h-[100svh] max-w-6xl items-end px-6 pb-16 pt-28">
+        <div className="relative z-10 mx-auto flex h-full max-w-6xl items-end px-6 pb-16 pt-28">
           <div className="max-w-3xl">
             <h1 className="font-serif font-light text-4xl leading-tight tracking-tight text-white md:text-6xl">
               <span className="font-sans font-extralight uppercase tracking-[0.08em] text-[color:var(--arqia-brass-light)] text-3xl md:text-5xl">
@@ -43,13 +43,13 @@ export default function Home() {
       </section>
 
       {/* Signature section (temporary static image): avoids iOS pinned-scroll jitter */}
-      <section className="relative min-h-[80vh] overflow-hidden bg-black text-white md:min-h-screen md:min-h-[100svh]" aria-label="ARQIA signature">
+      <section className="relative h-[100svh] overflow-hidden bg-black text-white" aria-label="ARQIA signature">
         <div className="absolute inset-0">
           <Image src="/mock/furniture-2.jpg" alt="ARQIA signature" fill className="object-cover" priority />
           <div aria-hidden className="absolute inset-0 bg-black/35" />
           <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/15 to-black/55" />
         </div>
-        <div className="relative z-10 mx-auto flex min-h-screen min-h-[100svh] max-w-6xl items-end px-6 pb-16 pt-28">
+        <div className="relative z-10 mx-auto flex h-full max-w-6xl items-end px-6 pb-16 pt-28">
           <div className="max-w-xl">
             <div className="text-[11px] font-light uppercase tracking-[0.28em] text-white/75">Material</div>
             <h2 className="mt-4 font-serif text-5xl leading-tight tracking-tight md:text-6xl">Material, selected with restraint.</h2>
