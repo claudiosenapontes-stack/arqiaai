@@ -97,8 +97,19 @@ export function SignatureScrollSequence() {
       className="relative isolate h-[100svh] overflow-hidden bg-black text-white"
       aria-label="ARQIA signature scroll"
     >
-      {/* Background: video on desktop, static image on mobile to avoid iOS jitter */}
+      {/* Background: keep an image always (never blank), and layer video on desktop */}
       <div className="absolute inset-0">
+        {/* Base image (always visible) */}
+        <div className="absolute inset-0">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/mock/furniture-2.jpg"
+            alt="ARQIA signature"
+            className="h-full w-full object-cover"
+          />
+        </div>
+
+        {/* Video overlay (desktop only). If the video fails to load/autoplay, the image still shows. */}
         <video
           ref={videoRef}
           className="hidden h-full w-full object-cover md:block"
@@ -108,17 +119,8 @@ export function SignatureScrollSequence() {
           muted
           loop
           autoPlay
+          poster="/mock/furniture-2.jpg"
         />
-
-        {/* Mobile fallback image */}
-        <div className="absolute inset-0 md:hidden">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/mock/furniture-2.jpg"
-            alt="ARQIA signature"
-            className="h-full w-full object-cover"
-          />
-        </div>
 
         {/* Luxury overlays for readability */}
         <div aria-hidden className="pointer-events-none absolute inset-0 bg-black/35" />
