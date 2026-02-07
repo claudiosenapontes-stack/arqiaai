@@ -36,7 +36,7 @@ const COLLECTIONS = [
     collectionName: 'LUME',
     subtitle: 'Sculptural light as architecture (coming soon).',
     href: '/lighting',
-    images: ['/mock/furniture-5.jpg', '/mock/material-1.jpg'],
+    images: ['/collections/lume-lighting.jpg', '/collections/lume-lighting-2.jpg'],
   },
 ]
 
