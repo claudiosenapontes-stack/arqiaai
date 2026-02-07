@@ -29,7 +29,7 @@ const COLLECTIONS = [
     collectionName: 'DUNE',
     subtitle: 'Texture, warmth, and scale (coming soon).',
     href: '/rugs',
-    images: ['/mock/material-1.jpg', '/mock/furniture-1.jpg'],
+    images: ['/collections/dune-rugs.jpg', '/collections/dune-rugs-2.jpg'],
   },
   {
     title: 'Lighting',
