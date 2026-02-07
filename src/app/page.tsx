@@ -1,7 +1,7 @@
 import { SiteHeader } from '@/components/SiteHeader'
 import { HomeTilesLayer } from '@/components/HomeTilesLayer'
 import { HomeSimpleTriptych } from '@/components/HomeSimpleTriptych'
-import { SignatureScrollSequence } from '@/components/SignatureScrollSequence'
+// SignatureScrollSequence disabled temporarily (mobile jitter)
 import { BlogPreviewSection } from '@/components/BlogPreviewSection'
 import { BWMapSection } from '@/components/BWMapSection'
 import Image from 'next/image'
@@ -14,30 +14,14 @@ export default function Home() {
       {/* Hero (first impression) */}
       <section className="relative min-h-screen min-h-[100svh] overflow-hidden bg-black">
         <div className="absolute inset-0">
-          {/* Real hero video (MP4/WebM) with image fallback */}
-          <video
-            className="absolute inset-0 h-full w-full object-cover"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster="/mock/furniture-1.jpg"
-          >
-            <source src="/hero/hero.webm" type="video/webm" />
-            <source src="/hero/hero.mp4" type="video/mp4" />
-          </video>
-
-          {/* Fallback image for very old browsers (or if video blocked) */}
-          <noscript>
-            <Image
-              src="/mock/furniture-1.jpg"
-              alt="ARQIA editorial"
-              fill
-              priority
-              className="object-cover"
-            />
-          </noscript>
+          {/* Static hero image (temporary): avoids iOS viewport/video jitter */}
+          <Image
+            src="/mock/furniture-1.jpg"
+            alt="ARQIA editorial"
+            fill
+            priority
+            className="object-cover"
+          />
 
           <div aria-hidden className="absolute inset-0 bg-black/35" />
           <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/10 to-black/65" />
@@ -58,8 +42,21 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Signature Apple-style scroll moment (second section) */}
-      <SignatureScrollSequence />
+      {/* Signature section (temporary static image): avoids iOS pinned-scroll jitter */}
+      <section className="relative min-h-[80vh] overflow-hidden bg-black text-white md:min-h-screen md:min-h-[100svh]" aria-label="ARQIA signature">
+        <div className="absolute inset-0">
+          <Image src="/mock/furniture-2.jpg" alt="ARQIA signature" fill className="object-cover" priority />
+          <div aria-hidden className="absolute inset-0 bg-black/35" />
+          <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/15 to-black/55" />
+        </div>
+        <div className="relative z-10 mx-auto flex min-h-screen min-h-[100svh] max-w-6xl items-end px-6 pb-16 pt-28">
+          <div className="max-w-xl">
+            <div className="text-[11px] font-light uppercase tracking-[0.28em] text-white/75">Material</div>
+            <h2 className="mt-4 font-serif text-5xl leading-tight tracking-tight md:text-6xl">Material, selected with restraint.</h2>
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-white/80 md:text-base">Natural wood, quiet upholstery—refined, intentional, precise.</p>
+          </div>
+        </div>
+      </section>
 
       {/* One unified tile layer (Indoor/Outdoor/etc.) */}
       <HomeTilesLayer />
