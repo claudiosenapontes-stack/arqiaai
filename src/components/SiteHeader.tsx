@@ -63,7 +63,9 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
       ? 'text-[color:var(--arqia-brass-dark)]'
       : 'text-[color:var(--arqia-brass-light)]'
 
-  const hoverTone = 'hover:text-[color:var(--arqia-brass-light)]'
+  // Make hover “light up” more: brighter brass + slight glow.
+  const hoverTone =
+    'hover:text-[color:var(--arqia-brass-light)] hover:drop-shadow-[0_0_10px_rgba(224,206,169,0.55)]'
 
   return (
     <>
@@ -117,7 +119,7 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
           {/* Desktop nav (center-ish) */}
           <nav className={'hidden flex-1 items-center justify-center gap-8 text-[13px] font-light uppercase tracking-[0.26em] md:flex ' + tone}>
             {NAV.map((n) => (
-              <Link key={n.href} href={n.href} className={'transition ' + hoverTone}>
+              <Link key={n.href} href={n.href} className={'transition duration-300 ' + hoverTone}>
                 {n.label}
               </Link>
             ))}
@@ -149,7 +151,7 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
           }
         >
           {NAV.map((n) => (
-            <Link key={n.href} href={n.href} className={'transition ' + hoverTone}>
+            <Link key={n.href} href={n.href} className={'transition duration-300 ' + hoverTone}>
               {n.label}
             </Link>
           ))}
