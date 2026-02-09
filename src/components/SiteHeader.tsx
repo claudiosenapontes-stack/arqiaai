@@ -53,9 +53,16 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
   // RH-style: always visible, no white bar. Readability via subtle top gradient.
   const isRevealed = !hidden || hoverReveal
 
-  // When the header is revealed (via hover), keep typography brass so it contrasts
-  // across mixed backgrounds. No background panel.
-  const tone = isRevealed ? 'text-[color:var(--arqia-brass-light)]' : (solidText ? 'text-neutral-800' : 'text-white/90')
+  // Always keep nav typography in the brass family (no gray).
+  // - On hero/dark backgrounds: brass-light
+  // - On scrolled/light backgrounds: brass-dark for contrast
+  // - When hover-revealed over mixed imagery: brass-light
+  const tone = isRevealed
+    ? 'text-[color:var(--arqia-brass-light)]'
+    : solidText
+      ? 'text-[color:var(--arqia-brass-dark)]'
+      : 'text-[color:var(--arqia-brass-light)]'
+
   const hoverTone = 'hover:text-[color:var(--arqia-brass-light)]'
 
   return (
