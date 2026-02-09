@@ -26,37 +26,48 @@ function Beads({ count, progress, orientation }: { count: number; progress: numb
     })
   }, [count, orientation])
 
+  // Smooth highlight progression
   const activeIndex = Math.min(count - 1, Math.max(0, Math.floor(progress * count)))
+  const activeT = progress * count - activeIndex
 
   useFrame((state) => {
     const t = state.clock.getElapsedTime()
     if (!group.current) return
 
-    // Pinned-scroll feel: as progress increases, the strand “travels” upward a bit.
-    // Keep it subtle; the copy is the hero.
-    const travel = 0.55
+    // More dynamic pinned-scroll feel: the strand travels further and has a bit more parallax.
+    const travel = 1.35
     group.current.position.y = (progress - 0.5) * travel
 
-    // very subtle “luxury” motion — avoid anything that feels like a game UI
-    group.current.rotation.z = Math.sin(t * 0.25) * 0.03
-    group.current.rotation.y = Math.sin(t * 0.18) * 0.04
+    // Add a gentle “dolly” illusion with z, so it feels like the beads move through space.
+    group.current.position.z = -0.18 + Math.sin(progress * Math.PI) * 0.22
+
+    // Luxury motion (still restrained, but more noticeable)
+    group.current.rotation.z = Math.sin(t * 0.28) * 0.06
+    group.current.rotation.y = Math.sin(t * 0.2) * 0.08
   })
 
   return (
     <group ref={group}>
       {positions.map((pos, i) => {
+        const d = Math.abs(i - (progress * (count - 1)))
+        const glow = Math.max(0, 1 - d)
         const isActive = i === activeIndex
+
+        const radius = 0.11 + glow * 0.025
+        const opacity = 0.16 + glow * 0.78
+        const emissiveIntensity = 0.02 + glow * 0.38
+
         return (
           <mesh key={i} position={pos}>
-            <sphereGeometry args={[0.12, 32, 32]} />
+            <sphereGeometry args={[radius, 32, 32]} />
             <meshStandardMaterial
               color={isActive ? '#d8c08a' : '#ffffff'}
-              emissive={isActive ? '#8a6b2a' : '#000000'}
-              emissiveIntensity={isActive ? 0.25 : 0}
-              metalness={isActive ? 0.65 : 0.15}
-              roughness={isActive ? 0.22 : 0.7}
+              emissive={isActive ? '#8a6b2a' : '#1a1a1a'}
+              emissiveIntensity={emissiveIntensity}
+              metalness={0.7}
+              roughness={0.18 + (1 - glow) * 0.6}
               transparent
-              opacity={isActive ? 0.95 : 0.25}
+              opacity={opacity}
             />
           </mesh>
         )
@@ -79,7 +90,7 @@ export function BeadStrand3D({ count, progress, className, orientation = 'vertic
       <Canvas
         dpr={[1, 1.5]}
         gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
-        camera={{ position: [0, 0, 2.2], fov: 42 }}
+        camera={{ position: [0, 0.15, 2.0], fov: 40 }}
       >
         <color attach="background" args={['transparent']} />
         <ambientLight intensity={0.55} />

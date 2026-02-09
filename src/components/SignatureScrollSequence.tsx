@@ -3,6 +3,7 @@
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { BeadStrand3D } from '@/components/BeadStrand3D'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -45,6 +46,7 @@ export function SignatureScrollSequence() {
   const videoRef = useRef<HTMLVideoElement>(null)
 
   const [beatIndex, setBeatIndex] = useState(0)
+  const [progress, setProgress] = useState(0)
   const beat = useMemo(() => BEATS[beatIndex], [beatIndex])
 
   useEffect(() => {
@@ -67,6 +69,7 @@ export function SignatureScrollSequence() {
         anticipatePin: 1,
         onUpdate: (self) => {
           const p = self.progress
+          setProgress(p)
           const idx = Math.min(BEATS.length - 1, Math.floor(p * BEATS.length))
           setBeatIndex(idx)
         },
@@ -112,6 +115,16 @@ export function SignatureScrollSequence() {
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(224,206,169,0.16),transparent_55%),radial-gradient(circle_at_70%_70%,rgba(116,128,96,0.12),transparent_55%)]"
         />
         <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/55 via-black/15 to-black/55" />
+      </div>
+
+      {/* 3D beads overlay (decorative, no UI/buttons) */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 z-[5] hidden md:block">
+        <BeadStrand3D
+          count={BEATS.length}
+          progress={progress}
+          orientation="vertical"
+          className="h-full w-full opacity-[0.92]"
+        />
       </div>
 
       {/* Copy overlay */}
