@@ -3,7 +3,6 @@
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { BeadStrand3D } from '@/components/BeadStrand3D'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -11,6 +10,7 @@ type Beat = {
   eyebrow: string
   title: string
   body: string
+  image: string
 }
 
 const BEATS: Beat[] = [
@@ -18,21 +18,25 @@ const BEATS: Beat[] = [
     eyebrow: 'Material',
     title: 'Material, selected with restraint.',
     body: 'Natural wood, quiet upholstery—refined, intentional, precise.',
+    image: '/mock/furniture-2.jpg',
   },
   {
     eyebrow: 'Craft',
     title: 'Craft, with architectural discipline.',
     body: 'Form, joinery, and finish—built to endure and feel effortless.',
+    image: '/mock/furniture-1.jpg',
   },
   {
     eyebrow: 'Design',
     title: 'Design, guided by proportion.',
     body: 'Sourcing, specification, and layout support for refined spaces.',
+    image: '/mock/furniture-5.jpg',
   },
   {
     eyebrow: 'Collections',
     title: 'Explore collections.',
     body: 'An editorial way to browse by space—then go deeper.',
+    image: '/mock/material-2.jpg',
   },
 ]
 
@@ -43,7 +47,6 @@ function prefersReducedMotion() {
 
 export function SignatureScrollSequence() {
   const sectionRef = useRef<HTMLElement>(null)
-  const videoRef = useRef<HTMLVideoElement>(null)
 
   const [beatIndex, setBeatIndex] = useState(0)
   const [progress, setProgress] = useState(0)
@@ -58,8 +61,6 @@ export function SignatureScrollSequence() {
     if (!el) return
 
     const ctx = gsap.context(() => {
-      // Desktop-only pinned “scroll down to progress” moment.
-      // We keep mobile unpinned to avoid iOS viewport/scroll quirks.
       ScrollTrigger.create({
         trigger: el,
         start: 'top top',
@@ -87,44 +88,28 @@ export function SignatureScrollSequence() {
       className="relative isolate h-[100svh] overflow-hidden bg-black text-white"
       aria-label="ARQIA signature scroll"
     >
-      {/* Background: keep an image always (never blank), and layer video on desktop */}
+      {/* Background visuals (photos) */}
       <div className="absolute inset-0">
-        {/* Base image (always visible) */}
-        <div className="absolute inset-0">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/mock/furniture-2.jpg" alt="ARQIA signature" className="h-full w-full object-cover" />
-        </div>
-
-        {/* Video overlay (desktop only). If the video fails to load/autoplay, the image still shows. */}
-        <video
-          ref={videoRef}
-          className="hidden h-full w-full object-cover md:block"
-          src="/sequence/chairA_v1.mp4"
-          preload="metadata"
-          playsInline
-          muted
-          loop
-          autoPlay
-          poster="/mock/furniture-2.jpg"
-        />
+        {BEATS.map((b, idx) => (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            key={b.image}
+            src={b.image}
+            alt=""
+            className={
+              'absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ' +
+              (idx === beatIndex ? 'opacity-100' : 'opacity-0')
+            }
+          />
+        ))}
 
         {/* Luxury overlays for readability */}
-        <div aria-hidden className="pointer-events-none absolute inset-0 bg-black/35" />
+        <div aria-hidden className="pointer-events-none absolute inset-0 bg-black/30" />
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(224,206,169,0.16),transparent_55%),radial-gradient(circle_at_70%_70%,rgba(116,128,96,0.12),transparent_55%)]"
         />
-        <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/55 via-black/15 to-black/55" />
-      </div>
-
-      {/* 3D beads overlay (decorative, no UI/buttons) */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 z-[5] hidden md:block">
-        <BeadStrand3D
-          count={BEATS.length}
-          progress={progress}
-          orientation="vertical"
-          className="h-full w-full opacity-[0.92]"
-        />
+        <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/50 via-black/10 to-black/50" />
       </div>
 
       {/* Copy overlay */}
@@ -133,8 +118,18 @@ export function SignatureScrollSequence() {
           <div className="text-[11px] font-light uppercase tracking-[0.28em] text-white/75">{beat.eyebrow}</div>
           <h1 className="mt-4 font-serif text-5xl leading-tight tracking-tight md:text-6xl">{beat.title}</h1>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-white/80 md:text-base">{beat.body}</p>
+
+          <div className="mt-10 flex items-center gap-3 text-xs text-white/55">
+            <div className="h-px w-12 bg-white/20" />
+            <div>
+              {beatIndex + 1} / {BEATS.length}
+            </div>
+          </div>
         </div>
       </div>
+
+      {/* keep progress in state for future 3D detail work */}
+      <div className="sr-only">{progress}</div>
 
       <noscript>
         <div className="relative z-10 mx-auto max-w-6xl px-6 pb-10 text-xs text-white/60">
