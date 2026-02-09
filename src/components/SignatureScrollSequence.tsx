@@ -46,6 +46,7 @@ export function SignatureScrollSequence() {
   const videoRef = useRef<HTMLVideoElement>(null)
 
   const [beatIndex, setBeatIndex] = useState(0)
+  const [progress, setProgress] = useState(0)
   const beat = useMemo(() => BEATS[beatIndex], [beatIndex])
 
   useEffect(() => {
@@ -57,14 +58,18 @@ export function SignatureScrollSequence() {
     if (!el) return
 
     const ctx = gsap.context(() => {
-      // No pinning + no manual video seeking (both can cause shaking/jitter on some browsers).
+      // Desktop-only pinned “scroll down to progress” moment.
+      // We keep mobile unpinned to avoid iOS viewport/scroll quirks.
       ScrollTrigger.create({
         trigger: el,
-        start: 'top bottom',
-        end: 'bottom top',
+        start: 'top top',
+        end: () => `+=${Math.round(window.innerHeight * 3.25)}`,
+        pin: true,
         scrub: 1,
+        anticipatePin: 1,
         onUpdate: (self) => {
           const p = self.progress
+          setProgress(p)
           const idx = Math.min(BEATS.length - 1, Math.floor(p * BEATS.length))
           setBeatIndex(idx)
         },
@@ -130,7 +135,7 @@ export function SignatureScrollSequence() {
               <div className="hidden md:block">
                 <BeadStrand3D
                   count={BEATS.length}
-                  activeIndex={beatIndex}
+                  progress={progress}
                   orientation="vertical"
                   className="h-24 w-10 pointer-events-none"
                 />

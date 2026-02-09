@@ -6,13 +6,14 @@ import * as THREE from 'three'
 
 type Props = {
   count: number
-  activeIndex: number
+  /** 0..1 scroll progress through the sequence */
+  progress: number
   className?: string
   /** 'vertical' matches “scroll down” and feels like a strand */
   orientation?: 'vertical' | 'horizontal'
 }
 
-function Beads({ count, activeIndex, orientation }: { count: number; activeIndex: number; orientation: 'vertical' | 'horizontal' }) {
+function Beads({ count, progress, orientation }: { count: number; progress: number; orientation: 'vertical' | 'horizontal' }) {
   const group = useRef<THREE.Group>(null)
 
   const positions = useMemo(() => {
@@ -25,13 +26,20 @@ function Beads({ count, activeIndex, orientation }: { count: number; activeIndex
     })
   }, [count, orientation])
 
+  const activeIndex = Math.min(count - 1, Math.max(0, Math.floor(progress * count)))
+
   useFrame((state) => {
     const t = state.clock.getElapsedTime()
-    if (group.current) {
-      // very subtle “luxury” motion — avoid anything that feels like a game UI
-      group.current.rotation.z = Math.sin(t * 0.25) * 0.03
-      group.current.rotation.y = Math.sin(t * 0.18) * 0.04
-    }
+    if (!group.current) return
+
+    // Pinned-scroll feel: as progress increases, the strand “travels” upward a bit.
+    // Keep it subtle; the copy is the hero.
+    const travel = 0.55
+    group.current.position.y = (progress - 0.5) * travel
+
+    // very subtle “luxury” motion — avoid anything that feels like a game UI
+    group.current.rotation.z = Math.sin(t * 0.25) * 0.03
+    group.current.rotation.y = Math.sin(t * 0.18) * 0.04
   })
 
   return (
@@ -63,7 +71,9 @@ function Beads({ count, activeIndex, orientation }: { count: number; activeIndex
   )
 }
 
-export function BeadStrand3D({ count, activeIndex, className, orientation = 'vertical' }: Props) {
+export function BeadStrand3D({ count, progress, className, orientation = 'vertical' }: Props) {
+  const p = Number.isFinite(progress) ? Math.min(1, Math.max(0, progress)) : 0
+
   return (
     <div className={className} aria-label="Signature beads (3D scroll indicator)">
       <Canvas
@@ -76,7 +86,7 @@ export function BeadStrand3D({ count, activeIndex, className, orientation = 'ver
         <directionalLight position={[2.5, 2, 3]} intensity={0.85} />
         <directionalLight position={[-2.5, -1.5, 2.5]} intensity={0.35} />
 
-        <Beads count={count} activeIndex={activeIndex} orientation={orientation} />
+        <Beads count={count} progress={p} orientation={orientation} />
       </Canvas>
     </div>
   )
