@@ -60,7 +60,8 @@ export function SignatureScroll3D() {
       ScrollTrigger.create({
         trigger: el,
         start: 'top top',
-        end: () => `+=${Math.round(window.innerHeight * 2.25)}`,
+        // Make the 3-beat sequence feel longer / more cinematic.
+        end: () => `+=${Math.round(window.innerHeight * 3.25)}`,
         pin: true,
         scrub: 1,
         anticipatePin: 1,
@@ -98,13 +99,13 @@ export function SignatureScroll3D() {
           />
         ))}
 
-        {/* Luxury overlays for readability */}
-        <div aria-hidden className="pointer-events-none absolute inset-0 bg-black/35" />
+        {/* Luxury overlays for readability (keep photos visible) */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 bg-black/25" />
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(224,206,169,0.16),transparent_55%),radial-gradient(circle_at_70%_70%,rgba(116,128,96,0.12),transparent_55%)]"
         />
-        <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/55 via-black/15 to-black/55" />
+        <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/45 via-black/10 to-black/45" />
       </div>
 
       {/* Copy overlay */}
