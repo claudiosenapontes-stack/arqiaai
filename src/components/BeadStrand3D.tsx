@@ -53,19 +53,25 @@ function Beads({ count, progress, orientation }: { count: number; progress: numb
         const glow = Math.max(0, 1 - d)
         const isActive = i === activeIndex
 
-        const radius = 0.11 + glow * 0.025
-        const opacity = 0.16 + glow * 0.78
-        const emissiveIntensity = 0.02 + glow * 0.38
+        // Make the strand read on both light + dark photography.
+        const radius = 0.12 + glow * 0.03
+        const opacity = 0.32 + glow * 0.62
+        const emissiveIntensity = 0.08 + glow * 0.55
 
         return (
           <mesh key={i} position={pos}>
             <sphereGeometry args={[radius, 32, 32]} />
-            <meshStandardMaterial
-              color={isActive ? '#d8c08a' : '#ffffff'}
-              emissive={isActive ? '#8a6b2a' : '#1a1a1a'}
+            <meshPhysicalMaterial
+              color={isActive ? '#ddc48a' : '#ffffff'}
+              emissive={isActive ? '#b28a3a' : '#0b0b0b'}
               emissiveIntensity={emissiveIntensity}
-              metalness={0.7}
-              roughness={0.18 + (1 - glow) * 0.6}
+              metalness={0.35}
+              roughness={0.16 + (1 - glow) * 0.55}
+              clearcoat={0.9}
+              clearcoatRoughness={0.22}
+              transmission={0.35}
+              thickness={0.6}
+              ior={1.35}
               transparent
               opacity={opacity}
             />
@@ -75,8 +81,8 @@ function Beads({ count, progress, orientation }: { count: number; progress: numb
 
       {/* “thread” line behind beads */}
       <mesh position={[0, 0, -0.06]} rotation={orientation === 'horizontal' ? [0, 0, Math.PI / 2] : [0, 0, 0]}>
-        <cylinderGeometry args={[0.012, 0.012, (count - 1) * 0.42 + 0.35, 16]} />
-        <meshStandardMaterial color="#ffffff" metalness={0.1} roughness={0.9} transparent opacity={0.18} />
+        <cylinderGeometry args={[0.014, 0.014, (count - 1) * 0.42 + 0.35, 16]} />
+        <meshStandardMaterial color="#ffffff" metalness={0.15} roughness={0.85} transparent opacity={0.28} />
       </mesh>
     </group>
   )
@@ -93,9 +99,9 @@ export function BeadStrand3D({ count, progress, className, orientation = 'vertic
         camera={{ position: [0, 0.15, 2.0], fov: 40 }}
       >
         <color attach="background" args={['transparent']} />
-        <ambientLight intensity={0.55} />
-        <directionalLight position={[2.5, 2, 3]} intensity={0.85} />
-        <directionalLight position={[-2.5, -1.5, 2.5]} intensity={0.35} />
+        <ambientLight intensity={0.7} />
+        <directionalLight position={[2.5, 2, 3]} intensity={1.15} color={'#fff2df'} />
+        <directionalLight position={[-2.5, -1.5, 2.5]} intensity={0.55} color={'#e7eefc'} />
 
         <Beads count={count} progress={p} orientation={orientation} />
       </Canvas>
