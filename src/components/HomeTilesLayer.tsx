@@ -101,6 +101,43 @@ function StackedImageStrip({
             <div className="absolute inset-0 bg-black/10 transition duration-500 group-hover:bg-black/25" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/20 to-transparent" />
 
+            {/* Lower-left overlay: place it on the FIRST image only (idx === 0) */}
+            {idx === 0 ? (
+              <div className="pointer-events-none absolute bottom-0 left-0 w-full">
+                <div className="mx-auto max-w-6xl px-6 pb-12 pt-10 md:pb-16">
+                  <div className="max-w-xl">
+                    {topKicker ? (
+                      <div className="text-[13px] uppercase tracking-[0.32em] text-white/90 drop-shadow-[0_1px_10px_rgba(0,0,0,0.4)]">{topKicker}</div>
+                    ) : null}
+
+                    {bigTitle ? (
+                      <div className="mt-3 text-6xl md:text-7xl font-extralight uppercase tracking-[0.28em] text-[color:var(--arqia-brass-light)]">
+                        {bigTitle}
+                      </div>
+                    ) : null}
+
+                    <div
+                      className={
+                        'font-serif text-5xl md:text-6xl tracking-tight text-white ' +
+                        ((topKicker || bigTitle) ? 'mt-2' : 'mt-3')
+                      }
+                    >
+                      {title}
+                    </div>
+
+                    <p className="mt-3 text-[15px] leading-relaxed text-white/80 md:text-base">{subtitle}</p>
+
+                    <div className="mt-7 inline-flex items-center">
+                      <div className="inline-flex items-center gap-2 rounded-full border border-white/35 bg-white/5 px-6 py-2.5 text-xs font-light uppercase tracking-[0.25em] text-white/85 backdrop-blur transition duration-300 ease-out group-hover:border-[color:var(--arqia-brass-light)] group-hover:bg-white/10 group-hover:text-[color:var(--arqia-brass-light)]/80 group-hover:scale-[1.02]">
+                        Explore
+                        <span className="transition duration-300 ease-out group-hover:translate-x-1">→</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : null}
+
             {/* Add the brand mark on every second hero image (idx === 1) */}
             {idx === 1 ? (
               <div aria-hidden className="pointer-events-none absolute bottom-6 right-6 md:bottom-10 md:right-10">
@@ -115,41 +152,6 @@ function StackedImageStrip({
             ) : null}
           </div>
         ))}
-      </div>
-
-      {/* Lower-left overlay */}
-      <div className="pointer-events-none absolute bottom-0 left-0 w-full">
-        <div className="mx-auto max-w-6xl px-6 pb-12 pt-10 md:pb-16">
-          <div className="max-w-xl">
-            {topKicker ? (
-              <div className="text-[13px] uppercase tracking-[0.32em] text-white/90 drop-shadow-[0_1px_10px_rgba(0,0,0,0.4)]">{topKicker}</div>
-            ) : null}
-
-            {bigTitle ? (
-              <div className="mt-3 text-6xl md:text-7xl font-extralight uppercase tracking-[0.28em] text-[color:var(--arqia-brass-light)]">
-                {bigTitle}
-              </div>
-            ) : null}
-
-            <div
-              className={
-                'font-serif text-5xl md:text-6xl tracking-tight text-white ' +
-                ((topKicker || bigTitle) ? 'mt-2' : 'mt-3')
-              }
-            >
-              {title}
-            </div>
-
-            <p className="mt-3 text-[15px] leading-relaxed text-white/80 md:text-base">{subtitle}</p>
-
-            <div className="mt-7 inline-flex items-center">
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/35 bg-white/5 px-6 py-2.5 text-xs font-light uppercase tracking-[0.25em] text-white/85 backdrop-blur transition duration-300 ease-out group-hover:border-[color:var(--arqia-brass-light)] group-hover:bg-white/10 group-hover:text-[color:var(--arqia-brass-light)]/80 group-hover:scale-[1.02]">
-                Explore
-                <span className="transition duration-300 ease-out group-hover:translate-x-1">→</span>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </Link>
   )
