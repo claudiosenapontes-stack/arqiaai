@@ -3,6 +3,7 @@
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { BeadStrand3D } from '@/components/BeadStrand3D'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -122,19 +123,35 @@ export function SignatureScrollSequence() {
           <h1 className="mt-4 font-serif text-5xl leading-tight tracking-tight md:text-6xl">{beat.title}</h1>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-white/80 md:text-base">{beat.body}</p>
 
-          {/* Beads (beat indicators) */}
+          {/* Beads (3D scroll indicator) */}
           <div className="mt-10 flex items-center gap-4">
-            <div className="flex items-center gap-2" aria-label="Signature beats">
-              {BEATS.map((_, i) => (
-                <span
-                  key={i}
-                  className={
-                    'h-2 w-2 rounded-full border border-white/35 transition ' +
-                    (i === beatIndex ? 'bg-[color:var(--arqia-brass-light)] border-[color:var(--arqia-brass-light)]/80' : 'bg-white/10')
-                  }
+            <div className="relative flex items-center gap-4">
+              {/* Desktop: 3D bead strand */}
+              <div className="hidden md:block">
+                <BeadStrand3D
+                  count={BEATS.length}
+                  activeIndex={beatIndex}
+                  orientation="vertical"
+                  className="h-24 w-10 pointer-events-none"
                 />
-              ))}
+              </div>
+
+              {/* Mobile fallback: minimal dots (keeps it lightweight) */}
+              <div className="flex items-center gap-2 md:hidden" aria-label="Signature beads">
+                {BEATS.map((_, i) => (
+                  <span
+                    key={i}
+                    className={
+                      'h-2 w-2 rounded-full border border-white/35 transition ' +
+                      (i === beatIndex
+                        ? 'bg-[color:var(--arqia-brass-light)] border-[color:var(--arqia-brass-light)]/80'
+                        : 'bg-white/10')
+                    }
+                  />
+                ))}
+              </div>
             </div>
+
             <div className="text-xs text-white/60">
               {beatIndex + 1} / {BEATS.length}
             </div>
