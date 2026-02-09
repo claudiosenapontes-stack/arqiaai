@@ -117,33 +117,33 @@ function StackedImageStrip({
         ))}
       </div>
 
-      {/* Top-left overlay */}
-      <div className="pointer-events-none absolute left-0 top-0 w-full">
-        <div className="mx-auto max-w-6xl px-6 py-10">
+      {/* Lower-left overlay */}
+      <div className="pointer-events-none absolute bottom-0 left-0 w-full">
+        <div className="mx-auto max-w-6xl px-6 pb-12 pt-10 md:pb-16">
           <div className="max-w-xl">
             {topKicker ? (
-              <div className="text-xs uppercase tracking-[0.3em] text-white drop-shadow-[0_1px_8px_rgba(0,0,0,0.35)]">{topKicker}</div>
+              <div className="text-[13px] uppercase tracking-[0.32em] text-white/90 drop-shadow-[0_1px_10px_rgba(0,0,0,0.4)]">{topKicker}</div>
             ) : null}
 
             {bigTitle ? (
-              <div className="mt-3 text-5xl md:text-6xl font-extralight uppercase tracking-[0.28em] text-[color:var(--arqia-brass-light)]">
+              <div className="mt-3 text-6xl md:text-7xl font-extralight uppercase tracking-[0.28em] text-[color:var(--arqia-brass-light)]">
                 {bigTitle}
               </div>
             ) : null}
 
             <div
               className={
-                'font-serif text-4xl md:text-5xl tracking-tight text-white ' +
+                'font-serif text-5xl md:text-6xl tracking-tight text-white ' +
                 ((topKicker || bigTitle) ? 'mt-2' : 'mt-3')
               }
             >
               {title}
             </div>
 
-            <p className="mt-3 text-base text-white/80">{subtitle}</p>
+            <p className="mt-3 text-[15px] leading-relaxed text-white/80 md:text-base">{subtitle}</p>
 
-            <div className="mt-6 inline-flex items-center">
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/35 bg-white/5 px-5 py-2 text-xs font-light uppercase tracking-[0.25em] text-white/85 backdrop-blur transition duration-300 ease-out group-hover:border-[color:var(--arqia-brass-light)] group-hover:bg-white/10 group-hover:text-[color:var(--arqia-brass-light)]/80 group-hover:scale-[1.02]">
+            <div className="mt-7 inline-flex items-center">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/35 bg-white/5 px-6 py-2.5 text-xs font-light uppercase tracking-[0.25em] text-white/85 backdrop-blur transition duration-300 ease-out group-hover:border-[color:var(--arqia-brass-light)] group-hover:bg-white/10 group-hover:text-[color:var(--arqia-brass-light)]/80 group-hover:scale-[1.02]">
                 Explore
                 <span className="transition duration-300 ease-out group-hover:translate-x-1">→</span>
               </div>
