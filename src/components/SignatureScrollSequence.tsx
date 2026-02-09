@@ -3,7 +3,6 @@
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { BeadStrand3D } from '@/components/BeadStrand3D'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -46,7 +45,6 @@ export function SignatureScrollSequence() {
   const videoRef = useRef<HTMLVideoElement>(null)
 
   const [beatIndex, setBeatIndex] = useState(0)
-  const [progress, setProgress] = useState(0)
   const beat = useMemo(() => BEATS[beatIndex], [beatIndex])
 
   useEffect(() => {
@@ -69,7 +67,6 @@ export function SignatureScrollSequence() {
         anticipatePin: 1,
         onUpdate: (self) => {
           const p = self.progress
-          setProgress(p)
           const idx = Math.min(BEATS.length - 1, Math.floor(p * BEATS.length))
           setBeatIndex(idx)
         },
@@ -92,11 +89,7 @@ export function SignatureScrollSequence() {
         {/* Base image (always visible) */}
         <div className="absolute inset-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/mock/furniture-2.jpg"
-            alt="ARQIA signature"
-            className="h-full w-full object-cover"
-          />
+          <img src="/mock/furniture-2.jpg" alt="ARQIA signature" className="h-full w-full object-cover" />
         </div>
 
         {/* Video overlay (desktop only). If the video fails to load/autoplay, the image still shows. */}
@@ -127,47 +120,13 @@ export function SignatureScrollSequence() {
           <div className="text-[11px] font-light uppercase tracking-[0.28em] text-white/75">{beat.eyebrow}</div>
           <h1 className="mt-4 font-serif text-5xl leading-tight tracking-tight md:text-6xl">{beat.title}</h1>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-white/80 md:text-base">{beat.body}</p>
-
-          {/* Beads (3D scroll indicator) */}
-          <div className="mt-10 flex items-center gap-4">
-            <div className="relative flex items-center gap-4">
-              {/* Desktop: 3D bead strand */}
-              <div className="hidden md:block">
-                <BeadStrand3D
-                  count={BEATS.length}
-                  progress={progress}
-                  orientation="vertical"
-                  className="h-24 w-10 pointer-events-none"
-                />
-              </div>
-
-              {/* Mobile fallback: minimal dots (keeps it lightweight) */}
-              <div className="flex items-center gap-2 md:hidden" aria-label="Signature beads">
-                {BEATS.map((_, i) => (
-                  <span
-                    key={i}
-                    className={
-                      'h-2 w-2 rounded-full border border-white/35 transition ' +
-                      (i === beatIndex
-                        ? 'bg-[color:var(--arqia-brass-light)] border-[color:var(--arqia-brass-light)]/80'
-                        : 'bg-white/10')
-                    }
-                  />
-                ))}
-              </div>
-            </div>
-
-            <div className="text-xs text-white/60">
-              {beatIndex + 1} / {BEATS.length}
-            </div>
-          </div>
-
-          <div className="mt-8 text-[11px] font-light uppercase tracking-[0.28em] text-white/55">Scroll</div>
         </div>
       </div>
 
       <noscript>
-        <div className="relative z-10 mx-auto max-w-6xl px-6 pb-10 text-xs text-white/60">Enable JavaScript to view the interactive hero sequence.</div>
+        <div className="relative z-10 mx-auto max-w-6xl px-6 pb-10 text-xs text-white/60">
+          Enable JavaScript to view the interactive hero sequence.
+        </div>
       </noscript>
     </section>
   )
