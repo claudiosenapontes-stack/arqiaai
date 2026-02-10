@@ -17,6 +17,7 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
   const [solidText, setSolidText] = useState(false)
   const [hidden, setHidden] = useState(true)
   const [hoverReveal, setHoverReveal] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     let lastY = window.scrollY
@@ -48,6 +49,15 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  // Close menu on route-like interactions (best effort) or Esc
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMenuOpen(false)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
   }, [])
 
   // RH-style: always visible, no white bar. Readability via subtle top gradient.
@@ -85,6 +95,14 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
           (isRevealed ? 'translate-y-0 opacity-100' : '-translate-y-8 opacity-0 pointer-events-none')
         }
       >
+      {/* Click-away layer for desktop menu */}
+      {menuOpen ? (
+        <button
+          aria-label="Close menu"
+          className="fixed inset-0 z-40 cursor-default"
+          onClick={() => setMenuOpen(false)}
+        />
+      ) : null}
       {/* Top fade for legibility (not a bar) */}
       <div
         aria-hidden
@@ -122,14 +140,39 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
             />
           </Link>
 
-          {/* Desktop nav (center-ish) */}
-          <nav className={'hidden flex-1 items-center justify-center gap-12 text-[18px] font-light uppercase tracking-[0.28em] md:flex ' + tone}>
-            {NAV.map((n) => (
-              <Link key={n.href} href={n.href} className={'transition duration-300 ' + hoverTone}>
-                {n.label}
-              </Link>
-            ))}
-          </nav>
+          {/* Desktop nav → dropdown list (cleaner than spaced-out links) */}
+          <div className="relative z-50 hidden md:block">
+            <button
+              type="button"
+              onClick={() => setMenuOpen((v) => !v)}
+              className={
+                'rounded-full border px-6 py-2.5 text-[14px] font-light uppercase tracking-[0.28em] transition duration-300 ' +
+                'border-[color:var(--arqia-brass-light)]/35 bg-white/0 backdrop-blur ' +
+                tone +
+                ' ' +
+                hoverTone
+              }
+            >
+              Browse
+            </button>
+
+            {menuOpen ? (
+              <div className="absolute left-0 top-full mt-3 w-72 overflow-hidden rounded-2xl border border-black/10 bg-white/95 shadow-[0_22px_60px_rgba(0,0,0,0.20)] backdrop-blur">
+                <div className="px-2 py-2">
+                  {NAV.map((n) => (
+                    <Link
+                      key={n.href}
+                      href={n.href}
+                      onClick={() => setMenuOpen(false)}
+                      className="block rounded-xl px-4 py-3 text-[14px] font-light uppercase tracking-[0.22em] text-[color:var(--arqia-brass-dark)] transition hover:bg-black/5"
+                    >
+                      {n.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+          </div>
 
           {/* Right: cart */}
           <Link
