@@ -33,8 +33,14 @@ export const metadata: Metadata = {
 export default function OutdoorPage() {
   return (
     <main className="min-h-screen bg-white">
-      <SiteHeader />
-      <TopFilters title="Outdoor" />
+      <SiteHeader
+        filterMenu={{
+          label: 'Type',
+          param: 'type',
+          items: ['Outdoor Lounge', 'Outdoor Dining', 'Chairs', 'Pool Beds'],
+        }}
+      />
+      <TopFilters title="Outdoor" showControls={false} />
 
       <section className="mx-auto max-w-6xl px-6 py-12">
         <div className="space-y-10">

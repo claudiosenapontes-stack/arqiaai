@@ -33,8 +33,14 @@ export const metadata: Metadata = {
 export default function IndoorPage() {
   return (
     <main className="min-h-screen bg-white">
-      <SiteHeader />
-      <TopFilters title="Indoor" />
+      <SiteHeader
+        filterMenu={{
+          label: 'Type',
+          param: 'type',
+          items: ['Sectionals', 'Sofas', 'Dining', 'Coffee Tables', 'Beds', 'Chairs'],
+        }}
+      />
+      <TopFilters title="Indoor" showControls={false} />
 
       <section className="mx-auto max-w-6xl px-6 py-12">
         <div className="space-y-10">

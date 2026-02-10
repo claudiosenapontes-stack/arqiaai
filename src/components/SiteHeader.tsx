@@ -1,7 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
+import { useEffect, useMemo, useState } from 'react'
 
 const NAV = [
   { href: '/indoor', label: 'Indoor' },
@@ -13,11 +14,28 @@ const NAV = [
   { href: '/contact', label: 'Contact' },
 ]
 
-export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
+export function SiteHeader({
+  overlay = false,
+  filterMenu,
+}: {
+  overlay?: boolean
+  filterMenu?: { label?: string; param?: string; items: string[] }
+}) {
   const [solidText, setSolidText] = useState(false)
   const [hidden, setHidden] = useState(true)
   const [hoverReveal, setHoverReveal] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [filterOpen, setFilterOpen] = useState(false)
+
+  const router = useRouter()
+  const pathname = usePathname()
+
+  const [search, setSearch] = useState('')
+
+  const filterParam = filterMenu?.param ?? 'type'
+  const currentFilter = useMemo(() => {
+    if (!search) return 'All'
+    return new URLSearchParams(search).get(filterParam) ?? 'All'
+  }, [search, filterParam])
 
   useEffect(() => {
     let lastY = window.scrollY
@@ -51,14 +69,28 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Close menu on route-like interactions (best effort) or Esc
   useEffect(() => {
+    const sync = () => setSearch(window.location.search)
+    sync()
+
+    const onPop = () => sync()
+    window.addEventListener('popstate', onPop)
+
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setMenuOpen(false)
+      if (e.key === 'Escape') setFilterOpen(false)
     }
     window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
+
+    return () => {
+      window.removeEventListener('popstate', onPop)
+      window.removeEventListener('keydown', onKey)
+    }
   }, [])
+
+  useEffect(() => {
+    // close dropdown when navigating (best-effort)
+    setFilterOpen(false)
+  }, [pathname])
 
   // RH-style: always visible, no white bar. Readability via subtle top gradient.
   const isRevealed = !hidden || hoverReveal
@@ -95,12 +127,12 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
           (isRevealed ? 'translate-y-0 opacity-100' : '-translate-y-8 opacity-0 pointer-events-none')
         }
       >
-      {/* Click-away layer for desktop menu */}
-      {menuOpen ? (
+      {/* Click-away layer for filter dropdown */}
+      {filterOpen ? (
         <button
-          aria-label="Close menu"
+          aria-label="Close filters"
           className="fixed inset-0 z-40 cursor-default"
-          onClick={() => setMenuOpen(false)}
+          onClick={() => setFilterOpen(false)}
         />
       ) : null}
       {/* Top fade for legibility (not a bar) */}
@@ -140,39 +172,62 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
             />
           </Link>
 
-          {/* Desktop nav → dropdown list (cleaner than spaced-out links) */}
-          <div className="relative z-50 hidden md:block">
-            <button
-              type="button"
-              onClick={() => setMenuOpen((v) => !v)}
-              className={
-                'rounded-full border px-6 py-2.5 text-[14px] font-light uppercase tracking-[0.28em] transition duration-300 ' +
-                'border-[color:var(--arqia-brass-light)]/35 bg-white/0 backdrop-blur ' +
-                tone +
-                ' ' +
-                hoverTone
-              }
-            >
-              Browse
-            </button>
+          {/* Desktop nav (center-ish) */}
+          <nav className={'hidden flex-1 items-center justify-center gap-12 text-[18px] font-light uppercase tracking-[0.28em] md:flex ' + tone}>
+            {NAV.map((n) => (
+              <Link key={n.href} href={n.href} className={'transition duration-300 ' + hoverTone}>
+                {n.label}
+              </Link>
+            ))}
 
-            {menuOpen ? (
-              <div className="absolute left-0 top-full mt-3 w-72 overflow-hidden rounded-2xl border border-black/10 bg-white/95 shadow-[0_22px_60px_rgba(0,0,0,0.20)] backdrop-blur">
-                <div className="px-2 py-2">
-                  {NAV.map((n) => (
-                    <Link
-                      key={n.href}
-                      href={n.href}
-                      onClick={() => setMenuOpen(false)}
-                      className="block rounded-xl px-4 py-3 text-[14px] font-light uppercase tracking-[0.22em] text-[color:var(--arqia-brass-dark)] transition hover:bg-black/5"
-                    >
-                      {n.label}
-                    </Link>
-                  ))}
-                </div>
+            {/* Optional: collection filters as a header dropdown */}
+            {filterMenu?.items?.length ? (
+              <div className="relative">
+                <button
+                  type="button"
+                  onClick={() => setFilterOpen((v) => !v)}
+                  className={
+                    'rounded-full border px-5 py-2 text-[13px] font-light uppercase tracking-[0.26em] transition duration-300 ' +
+                    'border-[color:var(--arqia-brass-light)]/35 bg-white/0 backdrop-blur ' +
+                    tone +
+                    ' ' +
+                    hoverTone
+                  }
+                >
+                  {(filterMenu.label ?? 'Type') + ': ' + currentFilter}
+                </button>
+
+                {filterOpen ? (
+                  <div className="absolute left-0 top-full z-50 mt-3 w-72 overflow-hidden rounded-2xl border border-black/10 bg-white/95 shadow-[0_22px_60px_rgba(0,0,0,0.20)] backdrop-blur">
+                    <div className="px-2 py-2">
+                      {['All', ...filterMenu.items].map((item) => (
+                        <button
+                          key={item}
+                          type="button"
+                          onClick={() => {
+                            const sp = new URLSearchParams(window.location.search)
+                            if (item === 'All') sp.delete(filterParam)
+                            else sp.set(filterParam, item)
+                            const qs = sp.toString()
+                            const url = pathname + (qs ? `?${qs}` : '')
+                            router.push(url)
+                            setSearch(qs ? `?${qs}` : '')
+                            setFilterOpen(false)
+                          }}
+                          className={
+                            'block w-full rounded-xl px-4 py-3 text-left text-[13px] font-light uppercase tracking-[0.22em] transition ' +
+                            (item === currentFilter ? 'bg-black/5 text-black' : 'text-neutral-800 hover:bg-black/5')
+                          }
+                        >
+                          {item}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                ) : null}
               </div>
             ) : null}
-          </div>
+          </nav>
 
           {/* Right: cart */}
           <Link
