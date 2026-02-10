@@ -118,7 +118,7 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
           </Link>
 
           {/* Desktop nav (center-ish) */}
-          <nav className={'hidden flex-1 items-center justify-center gap-8 text-[13px] font-light uppercase tracking-[0.26em] md:flex ' + tone}>
+          <nav className={'hidden flex-1 items-center justify-center gap-10 text-[14px] font-light uppercase tracking-[0.28em] md:flex ' + tone}>
             {NAV.map((n) => (
               <Link key={n.href} href={n.href} className={'transition duration-300 ' + hoverTone}>
                 {n.label}
@@ -130,7 +130,7 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
           <Link
             href="/cart"
             className={
-              'ml-auto rounded-full px-6 py-2 text-sm transition duration-300 ease-out ' +
+              'ml-auto rounded-full px-7 py-2.5 text-[14px] transition duration-300 ease-out ' +
               // Brass-gold + glass feel gradient (more premium than a flat fill)
               'border border-[color:var(--arqia-brass-light)]/45 ' +
               'text-white/90 backdrop-blur-md ' +
@@ -147,7 +147,7 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
         {/* Mobile nav (second row) */}
         <div
           className={
-            'mt-4 flex flex-wrap gap-x-5 gap-y-2 text-[12px] font-light uppercase tracking-[0.22em] md:hidden ' +
+            'mt-4 flex flex-wrap gap-x-6 gap-y-2.5 text-[13px] font-light uppercase tracking-[0.24em] md:hidden ' +
             tone
           }
         >
