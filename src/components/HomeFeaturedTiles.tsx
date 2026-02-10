@@ -25,7 +25,7 @@ function Tile({
         className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.06]"
       />
       <div className="absolute inset-0 bg-black/10 transition duration-500 group-hover:bg-black/20" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-transparent opacity-80 transition duration-500 group-hover:opacity-95" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-black/10 opacity-80 transition duration-500 group-hover:opacity-95" />
 
       <div className="relative z-10 flex h-full items-end p-7">
         <div>

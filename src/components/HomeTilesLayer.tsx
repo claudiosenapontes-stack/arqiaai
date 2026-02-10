@@ -99,7 +99,7 @@ function StackedImageStrip({
               className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.06]"
             />
             <div className="absolute inset-0 bg-black/10 transition duration-500 group-hover:bg-black/25" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/20 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/20 to-black/10" />
 
             {/* Lower-left overlay: place it on the FIRST image only (idx === 0) */}
             {idx === 0 ? (

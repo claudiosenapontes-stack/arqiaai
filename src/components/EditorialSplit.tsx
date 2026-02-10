@@ -35,7 +35,7 @@ export function EditorialSplit({
         }>
           <Image src={img} alt={title} fill className="object-cover" />
           <div aria-hidden className="absolute inset-0 bg-black/10" />
-          <div aria-hidden className="absolute inset-0 bg-gradient-to-l from-black/25 via-black/10 to-transparent" />
+          <div aria-hidden className="absolute inset-0 bg-gradient-to-l from-black/25 via-black/10 to-black/8" />
         </div>
       </div>
     </section>

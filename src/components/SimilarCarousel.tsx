@@ -115,8 +115,8 @@ export function SimilarCarousel({
                     className={
                       'absolute inset-0 ' +
                       (flip
-                        ? 'bg-gradient-to-r from-black/25 via-black/10 to-transparent'
-                        : 'bg-gradient-to-l from-black/25 via-black/10 to-transparent')
+                        ? 'bg-gradient-to-r from-black/25 via-black/10 to-black/8'
+                        : 'bg-gradient-to-l from-black/25 via-black/10 to-black/8')
                     }
                   />
                 </div>

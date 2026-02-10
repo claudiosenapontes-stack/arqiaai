@@ -62,8 +62,8 @@ export function SimilarSplitRow({
             className={
               'absolute inset-0 ' +
               (flip
-                ? 'bg-gradient-to-r from-black/18 via-black/8 to-transparent'
-                : 'bg-gradient-to-l from-black/18 via-black/8 to-transparent')
+                ? 'bg-gradient-to-r from-black/18 via-black/8 to-black/6'
+                : 'bg-gradient-to-l from-black/18 via-black/8 to-black/6')
             }
           />
         </div>
