@@ -99,8 +99,8 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
       />
 
       {/* Full-width header */}
-      <div className={'w-full px-6 md:px-12 ' + (overlay ? 'pt-6 pb-4' : 'py-4')}>
-        <div className={'flex w-full items-center gap-6 ' + tone}>
+      <div className={'w-full px-6 md:px-14 ' + (overlay ? 'pt-6 pb-4' : 'py-4')}>
+        <div className={'flex w-full items-center gap-8 ' + tone}>
           {/* Left-aligned logo */}
           <Link
             href="/"
@@ -112,13 +112,13 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
               srcSet="/arqia-mark-120.png 120w, /arqia-mark-180.png 180w, /arqia-mark-240.png 240w, /arqia-mark-360.png 360w, /arqia-mark-520.png 520w"
               sizes="(min-width: 768px) 56px, 48px"
               alt="ARQIA"
-              className="h-9 w-auto"
+              className="h-10 w-auto"
               style={{ imageRendering: 'auto' }}
             />
           </Link>
 
           {/* Desktop nav (center-ish) */}
-          <nav className={'hidden flex-1 items-center justify-center gap-10 text-[14px] font-light uppercase tracking-[0.28em] md:flex ' + tone}>
+          <nav className={'hidden flex-1 items-center justify-center gap-12 text-[16px] font-light uppercase tracking-[0.30em] md:flex ' + tone}>
             {NAV.map((n) => (
               <Link key={n.href} href={n.href} className={'transition duration-300 ' + hoverTone}>
                 {n.label}
@@ -130,7 +130,7 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
           <Link
             href="/cart"
             className={
-              'ml-auto rounded-full px-7 py-2.5 text-[14px] transition duration-300 ease-out ' +
+              'ml-auto rounded-full px-8 py-3 text-[15px] transition duration-300 ease-out ' +
               // Brass-gold + glass feel gradient (more premium than a flat fill)
               'border border-[color:var(--arqia-brass-light)]/45 ' +
               'text-white/90 backdrop-blur-md ' +
@@ -147,7 +147,7 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
         {/* Mobile nav (second row) */}
         <div
           className={
-            'mt-4 flex flex-wrap gap-x-6 gap-y-2.5 text-[13px] font-light uppercase tracking-[0.24em] md:hidden ' +
+            'mt-4 flex flex-wrap gap-x-7 gap-y-3 text-[14px] font-light uppercase tracking-[0.26em] md:hidden ' +
             tone
           }
         >
