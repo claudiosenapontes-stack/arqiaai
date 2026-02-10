@@ -89,14 +89,17 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
       <div
         aria-hidden
         className={
-          'pointer-events-none absolute inset-x-0 top-0 ' +
-          (overlay ? 'h-[100svh] min-h-[560px] md:min-h-[640px] lg:min-h-[720px]' : 'h-32') +
-          ' transition-opacity duration-300 ' +
-          (solidText
-            ? // When scrolled (solidText), use a warm/brown tint so brass nav reads on light pages.
-              'opacity-90 bg-gradient-to-b from-[#6b5a3a]/45 via-[#6b5a3a]/14 to-transparent'
-            : // On hero, keep the darker fade for legibility.
-              'opacity-85 bg-gradient-to-b from-black/65 via-black/25 to-transparent')
+          'pointer-events-none absolute inset-x-0 top-0 h-32 transition-opacity duration-300 ' +
+          // IMPORTANT: On hero pages we already apply full-bleed overlays inside the hero.
+          // A second overlay coming from the header can create a visible “seam” where it ends.
+          // So: disable the header fade while on hero (overlay=true) until the user scrolls.
+          (overlay && !solidText
+            ? 'opacity-0'
+            : solidText
+              ? // When scrolled (solidText), use a warm/brown tint so brass nav reads on light pages.
+                'opacity-90 bg-gradient-to-b from-[#6b5a3a]/45 via-[#6b5a3a]/14 to-transparent'
+              : // Non-hero: keep the darker fade for legibility.
+                'opacity-85 bg-gradient-to-b from-black/65 via-black/25 to-transparent')
         }
       />
 
