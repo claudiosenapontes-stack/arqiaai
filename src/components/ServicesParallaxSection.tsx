@@ -59,7 +59,7 @@ export function ServicesParallaxSection({
               <img src={backgroundSrc} alt="" className="h-full w-full object-cover" />
             </div>
             <div aria-hidden className="absolute inset-0 bg-black/28" />
-            <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/10 to-black/55" />
+            <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/8 to-black/40" />
           </div>
         </div>
 

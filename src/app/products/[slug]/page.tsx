@@ -45,8 +45,8 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
       <section className="product-hero-fullbleed relative overflow-hidden bg-black">
         <div className="relative aspect-[21/9] min-h-[520px]">
           <img src={product.img} alt={product.title} className="absolute inset-0 h-full w-full object-cover" />
-          <div aria-hidden className="absolute inset-0 bg-black/25" />
-          <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/15 to-black/55" />
+          <div aria-hidden className="absolute inset-0 bg-black/15" />
+          <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/40" />
 
           <div className="relative z-10 mx-auto flex h-full max-w-6xl items-end px-6 pb-12 pt-28">
             <div className="max-w-2xl">

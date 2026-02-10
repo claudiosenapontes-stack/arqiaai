@@ -25,7 +25,7 @@ export default function Home() {
           />
 
           <div aria-hidden className="absolute inset-0 bg-black/35" />
-          <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/10 to-black/65" />
+          <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/8 to-black/50" />
         </div>
 
         <div className="relative z-10 mx-auto flex h-full max-w-6xl items-end px-6 pb-16 pt-28">

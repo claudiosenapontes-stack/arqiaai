@@ -109,7 +109,7 @@ export function SignatureScrollSequence() {
           aria-hidden
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(224,206,169,0.16),transparent_55%),radial-gradient(circle_at_70%_70%,rgba(116,128,96,0.12),transparent_55%)]"
         />
-        <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/50 via-black/10 to-black/50" />
+        <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/35 via-black/8 to-black/35" />
       </div>
 
       {/* Copy overlay */}
