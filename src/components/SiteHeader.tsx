@@ -98,9 +98,9 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
         }
       />
 
-      {/* Full-width header container */}
+      {/* Full-width header background, but keep content aligned to site max-width */}
       <div className={'w-full px-6 md:px-10 ' + (overlay ? 'pt-6 pb-4' : 'py-4')}>
-        <div className={'flex items-center gap-6 ' + tone}>
+        <div className={'mx-auto flex max-w-6xl items-center gap-6 ' + tone}>
           {/* Left-aligned logo */}
           <Link
             href="/"
