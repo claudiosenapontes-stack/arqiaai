@@ -37,8 +37,8 @@ export function ProductHeroCard({
         {/* overlay (bigger type, vertically centered, left aligned) */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.68),rgba(0,0,0,0.30)_42%,rgba(0,0,0,0.10)_72%,rgba(0,0,0,0)_100%)]" />
-          <div className="relative flex h-full items-center">
-            <div className="w-full px-6 py-10 md:px-10 md:py-14">
+          <div className="relative flex h-full items-end">
+            <div className="w-full px-6 pb-10 pt-16 md:px-10 md:pb-14 md:pt-24">
               <div className="max-w-2xl">
                 <div className="text-xs uppercase tracking-[0.34em] text-white/75 md:text-sm">{category}</div>
                 <div className="mt-3 font-serif text-4xl leading-[1.05] tracking-tight text-white md:text-6xl">
