@@ -3,7 +3,7 @@ import { SiteHeader } from '@/components/SiteHeader'
 import { TopFilters } from '@/components/TopFilters'
 import { ProductHeroCard } from '@/components/ProductHeroCard'
 import { EditorialSplit } from '@/components/EditorialSplit'
-import { SimilarSplitRow } from '@/components/SimilarSplitRow'
+import { SimilarCarousel } from '@/components/SimilarCarousel'
 import { MOCK_PRODUCTS, formatUsd } from '@/lib/mockCatalog'
 
 function Editorial({ title, body, img }: { title: string; body: string; img: string }) {
@@ -55,27 +55,25 @@ export default function IndoorPage() {
                     inquiryEmail="design@arqiaai.com"
                   />
 
-                  {(() => {
-                    const similars = products.filter((x) => x.slug !== p.slug)
-                    const s = similars[(idx + 1) % similars.length]
-                    if (!s) return null
-                    return (
-                      <SimilarSplitRow
-                        flip={idx % 2 === 0}
-                        label="Similar"
-                        title={s.title}
-                        subtitle={s.subtitle}
-                        img={s.img}
-                        href={`/products/${s.slug}`}
-                      />
-                    )
-                  })()}
+                  {idx < products.length - 1 ? (
+                    <SimilarCarousel
+                      label="Similar pieces"
+                      items={pair.map((s) => ({
+                        slug: s.slug,
+                        title: s.title,
+                        subtitle: s.subtitle,
+                        img: s.img,
+                        href: `/products/${s.slug}`,
+                      }))}
+                    />
+                  ) : null}
 
-                  {idx === 1 ? (
+                  {idx === 0 ? (
                     <EditorialSplit
                       title="Materials, restraint, and proportion"
                       body="A curated set of silhouettes, tuned for quiet luxury. Larger imagery, fewer choices per screen—better decisions."
                       img="/mock/material-1.jpg"
+                      flip
                     />
                   ) : null}
                 </div>
