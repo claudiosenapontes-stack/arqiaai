@@ -152,11 +152,24 @@ namespace ARQIA.RevitIntegration
             }
             
             // Extract rooms for area calculations
-            FilteredElementCollector roomCollector = new FilteredElementCollector(doc);
-            roomCollector.OfClass(typeof(Room));
-// Room extraction disabled for Revit 2026 compatibility
-                }
-            }
+            // NOTE: Room extraction disabled for Revit 2026 compatibility
+            // FilteredElementCollector roomCollector = new FilteredElementCollector(doc);
+            // roomCollector.OfClass(typeof(Room));
+            // foreach (Room room in roomCollector)
+            // {
+            //     if (room.Area > 0)
+            //     {
+            //         payload.Elements.Add(new ElementData
+            //         {
+            //             Id = (int)(room.Id.Value),
+            //             UniqueId = room.UniqueId,
+            //             Category = "Room",
+            //             Name = room.Name,
+            //             Number = room.Number,
+            //             Area = room.Area
+            //         });
+            //     }
+            // }
             
             payload.ElementCount = payload.Elements.Count;
             
