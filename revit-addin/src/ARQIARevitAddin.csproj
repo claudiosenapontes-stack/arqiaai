@@ -48,8 +48,13 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="WindowsBase" />
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
-      <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="RevitAPI">
+      <HintPath>C:\Program Files\Autodesk\Revit 2026\RevitAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitAPIUI">
+      <HintPath>C:\Program Files\Autodesk\Revit 2026\RevitAPIUI.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   
@@ -69,17 +74,4 @@
   </ItemGroup>
   
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  
-  <!-- Revit API References - External -->
-  <ItemGroup>
-    <Reference Include="RevitAPI">
-      <HintPath>C:\Program Files\Autodesk\Revit 2026\RevitAPI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPIUI">
-      <HintPath>C:\Program Files\Autodesk\Revit 2026\RevitAPIUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-  </ItemGroup>
-
 </Project>
