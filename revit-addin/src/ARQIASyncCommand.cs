@@ -95,7 +95,7 @@ namespace ARQIA.RevitIntegration
             {
                 payload.LevelData.Add(new LevelInfo
                 {
-                    Id = level.Id.Value,
+                    Id = (int)level.Id.Value,
                     Name = level.Name,
                     Elevation = level.Elevation
                 });
@@ -108,7 +108,7 @@ namespace ARQIA.RevitIntegration
             {
                 var wallData = new ElementData
                 {
-                    Id = wall.Id.Value,
+                    Id = (int)(wall.Id.Value),
                     UniqueId = wall.UniqueId,
                     Category = "Wall",
                     Name = wall.Name,
@@ -142,7 +142,7 @@ namespace ARQIA.RevitIntegration
             {
                 payload.Elements.Add(new ElementData
                 {
-                    Id = floor.Id.Value,
+                    Id = (int)(floor.Id.Value),
                     UniqueId = floor.UniqueId,
                     Category = "Floor",
                     Name = floor.Name,
@@ -160,7 +160,7 @@ namespace ARQIA.RevitIntegration
                 {
                     payload.Elements.Add(new ElementData
                     {
-                        Id = room.Id.Value,
+                        Id = (int)(room.Id.Value),
                         UniqueId = room.UniqueId,
                         Category = "Room",
                         Name = room.Name,
