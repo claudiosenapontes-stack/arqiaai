@@ -1,82 +1,95 @@
-import Link from 'next/link'
 import { SiteHeader } from '@/components/SiteHeader'
 import { HomeTilesLayer } from '@/components/HomeTilesLayer'
 import { HomeSimpleTriptych } from '@/components/HomeSimpleTriptych'
+import { SignatureScrollSequence } from '@/components/SignatureScrollSequence'
+import { BlogPreviewSection } from '@/components/BlogPreviewSection'
+import { BWMapSection } from '@/components/BWMapSection'
+import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-white">
       <SiteHeader overlay />
 
-      {/* Hero */}
-      <section className="relative">
-        <div className="relative h-[72vh] w-full overflow-hidden bg-neutral-100">
-          <div className="absolute inset-0">
-            <img
-              alt="ARQIA editorial"
-              src="/mock/furniture-1.jpg"
-              className="h-full w-full object-cover"
-            />
+      {/* Hero (first impression) */}
+      <section className="relative h-[100svh] overflow-hidden bg-black">
+        <div className="absolute inset-0">
+          {/* Static hero image (temporary): avoids iOS viewport/video jitter */}
+          <Image
+            src="/mock/furniture-1.jpg"
+            alt="ARQIA editorial"
+            fill
+            priority
+            className="object-cover"
+          />
+
+          <div aria-hidden className="absolute inset-0 bg-black/35" />
+          <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/8 to-black/50" />
+        </div>
+
+        <div className="relative z-10 mx-auto flex h-full max-w-6xl items-end px-6 pb-16 pt-28">
+          <div className="max-w-3xl">
+            <h1 className="font-serif font-light text-4xl leading-tight tracking-tight text-white md:text-6xl">
+              <span className="font-sans font-extralight uppercase tracking-[0.08em] text-[color:var(--arqia-brass-light)] text-3xl md:text-5xl">
+                Architectural Intelligence
+              </span>
+              <span className="block">for refined spaces.</span>
+            </h1>
+            <p className="mt-5 max-w-xl text-sm text-white/80 md:text-base">
+              Furniture and design services with quiet luxury sensibility.
+            </p>
           </div>
-
-          {/* Overlays to keep type readable + add luxury mood (text-on-image) */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/25 to-transparent" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(224,206,169,0.18),transparent_45%),radial-gradient(circle_at_70%_60%,rgba(80,86,66,0.18),transparent_50%)]" />
-
-          <div className="relative z-10 mx-auto flex h-full max-w-6xl items-end px-6 pb-16">
-            <div className="max-w-2xl">
-              <h1 className="mt-4 font-serif text-5xl leading-tight tracking-tight text-white md:text-6xl">
-                Architectural Intelligence for refined spaces.
-              </h1>
-              <p className="mt-4 max-w-xl text-sm text-white/80 md:text-base">
-                Furniture and design services with quiet luxury sensibility.
-              </p>
-
-              <div className="mt-8 flex flex-wrap gap-3">
-                {/* Light framed CTAs with ARQIA olive hover accents */}
-                <Link
-                  href="/indoor"
-                  className="rounded-full border border-white/35 bg-white/5 px-6 py-3 text-sm font-light text-white backdrop-blur transition hover:border-[color:var(--arqia-brass-light)] hover:bg-white/10 hover:text-[color:var(--arqia-brass-light)]"
-                >
-                  Explore Indoor
-                </Link>
-                <Link
-                  href="/outdoor"
-                  className="rounded-full border border-white/35 bg-white/5 px-6 py-3 text-sm font-light text-white backdrop-blur transition hover:border-[color:var(--arqia-brass-light)] hover:bg-white/10 hover:text-[color:var(--arqia-brass-light)]"
-                >
-                  Explore Outdoor
-                </Link>
-                <Link
-                  href="/services"
-                  className="rounded-full border border-white/35 bg-white/5 px-6 py-3 text-sm font-light text-white backdrop-blur transition hover:border-[color:var(--arqia-brass-light)] hover:bg-white/10 hover:text-[color:var(--arqia-brass-light)]"
-                >
-                  Schedule a Call
-                </Link>
-                <a
-                  href="#collections"
-                  className="rounded-full border border-white/35 bg-white/5 px-6 py-3 text-sm font-light text-white backdrop-blur transition hover:border-[color:var(--arqia-brass-light)] hover:bg-white/10 hover:text-[color:var(--arqia-brass-light)]"
-                >
-                  Explore Collections
-                </a>
-              </div>
-            </div>
-          </div>
-
         </div>
       </section>
+
+      {/* Signature Apple-style scroll moment (second section) */}
+      <SignatureScrollSequence />
 
       {/* One unified tile layer (Indoor/Outdoor/etc.) */}
       <HomeTilesLayer />
 
+      {/* Editorial block (after Services section inside HomeTilesLayer) */}
+      <section className="product-hero-fullbleed overflow-hidden border-y border-black/5 bg-white">
+        <div className="grid min-h-[520px] md:grid-cols-2">
+          <div className="flex items-center px-6 py-14 md:px-16 md:py-16">
+            <div className="mx-auto w-full max-w-xl">
+              <div className="text-xs uppercase tracking-[0.3em] text-neutral-500">Editorial</div>
+              <h3 className="mt-4 font-serif text-4xl tracking-tight text-neutral-900 md:text-5xl">
+                Materials, restraint, and proportion
+              </h3>
+              <p className="mt-5 text-sm leading-relaxed text-neutral-600 md:text-base">
+                A curated set of silhouettes, tuned for quiet luxury. Larger imagery, fewer choices per
+                screen—better decisions.
+              </p>
+              <div className="mt-8">
+                <Link
+                  href="/products"
+                  className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-6 py-3 text-xs font-light uppercase tracking-[0.25em] text-neutral-800"
+                >
+                  Browse the shop <span className="transition">→</span>
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          <div className="relative min-h-[320px] md:min-h-[520px]">
+            <Image src="/mock/furniture-2.jpg" alt="Materials and restraint" fill className="object-cover" />
+            <div aria-hidden className="absolute inset-0 bg-black/10" />
+            <div aria-hidden className="absolute inset-0 bg-gradient-to-l from-black/25 via-black/10 to-black/8" />
+          </div>
+        </div>
+      </section>
+
+      {/* Blog */}
+      <BlogPreviewSection />
+
+      {/* Map */}
+      <BWMapSection address="2900 High Ridge Road, Boynton Beach, FL" />
+
       {/* Back to the simple Materials/Craft/Delivery triptych */}
       <HomeSimpleTriptych />
 
-      <footer className="border-t border-black/10">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-10 text-xs text-neutral-500">
-          <div>© {new Date().getFullYear()} ARQIA</div>
-          <div>Design@arqiaai.com</div>
-        </div>
-      </footer>
     </main>
   )
 }

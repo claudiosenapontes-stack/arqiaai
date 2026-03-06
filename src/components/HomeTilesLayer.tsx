@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import { BrandWatermark } from '@/components/BrandWatermark'
+import { ServicesParallaxSection } from '@/components/ServicesParallaxSection'
 
 const COLLECTIONS = [
   {
@@ -13,7 +15,7 @@ const COLLECTIONS = [
     collectionName: 'CALMA',
     subtitle: 'Weather-ready pieces with quiet luxury restraint.',
     href: '/outdoor',
-    images: ['/mock/furniture-4.jpg', '/mock/furniture-3.jpg'],
+    images: ['/mock/collections/calma-1-20260207.png', '/mock/collections/calma-2-20260207.png'],
   },
   {
     title: 'Decor',
@@ -27,14 +29,14 @@ const COLLECTIONS = [
     collectionName: 'DUNE',
     subtitle: 'Texture, warmth, and scale (coming soon).',
     href: '/rugs',
-    images: ['/mock/material-1.jpg', '/mock/furniture-1.jpg'],
+    images: ['/mock/collections/dune-1-20260207.png', '/mock/collections/dune-2-20260207.png'],
   },
   {
     title: 'Lighting',
     collectionName: 'LUME',
     subtitle: 'Sculptural light as architecture (coming soon).',
     href: '/lighting',
-    images: ['/mock/furniture-5.jpg', '/mock/material-1.jpg'],
+    images: ['/mock/collections/lume-1-20260207.png', '/mock/collections/lume-2-20260207.png'],
   },
 ]
 
@@ -96,44 +98,60 @@ function StackedImageStrip({
               src={src}
               className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.06]"
             />
-            <div className="absolute inset-0 bg-black/10 transition duration-500 group-hover:bg-black/20" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/20 to-transparent" />
+            <div className="absolute inset-0 bg-black/10 transition duration-500 group-hover:bg-black/25" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/20 to-black/10" />
+
+            {/* Lower-left overlay: place it on the FIRST image only (idx === 0) */}
+            {idx === 0 ? (
+              <div className="pointer-events-none absolute bottom-0 left-0 w-full">
+                <div className="mx-auto max-w-6xl px-6 pb-12 pt-10 md:pb-16">
+                  <div className="max-w-xl">
+                    {topKicker ? (
+                      <div className="text-[13px] uppercase tracking-[0.32em] text-white/90 drop-shadow-[0_1px_10px_rgba(0,0,0,0.4)]">{topKicker}</div>
+                    ) : null}
+
+                    {bigTitle ? (
+                      <div className="mt-3 text-6xl md:text-7xl font-extralight uppercase tracking-[0.28em] text-[color:var(--arqia-brass-light)]">
+                        {bigTitle}
+                      </div>
+                    ) : null}
+
+                    <div
+                      className={
+                        'font-serif text-5xl md:text-6xl tracking-tight text-white ' +
+                        ((topKicker || bigTitle) ? 'mt-2' : 'mt-3')
+                      }
+                    >
+                      {title}
+                    </div>
+
+                    <p className="mt-3 text-[15px] leading-relaxed text-white/80 md:text-base">{subtitle}</p>
+
+                    <div className="mt-7 inline-flex items-center">
+                      <div className="inline-flex items-center gap-2 rounded-full border border-white/35 bg-white/5 px-6 py-2.5 text-xs font-light uppercase tracking-[0.25em] text-white/85 backdrop-blur transition duration-300 ease-out group-hover:border-[color:var(--arqia-brass-light)] group-hover:bg-white/10 group-hover:text-[color:var(--arqia-brass-light)]/80 group-hover:scale-[1.02]">
+                        Explore
+                        <span className="transition duration-300 ease-out group-hover:translate-x-1">→</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : null}
+
+            {/* Add the brand mark on every second hero image (idx === 1) */}
+            {idx === 1 ? (
+              <div aria-hidden className="pointer-events-none absolute bottom-6 right-6 md:bottom-10 md:right-10">
+                <img
+                  src="/arqia-mark-240.png"
+                  srcSet="/arqia-mark-120.png 120w, /arqia-mark-180.png 180w, /arqia-mark-240.png 240w, /arqia-mark-360.png 360w"
+                  sizes="(min-width: 768px) 56px, 44px"
+                  alt=""
+                  className="h-11 w-auto opacity-75 drop-shadow-[0_2px_16px_rgba(0,0,0,0.35)] md:h-14"
+                />
+              </div>
+            ) : null}
           </div>
         ))}
-      </div>
-
-      {/* Top-left overlay */}
-      <div className="pointer-events-none absolute left-0 top-0 w-full">
-        <div className="mx-auto max-w-6xl px-6 py-10">
-          <div className="max-w-xl">
-            {topKicker ? (
-              <div className="text-xs uppercase tracking-[0.3em] text-[color:#AEB89A] drop-shadow-[0_1px_8px_rgba(0,0,0,0.35)]">{topKicker}</div>
-            ) : null}
-
-            {bigTitle ? (
-              <div className="mt-3 text-4xl md:text-5xl font-extralight uppercase tracking-[0.28em] text-[color:var(--arqia-brass-light)]">
-                {bigTitle}
-              </div>
-            ) : null}
-
-            <div
-              className={
-                'font-serif text-3xl md:text-4xl tracking-tight text-white ' +
-                ((topKicker || bigTitle) ? 'mt-2' : 'mt-3')
-              }
-            >
-              {title}
-            </div>
-
-            <p className="mt-3 text-sm text-white/80">{subtitle}</p>
-
-            <div className="mt-6 inline-flex items-center">
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/35 bg-white/5 px-5 py-2 text-xs font-light uppercase tracking-[0.25em] text-white/85 backdrop-blur transition group-hover:border-[color:var(--arqia-brass-light)] group-hover:bg-white/10 group-hover:text-[color:var(--arqia-brass-light)]/70">
-                Explore <span className="transition group-hover:translate-x-0.5">→</span>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </Link>
   )
@@ -165,8 +183,10 @@ export function HomeTilesLayer() {
         ))}
       </div>
 
-      {/* Services (3-tile row, no big image) */}
-      <section className="border-t border-black/10">
+      {/* Services (cards floating above a parallax background) */}
+      <section className="relative border-t border-black/10">
+        <BrandWatermark opacity={0.035} size={360} className="mix-blend-multiply" />
+
         <div className="mx-auto max-w-6xl px-6 py-16">
           <div>
             <div className="text-xs uppercase tracking-[0.3em] text-neutral-500">Services</div>
@@ -175,39 +195,10 @@ export function HomeTilesLayer() {
               Design support, trade partnerships, and delivery—built for projects that need precision.
             </p>
           </div>
-
-          <div className="mt-10 grid gap-4 md:grid-cols-3">
-            {SERVICES.map((s) => (
-              <Link
-                key={s.title}
-                href={s.href}
-                className="group rounded-3xl border border-black/10 bg-white p-6 transition hover:border-black/20"
-              >
-                <div className="text-xs uppercase tracking-[0.3em] text-neutral-500">Service</div>
-                <div className="mt-3 font-serif text-2xl text-neutral-900">{s.title}</div>
-                <div className="mt-3 text-sm text-neutral-600">{s.subtitle}</div>
-                <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-black/15 px-4 py-2 text-xs font-light uppercase tracking-[0.25em] text-neutral-900 transition group-hover:border-black/30">
-                  Learn more <span className="transition group-hover:translate-x-0.5">→</span>
-                </div>
-              </Link>
-            ))}
-          </div>
-
-          <div className="mt-10 flex flex-wrap gap-3">
-            <Link
-              href="/services"
-              className="rounded-full bg-black px-6 py-3 text-xs font-light uppercase tracking-[0.25em] text-white"
-            >
-              Explore Services
-            </Link>
-            <Link
-              href="/contact"
-              className="rounded-full border border-black/15 bg-white px-6 py-3 text-xs font-light uppercase tracking-[0.25em] text-neutral-900 hover:border-black/30"
-            >
-              Contact
-            </Link>
-          </div>
         </div>
+
+        {/* Full-bleed (like Collections): background spans edge-to-edge; services float above */}
+        <ServicesParallaxSection services={SERVICES} backgroundSrc="/mock/furniture-5.jpg" />
       </section>
     </section>
   )
