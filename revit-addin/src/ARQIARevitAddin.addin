@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+  <AddIn Type="Command">
+    <Name>ARQIA Revit Integration</Name>
+    <Assembly>ARQIARevitAddin.dll</Assembly>
+    <AddInId>3A9F2B4C-8D7E-4F6A-9C1B-2E3D4F5A6B7C</AddInId>
+    <FullClassName>ARQIA.RevitIntegration.ARQIASyncCommand</FullClassName>
+    <VendorId>ARQIA</VendorId>
+    <VendorDescription>ARQIA - Automated Construction Compliance Platform</VendorDescription>
+  </AddIn>
+  <AddIn Type="Application">
+    <Name>ARQIA Ribbon</Name>
+    <Assembly>ARQIARevitAddin.dll</Assembly>
+    <AddInId>4B0A3C5D-9E8F-5G7B-0D2C-3F4E5G6A7B8D</AddInId>
+    <FullClassName>ARQIA.RevitIntegration.ARQIARibbonApp</FullClassName>
+    <VendorId>ARQIA</VendorId>
+    <VendorDescription>ARQIA - Automated Construction Compliance Platform</VendorDescription>
+  </AddIn>
+</RevitAddIns>

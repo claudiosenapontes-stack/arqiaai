@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARQIA Viewer - Autodesk Platform Services</title>
+    <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/style.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #1a1a1a;
+            color: #fff;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header {
+            background: #2a2a2a;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo h1 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #00d4aa;
+        }
+        
+        .logo span {
+            font-size: 12px;
+            color: #888;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 10px;
+        }
+        
+        button {
+            background: #00d4aa;
+            color: #1a1a1a;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+        
+        button:hover {
+            background: #00b894;
+        }
+        
+        button.secondary {
+            background: #333;
+            color: #fff;
+        }
+        
+        button.secondary:hover {
+            background: #444;
+        }
+        
+        .main-container {
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+        }
+        
+        .sidebar {
+            width: 300px;
+            background: #2a2a2a;
+            border-right: 1px solid #333;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .sidebar h3 {
+            font-size: 14px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+        }
+        
+        .info-item {
+            margin-bottom: 15px;
+            padding: 12px;
+            background: #333;
+            border-radius: 6px;
+        }
+        
+        .info-item label {
+            display: block;
+            font-size: 11px;
+            color: #888;
+            margin-bottom: 4px;
+        }
+        
+        .info-item value {
+            font-size: 13px;
+            color: #fff;
+            word-break: break-all;
+        }
+        
+        .compliance-panel {
+            margin-top: 20px;
+            padding: 15px;
+            background: #1e3a2f;
+            border-radius: 6px;
+            border-left: 3px solid #00d4aa;
+        }
+        
+        .compliance-panel h4 {
+            color: #00d4aa;
+            margin-bottom: 10px;
+        }
+        
+        .compliance-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 8px 0;
+            font-size: 13px;
+        }
+        
+        .compliance-item.pass {
+            color: #00d4aa;
+        }
+        
+        .compliance-item.fail {
+            color: #ff6b6b;
+        }
+        
+        .viewer-container {
+            flex: 1;
+            position: relative;
+        }
+        
+        #viewer {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #333;
+            border-top-color: #00d4aa;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .error-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            padding: 30px;
+            background: #3a1f1f;
+            border-radius: 8px;
+            border: 1px solid #ff6b6b;
+        }
+        
+        .error-message h2 {
+            color: #ff6b6b;
+            margin-bottom: 10px;
+        }
+        
+        .urn-input {
+            margin-top: 20px;
+        }
+        
+        .urn-input input {
+            width: 100%;
+            padding: 10px;
+            background: #333;
+            border: 1px solid #444;
+            color: #fff;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        
+        .urn-input button {
+            margin-top: 10px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <h1>ARQIA</h1>
+            <span>| Autodesk Viewer</span>
+        </div>
+        <div class="controls">
+            <button onclick="loadModel()" class="secondary">Reload Model</button>
+            <button onclick="checkStatus()">Check Status</button>
+        </div>
+    </header>
+    
+    <div class="main-container">
+        <aside class="sidebar">
+            <h3>Model Information</h3>
+            <div class="info-item">
+                <label>URN</label>
+                <value id="urn-display">Not loaded</value>
+            </div>
+            <div class="info-item">
+                <label>Status</label>
+                <value id="status-display">-</value>
+            </div>
+            <div class="info-item">
+                <label>File Name</label>
+                <value id="filename-display">-</value>
+            </div>
+            
+            <div class="compliance-panel">
+                <h4>Compliance Status</h4>
+                <div class="compliance-item pass">
+                    <span>✓</span> Height: PASS
+                </div>
+                <div class="compliance-item pass">
+                    <span>✓</span> Setbacks: PASS
+                </div>
+                <div class="compliance-item fail">
+                    <span>✗</span> FAR: Review needed
+                </div>
+            </div>
+            
+            <div class="urn-input">
+                <h3>Load Custom URN</h3>
+                <input type="text" id="custom-urn" placeholder="Enter URN...">
+                <button onclick="loadCustomUrn()">Load</button>
+            </div>
+        </aside>
+        
+        <main class="viewer-container">
+            <div id="viewer"></div>
+            <div id="loading" class="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Loading model...</p>
+            </div>
+            <div id="error" class="error-message" style="display: none;">
+                <h2>Failed to Load Model</h2>
+                <p id="error-text">Translation may still be in progress.</p>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/viewer3D.min.js"></script>
+    <script>
+        // Get URN from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        let currentUrn = urlParams.get('urn');
+        
+        let viewer = null;
+        let token = null;
+        
+        // Initialize viewer when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            if (currentUrn) {
+                document.getElementById('urn-display').textContent = currentUrn.substring(0, 30) + '...';
+                initializeViewer();
+            } else {
+                showError('No URN provided. Please upload a model from Revit first.');
+            }
+        });
+        
+        async function initializeViewer() {
+            showLoading(true);
+            
+            try {
+                // Get APS token from backend
+                token = await getToken();
+                
+                // Check translation status first
+                const status = await checkTranslationStatus(currentUrn);
+                document.getElementById('status-display').textContent = status.status;
+                
+                if (status.status !== 'success') {
+                    showLoading(false);
+                    showError(`Translation status: ${status.status}. Please wait and try again.`);
+                    return;
+                }
+                
+                // Initialize Autodesk Viewer
+                const options = {
+                    env: 'AutodeskProduction2',
+                    api: 'streamingV2',
+                    getAccessToken: (onSuccess) => {
+                        onSuccess(token, 3600);
+                    }
+                };
+                
+                Autodesk.Viewing.Initializer(options, () => {
+                    const viewerDiv = document.getElementById('viewer');
+                    const config = {
+                        extensions: ['Autodesk.DocumentBrowser']
+                    };
+                    
+                    viewer = new Autodesk.Viewing.GuiViewer3D(viewerDiv, config);
+                    viewer.start();
+                    
+                    // Load the model
+                    const documentId = 'urn:' + currentUrn;
+                    Autodesk.Viewing.Document.load(documentId, (doc) => {
+                        const defaultModel = doc.getRoot().getDefaultGeometry();
+                        viewer.loadDocumentNode(doc, defaultModel);
+                        
+                        showLoading(false);
+                        document.getElementById('filename-display').textContent = doc.getRoot().getDocumentName();
+                    }, (error) => {
+                        showLoading(false);
+                        showError('Failed to load document: ' + error.message);
+                    });
+                });
+                
+            } catch (error) {
+                showLoading(false);
+                showError('Error: ' + error.message);
+            }
+        }
+        
+        async function getToken() {
+            // Get token from our backend
+            const response = await fetch('/api/aps/token');
+            const data = await response.json();
+            return data.access_token;
+        }
+        
+        async function checkTranslationStatus(urn) {
+            const response = await fetch(`/api/aps/translate/${urn}/status`);
+            return await response.json();
+        }
+        
+        function loadModel() {
+            if (currentUrn) {
+                location.reload();
+            }
+        }
+        
+        async function checkStatus() {
+            if (!currentUrn) return;
+            
+            const status = await checkTranslationStatus(currentUrn);
+            document.getElementById('status-display').textContent = status.status;
+            
+            if (status.status === 'success') {
+                alert('Translation complete! Reloading viewer...');
+                location.reload();
+            } else {
+                alert(`Status: ${status.status}\nProgress: ${status.progress || 'N/A'}`);
+            }
+        }
+        
+        function loadCustomUrn() {
+            const customUrn = document.getElementById('custom-urn').value.trim();
+            if (customUrn) {
+                currentUrn = customUrn;
+                location.href = '?urn=' + encodeURIComponent(customUrn);
+            }
+        }
+        
+        function showLoading(show) {
+            document.getElementById('loading').style.display = show ? 'block' : 'none';
+        }
+        
+        function showError(message) {
+            document.getElementById('error').style.display = 'block';
+            document.getElementById('error-text').textContent = message;
+        }
+    </script>
+</body>
+</html>

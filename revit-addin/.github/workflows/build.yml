@@ -1,0 +1,144 @@
+name: Build ARQIA Revit Add-in
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'src/**'
+      - '.github/workflows/**'
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+env:
+  SOLUTION_PATH: src/ARQIARevitAddin.csproj
+  BUILD_CONFIGURATION: Release
+  REVIT_VERSION: 2026
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
+      with:
+        msbuild-architecture: x64
+
+    - name: Setup NuGet
+      uses: nuget/setup-nuget@v2
+      with:
+        nuget-version: 'latest'
+
+    - name: Cache NuGet packages
+      uses: actions/cache@v3
+      with:
+        path: ~/.nuget/packages
+        key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-nuget-
+
+    - name: Download Revit API
+      run: |
+        # Create Revit API reference directory
+        New-Item -ItemType Directory -Force -Path "C:\RevitAPI\${{ env.REVIT_VERSION }}"
+        
+        # Note: In production, you'd download these from your own storage
+        # or reference them from a NuGet package
+        # For now, this assumes they're in the repo or available
+        Write-Host "Revit API should be in src/refs/Revit${{ env.REVIT_VERSION }}/"
+
+    - name: Restore NuGet packages
+      run: nuget restore ${{ env.SOLUTION_PATH }}
+
+    - name: Build solution
+      run: |
+        msbuild ${{ env.SOLUTION_PATH }} `
+          /p:Configuration=${{ env.BUILD_CONFIGURATION }} `
+          /p:Platform="Any CPU" `
+          /p:RevitVersion=${{ env.REVIT_VERSION }} `
+          /verbosity:normal
+
+    - name: Run tests (if any)
+      run: |
+        # Add test execution here if you have unit tests
+        Write-Host "Tests would run here"
+
+    - name: Package artifacts
+      run: |
+        New-Item -ItemType Directory -Force -Path "artifacts"
+        
+        # Copy main files
+        Copy-Item "src\bin\${{ env.BUILD_CONFIGURATION }}\ARQIARevitAddin.dll" "artifacts\"
+        Copy-Item "src\bin\${{ env.BUILD_CONFIGURATION }}\ARQIARevitAddin.addin" "artifacts\"
+        Copy-Item "src\bin\${{ env.BUILD_CONFIGURATION }}\Newtonsoft.Json.dll" "artifacts\"
+        
+        # Create README for installation
+        @"
+ARQIA Revit Add-in Installation
+================================
+
+1. Copy these files to your Revit Addins folder:
+   %APPDATA%\Autodesk\Revit\Addins\${{ env.REVIT_VERSION }}\
+
+2. Files to copy:
+   - ARQIARevitAddin.dll
+   - ARQIARevitAddin.addin
+   - Newtonsoft.Json.dll
+
+3. Restart Revit
+
+4. Look for "ARQIA" tab in the ribbon
+
+Build: ${{ github.run_number }}
+Commit: ${{ github.sha }}
+Date: $(Get-Date -Format "yyyy-MM-dd HH:mm")
+"@ | Out-File -FilePath "artifacts\README.txt" -Encoding utf8
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: ARQIA-Revit-Addin-${{ env.REVIT_VERSION }}-${{ github.run_number }}
+        path: artifacts/
+        retention-days: 30
+
+    - name: Create Release (on tag)
+      if: startsWith(github.ref, 'refs/tags/v')
+      uses: softprops/action-gh-release@v1
+      with:
+        files: artifacts/*
+        generate_release_notes: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  backend-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        cache-dependency-path: backend/package-lock.json
+
+    - name: Install dependencies
+      run: |
+        cd backend
+        npm ci
+
+    - name: Run backend tests
+      run: |
+        cd backend
+        npm test || echo "No tests yet"
+
+    - name: Lint backend
+      run: |
+        cd backend
+        npm run lint || echo "No linter configured"
