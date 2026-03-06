@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Autodesk.Revit.DB;
+using Autodesk.Revit.DB.Architecture;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.Attributes;
 
@@ -94,7 +95,7 @@ namespace ARQIA.RevitIntegration
             {
                 payload.LevelData.Add(new LevelInfo
                 {
-                    Id = level.Id.IntegerValue,
+                    Id = level.Id.Value,
                     Name = level.Name,
                     Elevation = level.Elevation
                 });
@@ -107,7 +108,7 @@ namespace ARQIA.RevitIntegration
             {
                 var wallData = new ElementData
                 {
-                    Id = wall.Id.IntegerValue,
+                    Id = wall.Id.Value,
                     UniqueId = wall.UniqueId,
                     Category = "Wall",
                     Name = wall.Name,
@@ -141,7 +142,7 @@ namespace ARQIA.RevitIntegration
             {
                 payload.Elements.Add(new ElementData
                 {
-                    Id = floor.Id.IntegerValue,
+                    Id = floor.Id.Value,
                     UniqueId = floor.UniqueId,
                     Category = "Floor",
                     Name = floor.Name,
@@ -159,7 +160,7 @@ namespace ARQIA.RevitIntegration
                 {
                     payload.Elements.Add(new ElementData
                     {
-                        Id = room.Id.IntegerValue,
+                        Id = room.Id.Value,
                         UniqueId = room.UniqueId,
                         Category = "Room",
                         Name = room.Name,
