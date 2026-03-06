@@ -154,19 +154,7 @@ namespace ARQIA.RevitIntegration
             // Extract rooms for area calculations
             FilteredElementCollector roomCollector = new FilteredElementCollector(doc);
             roomCollector.OfClass(typeof(Room));
-            foreach (Room room in roomCollector)
-            {
-                if (room.Area > 0) // Only placed rooms
-                {
-                    payload.Elements.Add(new ElementData
-                    {
-                        Id = (int)(room.Id.Value),
-                        UniqueId = room.UniqueId,
-                        Category = "Room",
-                        Name = room.Name,
-                        Number = room.Number,
-                        Area = room.Area
-                    });
+// Room extraction disabled for Revit 2026 compatibility
                 }
             }
             
