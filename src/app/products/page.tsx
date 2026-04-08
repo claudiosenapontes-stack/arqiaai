@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { MOCK_PRODUCTS, formatUsd } from '@/lib/mockCatalog'
 
@@ -34,10 +35,12 @@ export default function ProductsPage() {
             className="group overflow-hidden rounded-3xl border border-black/10 bg-white transition hover:shadow-sm"
           >
             <div className="relative aspect-[4/3] w-full overflow-hidden bg-neutral-100">
-              <img
+              <Image
                 alt={p.title}
                 src={p.img}
-                className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
+                fill
+                className="object-cover transition duration-700 group-hover:scale-[1.04]"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
               <div className="absolute inset-0 bg-black/10" />
             </div>

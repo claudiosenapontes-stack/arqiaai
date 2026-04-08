@@ -1,8 +1,9 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 
 const NAV = [
   { href: '/indoor', label: 'Indoor' },
@@ -30,6 +31,7 @@ export function SiteHeader({
   const pathname = usePathname()
 
   const [search, setSearch] = useState('')
+  const prevPathnameRef = useRef(pathname)
 
   const filterParam = filterMenu?.param ?? 'type'
   const currentFilter = useMemo(() => {
@@ -87,9 +89,12 @@ export function SiteHeader({
     }
   }, [])
 
-  useEffect(() => {
-    // close dropdown when navigating (best-effort)
-    setFilterOpen(false)
+  // Close dropdown when navigating using layout effect to avoid cascading renders
+  useLayoutEffect(() => {
+    if (prevPathnameRef.current !== pathname) {
+      setFilterOpen(false)
+      prevPathnameRef.current = pathname
+    }
   }, [pathname])
 
   // RH-style: always visible, no white bar. Readability via subtle top gradient.
@@ -162,13 +167,14 @@ export function SiteHeader({
             aria-label="ARQIA home"
             className={'flex items-center transition ' + (solidText ? '' : 'drop-shadow-[0_1px_12px_rgba(0,0,0,0.45)]')}
           >
-            <img
-              src={solidText ? '/arqia-mark-240.png' : '/arqia-mark-240.png'}
-              srcSet="/arqia-mark-120.png 120w, /arqia-mark-180.png 180w, /arqia-mark-240.png 240w, /arqia-mark-360.png 360w, /arqia-mark-520.png 520w"
-              sizes="(min-width: 768px) 56px, 48px"
+            <Image
+              src="/arqia-mark-240.png"
               alt="ARQIA"
+              width={120}
+              height={40}
               className="h-10 w-auto"
               style={{ imageRendering: 'auto' }}
+              priority
             />
           </Link>
 

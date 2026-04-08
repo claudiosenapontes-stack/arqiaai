@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { MOCK_BLOG_POSTS } from '@/lib/mockBlog'
 
@@ -33,10 +34,12 @@ export function BlogPreviewSection() {
               className="group overflow-hidden rounded-3xl border border-black/10 bg-white"
             >
               <div className="relative aspect-[4/3] bg-neutral-100">
-                <img
+                <Image
                   src={p.cover}
                   alt={p.title}
-                  className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
+                  fill
+                  className="object-cover transition duration-700 group-hover:scale-[1.04]"
+                  sizes="(max-width: 768px) 100vw, 33vw"
                 />
                 <div aria-hidden className="absolute inset-0 bg-black/10" />
               </div>

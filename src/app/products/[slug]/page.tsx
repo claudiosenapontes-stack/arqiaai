@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { MOCK_PRODUCTS, formatUsd } from '@/lib/mockCatalog'
@@ -44,7 +45,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
       {/* Hero */}
       <section className="product-hero-fullbleed relative overflow-hidden bg-black">
         <div className="relative aspect-[21/9] min-h-[520px]">
-          <img src={product.img} alt={product.title} className="absolute inset-0 h-full w-full object-cover" />
+          <Image src={product.img} alt={product.title} fill className="object-cover" sizes="100vw" priority />
           <div aria-hidden className="absolute inset-0 bg-black/15" />
           <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/40" />
 

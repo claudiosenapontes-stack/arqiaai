@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import { toggleSaved, loadSaved } from '@/lib/saved'
@@ -28,10 +29,12 @@ export function ProductHeroCard({
   return (
     <div className="product-hero-fullbleed group overflow-hidden rounded-2xl border border-black/10 bg-white">
       <div className="relative aspect-[16/10] w-full overflow-hidden bg-neutral-100">
-        <img
+        <Image
           alt={title}
           src={img}
-          className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.05]"
+          fill
+          className="object-cover transition duration-700 group-hover:scale-[1.05]"
+          sizes="(max-width: 768px) 100vw, 80vw"
         />
 
         {/* overlay (bigger type, vertically centered, left aligned) */}

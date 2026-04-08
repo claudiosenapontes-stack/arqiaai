@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { MOCK_BLOG_POSTS } from '@/lib/mockBlog'
@@ -30,7 +31,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       </div>
 
       <div className="relative mt-10 aspect-[16/9] overflow-hidden rounded-3xl bg-neutral-100">
-        <img src={post.cover} alt={post.title} className="absolute inset-0 h-full w-full object-cover" />
+        <Image src={post.cover} alt={post.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 800px" priority />
         <div aria-hidden className="absolute inset-0 bg-black/10" />
       </div>
 

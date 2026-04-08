@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import { SiteHeader } from '@/components/SiteHeader'
 import { TopFilters } from '@/components/TopFilters'
 import { ProductHeroCard } from '@/components/ProductHeroCard'
@@ -10,7 +11,7 @@ function Editorial({ title, body, img }: { title: string; body: string; img: str
   return (
     <div className="overflow-hidden rounded-2xl border border-black/10 bg-white">
       <div className="relative aspect-[21/9] w-full overflow-hidden">
-        <img alt={title} src={img} className="h-full w-full object-cover" />
+        <Image alt={title} src={img} fill className="object-cover" sizes="100vw" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/10" />
         <div className="absolute inset-x-0 bottom-0 p-8">
           <div className="max-w-xl">
