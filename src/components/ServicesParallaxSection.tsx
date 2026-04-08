@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useRef } from 'react'
 
@@ -56,7 +57,7 @@ export function ServicesParallaxSection({
         <div className="pointer-events-none sticky top-0 h-screen w-full">
           <div className="absolute inset-0 overflow-hidden">
             <div ref={bgRef} className="absolute inset-0 will-change-transform">
-              <img src={backgroundSrc} alt="" className="h-full w-full object-cover" />
+              <Image src={backgroundSrc} alt="" fill className="object-cover" sizes="100vw" />
             </div>
             <div aria-hidden className="absolute inset-0 bg-black/28" />
             <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/8 to-black/40" />

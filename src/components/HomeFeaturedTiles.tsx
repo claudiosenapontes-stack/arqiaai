@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
 function Tile({
@@ -19,10 +20,12 @@ function Tile({
         (size === 'large' ? 'aspect-[21/10]' : 'aspect-[16/10]')
       }
     >
-      <img
+      <Image
         alt={title}
         src={img}
-        className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.06]"
+        fill
+        className="object-cover transition duration-700 group-hover:scale-[1.06]"
+        sizes="(max-width: 768px) 100vw, 50vw"
       />
       <div className="absolute inset-0 bg-black/10 transition duration-500 group-hover:bg-black/20" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-black/10 opacity-80 transition duration-500 group-hover:opacity-95" />

@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { ReactNode, useEffect, useRef } from 'react'
 
 export function ParallaxImage({
@@ -45,11 +46,13 @@ export function ParallaxImage({
 
   return (
     <div ref={wrapRef} className={`relative overflow-hidden ${className}`}>
-      <img
-        ref={imgRef}
+      <Image
+        ref={imgRef as any}
         alt={alt}
         src={src}
-        className="h-full w-full object-cover will-change-transform"
+        fill
+        className="object-cover will-change-transform"
+        sizes="100vw"
       />
     </div>
   )

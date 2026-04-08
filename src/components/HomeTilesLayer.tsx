@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { BrandWatermark } from '@/components/BrandWatermark'
 import { ServicesParallaxSection } from '@/components/ServicesParallaxSection'
@@ -93,10 +94,12 @@ function StackedImageStrip({
       <div className="grid w-full">
         {images.map((src, idx) => (
           <div key={idx} className="relative aspect-[21/9] w-full overflow-hidden">
-            <img
+            <Image
               alt={title}
               src={src}
-              className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.06]"
+              fill
+              className="object-cover transition duration-700 group-hover:scale-[1.06]"
+              sizes="100vw"
             />
             <div className="absolute inset-0 bg-black/10 transition duration-500 group-hover:bg-black/25" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/20 to-black/10" />
@@ -141,11 +144,11 @@ function StackedImageStrip({
             {/* Add the brand mark on every second hero image (idx === 1) */}
             {idx === 1 ? (
               <div aria-hidden className="pointer-events-none absolute bottom-6 right-6 md:bottom-10 md:right-10">
-                <img
+                <Image
                   src="/arqia-mark-240.png"
-                  srcSet="/arqia-mark-120.png 120w, /arqia-mark-180.png 180w, /arqia-mark-240.png 240w, /arqia-mark-360.png 360w"
-                  sizes="(min-width: 768px) 56px, 44px"
                   alt=""
+                  width={120}
+                  height={56}
                   className="h-11 w-auto opacity-75 drop-shadow-[0_2px_16px_rgba(0,0,0,0.35)] md:h-14"
                 />
               </div>

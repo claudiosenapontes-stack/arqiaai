@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { useMemo, useRef } from 'react'
 
@@ -104,10 +105,12 @@ export function SimilarCarousel({
                     'relative min-h-[320px] md:min-h-[520px] ' + (flip ? 'md:[direction:ltr]' : '')
                   }
                 >
-                  <img
+                  <Image
                     alt={p.title}
                     src={p.img}
-                    className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.02]"
+                    fill
+                    className="object-cover transition duration-700 group-hover:scale-[1.02]"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                   />
                   <div aria-hidden className="absolute inset-0 bg-black/10" />
                   <div

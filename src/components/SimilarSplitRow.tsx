@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
 export function SimilarSplitRow({
@@ -51,10 +52,12 @@ export function SimilarSplitRow({
         <div className={
           'relative min-h-[260px] md:min-h-[420px] ' + (flip ? 'md:[direction:ltr]' : '')
         }>
-          <img
+          <Image
             alt={title}
             src={img}
-            className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.02]"
+            fill
+            className="object-cover transition duration-700 group-hover:scale-[1.02]"
+            sizes="(max-width: 768px) 100vw, 50vw"
           />
           <div aria-hidden className="absolute inset-0 bg-black/10" />
           <div
