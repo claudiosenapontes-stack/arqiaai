@@ -53,22 +53,22 @@ export function HomeFeaturedTiles() {
     <section className="mx-auto max-w-6xl px-6 py-16">
       {/* Two big hero tiles */}
       <div className="grid gap-5 md:grid-cols-2">
-        <Tile title="Indoor" href="/indoor" img="/mock/furniture-1.jpg" size="large" />
-        <Tile title="Outdoor" href="/outdoor" img="/mock/furniture-4.jpg" size="large" />
+        <Tile title="Indoor" href="/studio/indoor" img="/mock/furniture-1.jpg" size="large" />
+        <Tile title="Outdoor" href="/studio/outdoor" img="/mock/furniture-4.jpg" size="large" />
       </div>
 
       {/* Supporting category tiles */}
       <div className="mt-5 grid gap-5 md:grid-cols-3">
-        <Tile title="Sectionals" href="/indoor" img="/mock/furniture-2.jpg" size="small" />
-        <Tile title="Dining" href="/indoor" img="/mock/furniture-5.jpg" size="small" />
-        <Tile title="Coffee Tables" href="/indoor" img="/mock/furniture-3.jpg" size="small" />
+        <Tile title="Sectionals" href="/studio/indoor" img="/mock/furniture-2.jpg" size="small" />
+        <Tile title="Dining" href="/studio/indoor" img="/mock/furniture-5.jpg" size="small" />
+        <Tile title="Coffee Tables" href="/studio/indoor" img="/mock/furniture-3.jpg" size="small" />
       </div>
 
       <div className="mt-10 flex flex-wrap gap-6 text-sm">
-        <Link className="text-neutral-700 underline-offset-4 hover:underline" href="/indoor">
+        <Link className="text-neutral-700 underline-offset-4 hover:underline" href="/studio/indoor">
           Sofas
         </Link>
-        <Link className="text-neutral-700 underline-offset-4 hover:underline" href="/outdoor">
+        <Link className="text-neutral-700 underline-offset-4 hover:underline" href="/studio/outdoor">
           Outdoor Dining
         </Link>
       </div>

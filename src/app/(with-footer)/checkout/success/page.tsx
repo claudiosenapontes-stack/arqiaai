@@ -27,7 +27,7 @@ export default function SuccessPage({
         <Link className="rounded-md bg-black px-5 py-3 text-white" href="/">
           Back to home
         </Link>
-        <Link className="rounded-md border px-5 py-3" href="/products">
+        <Link className="rounded-md border px-5 py-3" href="/studio/products">
           Continue shopping
         </Link>
       </div>

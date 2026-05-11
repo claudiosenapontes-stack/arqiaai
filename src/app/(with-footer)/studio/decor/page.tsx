@@ -5,7 +5,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 export const metadata: Metadata = {
   title: "Decor",
   description: "Decor and finishing pieces curated by ARQIA.",
-  alternates: { canonical: "/decor" },
+  alternates: { canonical: "/studio/decor" },
 };
 
 export default function DecorPage() {
@@ -20,13 +20,13 @@ export default function DecorPage() {
         </p>
 
         <div className="mt-8 flex flex-wrap gap-3">
-          <Link href="/products" className="rounded-full bg-black px-6 py-3 text-sm text-white">
+          <Link href="/studio/products" className="rounded-full bg-black px-6 py-3 text-sm text-white">
             Shop all
           </Link>
-          <Link href="/indoor" className="rounded-full border border-black/15 px-6 py-3 text-sm">
+          <Link href="/studio/indoor" className="rounded-full border border-black/15 px-6 py-3 text-sm">
             Explore Indoor
           </Link>
-          <Link href="/outdoor" className="rounded-full border border-black/15 px-6 py-3 text-sm">
+          <Link href="/studio/outdoor" className="rounded-full border border-black/15 px-6 py-3 text-sm">
             Explore Outdoor
           </Link>
         </div>

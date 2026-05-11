@@ -21,7 +21,7 @@ export default function ServicesPage() {
 
         <div className="mt-8 flex flex-wrap gap-3">
           <Link href="/contact" className="rounded-md bg-black px-5 py-3 text-white">Contact</Link>
-          <Link href="/products" className="rounded-md border px-5 py-3">Browse products</Link>
+          <Link href="/studio/products" className="rounded-md border px-5 py-3">Browse products</Link>
         </div>
       </section>
     </main>

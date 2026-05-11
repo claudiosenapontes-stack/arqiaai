@@ -3,8 +3,8 @@ import Image from 'next/image'
 import { SiteHeader } from '@/components/SiteHeader'
 import { TopFilters } from '@/components/TopFilters'
 import { ProductHeroCard } from '@/components/ProductHeroCard'
-import { SimilarCarousel } from '@/components/SimilarCarousel'
 import { EditorialSplit } from '@/components/EditorialSplit'
+import { SimilarCarousel } from '@/components/SimilarCarousel'
 import { MOCK_PRODUCTS, formatUsd } from '@/lib/mockCatalog'
 
 function Editorial({ title, body, img }: { title: string; body: string; img: string }) {
@@ -26,27 +26,27 @@ function Editorial({ title, body, img }: { title: string; body: string; img: str
 }
 
 export const metadata: Metadata = {
-  title: 'Outdoor Furniture',
-  description: 'Outdoor furniture curated for refined spaces — member and retail pricing available.',
-  alternates: { canonical: '/outdoor' },
+  title: 'Indoor Furniture',
+  description: 'Indoor furniture curated for refined spaces — member and retail pricing available.',
+  alternates: { canonical: '/studio/indoor' },
 }
 
-export default function OutdoorPage() {
+export default function IndoorPage() {
   return (
     <main className="min-h-screen bg-white">
       <SiteHeader
         filterMenu={{
           label: 'Type',
           param: 'type',
-          items: ['Outdoor Lounge', 'Outdoor Dining', 'Chairs', 'Pool Beds'],
+          items: ['Sectionals', 'Sofas', 'Dining', 'Coffee Tables', 'Beds', 'Chairs'],
         }}
       />
-      <TopFilters title="Outdoor" showControls={false} />
+      <TopFilters title="Indoor" showControls={false} />
 
       <section className="mx-auto max-w-6xl px-6 py-12">
         <div className="space-y-10">
           {(() => {
-            const products = MOCK_PRODUCTS.filter((p) => p.environment === 'outdoor')
+            const products = MOCK_PRODUCTS.filter((p) => p.environment === 'indoor')
             return products.map((p, idx) => {
               const similars = products.filter((x) => x.slug !== p.slug)
               const pair = [similars[(idx * 2) % similars.length], similars[(idx * 2 + 1) % similars.length]].filter(Boolean)
@@ -77,9 +77,9 @@ export default function OutdoorPage() {
 
                   {idx === 0 ? (
                     <EditorialSplit
-                      title="Outdoor, refined"
-                      body="A commercial browsing flow, with editorial pacing—larger imagery, fewer choices per screen, better decisions."
-                      img="/mock/material-2.jpg"
+                      title="Materials, restraint, and proportion"
+                      body="A curated set of silhouettes, tuned for quiet luxury. Larger imagery, fewer choices per screen—better decisions."
+                      img="/mock/material-1.jpg"
                       flip
                     />
                   ) : null}
@@ -87,7 +87,10 @@ export default function OutdoorPage() {
               )
             })
           })()}
-</div>
+
+
+
+        </div>
       </section>
     </main>
   )

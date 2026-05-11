@@ -17,7 +17,7 @@ export default function CartPage() {
           <h1 className="text-3xl font-semibold tracking-tight">Cart</h1>
           <p className="mt-2 text-muted-foreground">Review your items before checkout.</p>
         </div>
-        <Link href="/products" className="rounded-md border px-4 py-2">Continue shopping</Link>
+        <Link href="/studio/products" className="rounded-md border px-4 py-2">Continue shopping</Link>
       </div>
 
       <CartClient />

@@ -5,7 +5,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 export const metadata: Metadata = {
   title: "Lighting",
   description: "Lighting that sets the mood — functional, sculptural, and precise.",
-  alternates: { canonical: "/lighting" },
+  alternates: { canonical: "/studio/lighting" },
 };
 
 export default function LightingPage() {
@@ -18,7 +18,7 @@ export default function LightingPage() {
           Coming next: pendants, sconces, floor + table lamps — curated with trade sourcing.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
-          <Link href="/products" className="rounded-full bg-black px-6 py-3 text-sm text-white">Shop all</Link>
+          <Link href="/studio/products" className="rounded-full bg-black px-6 py-3 text-sm text-white">Shop all</Link>
           <Link href="/services" className="rounded-full border border-black/15 px-6 py-3 text-sm">Design help</Link>
         </div>
       </section>

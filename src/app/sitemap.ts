@@ -6,12 +6,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const staticRoutes = [
     "/",
-    "/products",
-    "/indoor",
-    "/outdoor",
-    "/decor",
-    "/rugs",
-    "/lighting",
+    "/studio/products",
+    "/studio/indoor",
+    "/studio/outdoor",
+    "/studio/decor",
+    "/studio/rugs",
+    "/studio/lighting",
     "/services",
     "/contact",
   ];
@@ -20,7 +20,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: `${siteUrl}${path}`,
     lastModified: new Date(),
     changeFrequency: "weekly",
-    priority: path === "/" ? 1 : path === "/products" ? 0.9 : 0.7,
+    priority: path === "/" ? 1 : path === "/studio/products" ? 0.9 : 0.7,
   }));
 
   try {
@@ -31,7 +31,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     for (const p of products) {
       items.push({
-        url: `${siteUrl}/products/${p.slug}`,
+        url: `${siteUrl}/studio/products/${p.slug}`,
         lastModified: p.updatedAt,
         changeFrequency: "weekly",
         priority: 0.8,

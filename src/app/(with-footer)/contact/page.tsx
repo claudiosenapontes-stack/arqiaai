@@ -20,7 +20,7 @@ export default function ContactPage() {
 
         <div className="mt-8 flex flex-wrap gap-3">
           <Link href="/services" className="rounded-md border px-5 py-3">Services</Link>
-          <Link href="/products" className="rounded-md border px-5 py-3">Shop</Link>
+          <Link href="/studio/products" className="rounded-md border px-5 py-3">Shop</Link>
         </div>
       </section>
     </main>

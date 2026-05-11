@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { SiteHeader } from '@/components/SiteHeader'
 import { HomeTilesLayer } from '@/components/HomeTilesLayer'
 import { HomeSimpleTriptych } from '@/components/HomeSimpleTriptych'
@@ -6,6 +7,12 @@ import { BlogPreviewSection } from '@/components/BlogPreviewSection'
 import { BWMapSection } from '@/components/BWMapSection'
 import Link from 'next/link'
 import Image from 'next/image'
+
+export const metadata: Metadata = {
+  title: 'ARQIA Studio — Furniture for refined spaces',
+  description: 'ARQIA Studio: editorial furniture, lighting, decor, and rugs for interiors with quiet luxury sensibility.',
+  alternates: { canonical: '/studio' },
+}
 
 export default function Home() {
   return (
@@ -64,7 +71,7 @@ export default function Home() {
               </p>
               <div className="mt-8">
                 <Link
-                  href="/products"
+                  href="/studio/products"
                   className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-6 py-3 text-xs font-light uppercase tracking-[0.25em] text-neutral-800"
                 >
                   Browse the shop <span className="transition">→</span>

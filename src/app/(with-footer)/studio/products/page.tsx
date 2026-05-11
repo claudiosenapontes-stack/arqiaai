@@ -6,7 +6,7 @@ import { MOCK_PRODUCTS, formatUsd } from '@/lib/mockCatalog'
 export const metadata: Metadata = {
   title: 'Shop',
   description: 'Furniture curated for refined spaces.',
-  alternates: { canonical: '/products' },
+  alternates: { canonical: '/studio/products' },
 }
 
 export default function ProductsPage() {

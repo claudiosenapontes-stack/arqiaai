@@ -18,7 +18,7 @@ export default function BlogIndexPage() {
           </p>
         </div>
         <Link
-          href="/products"
+          href="/studio/products"
           className="rounded-full border border-black/10 bg-white px-6 py-3 text-xs font-light uppercase tracking-[0.25em] text-neutral-800"
         >
           Shop

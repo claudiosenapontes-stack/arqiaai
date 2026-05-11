@@ -51,7 +51,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           Back to Journal
         </Link>
         <Link
-          href="/products"
+          href="/studio/products"
           className="rounded-full bg-black px-6 py-3 text-xs font-light uppercase tracking-[0.25em] text-white"
         >
           Shop

@@ -6,11 +6,11 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 
 const NAV = [
-  { href: '/indoor', label: 'Indoor' },
-  { href: '/outdoor', label: 'Outdoor' },
-  { href: '/decor', label: 'Decor' },
-  { href: '/rugs', label: 'Rugs' },
-  { href: '/lighting', label: 'Lighting' },
+  { href: '/studio/indoor', label: 'Indoor' },
+  { href: '/studio/outdoor', label: 'Outdoor' },
+  { href: '/studio/decor', label: 'Decor' },
+  { href: '/studio/rugs', label: 'Rugs' },
+  { href: '/studio/lighting', label: 'Lighting' },
   { href: '/services', label: 'Services' },
   { href: '/contact', label: 'Contact' },
 ]
@@ -165,7 +165,7 @@ export function SiteHeader({
           <Link
             href="/"
             aria-label="ARQIA home"
-            className={'flex items-center transition ' + (solidText ? '' : 'drop-shadow-[0_1px_12px_rgba(0,0,0,0.45)]')}
+            className={'flex items-center gap-3 transition ' + (solidText ? '' : 'drop-shadow-[0_1px_12px_rgba(0,0,0,0.45)]')}
           >
             <Image
               src="/arqia-mark-240.png"
@@ -176,6 +176,12 @@ export function SiteHeader({
               style={{ imageRendering: 'auto' }}
               priority
             />
+            <span
+              aria-hidden
+              className="text-[10px] font-light uppercase tracking-[0.32em] opacity-80"
+            >
+              Studio
+            </span>
           </Link>
 
           {/* Desktop nav (center-ish) */}
