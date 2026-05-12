@@ -6,12 +6,10 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 
 const NAV = [
-  { href: '/studio/indoor', label: 'Indoor' },
-  { href: '/studio/outdoor', label: 'Outdoor' },
-  { href: '/studio/decor', label: 'Decor' },
-  { href: '/studio/rugs', label: 'Rugs' },
-  { href: '/studio/lighting', label: 'Lighting' },
+  { href: '/#practice', label: 'Practice' },
+  { href: '/#projects', label: 'Projects' },
   { href: '/services', label: 'Services' },
+  { href: '/studio', label: 'Studio' },
   { href: '/contact', label: 'Contact' },
 ]
 
@@ -161,11 +159,11 @@ export function SiteHeader({
       {/* Full-width header */}
       <div className={'w-full px-6 md:px-14 ' + (overlay ? 'pt-6 pb-4' : 'py-4')}>
         <div className={'flex w-full items-center gap-8 ' + tone}>
-          {/* Left-aligned logo */}
+          {/* Left-aligned logo — identical on every page */}
           <Link
             href="/"
             aria-label="ARQIA home"
-            className={'flex items-center gap-3 transition ' + (solidText ? '' : 'drop-shadow-[0_1px_12px_rgba(0,0,0,0.45)]')}
+            className={'flex items-center transition ' + (solidText ? '' : 'drop-shadow-[0_1px_12px_rgba(0,0,0,0.45)]')}
           >
             <Image
               src="/arqia-mark-240.png"
@@ -176,12 +174,6 @@ export function SiteHeader({
               style={{ imageRendering: 'auto' }}
               priority
             />
-            <span
-              aria-hidden
-              className="text-[10px] font-light uppercase tracking-[0.32em] opacity-80"
-            >
-              Studio
-            </span>
           </Link>
 
           {/* Desktop nav (center-ish) — matches firm home: 11px tracked caps */}
