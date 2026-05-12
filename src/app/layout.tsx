@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter, Montserrat } from "next/font/google";
+import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
 
-const serif = Playfair_Display({ subsets: ["latin"], variable: "--font-serif" });
+// Inter kept as fallback sans (used by some legacy utilities).
 const sans = Inter({ subsets: ["latin"], variable: "--font-sans" });
+// Montserrat is the primary brand typeface across firm + studio.
 const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["200", "300", "400", "500", "600", "700", "800"],
@@ -37,8 +38,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${serif.variable} ${sans.variable} ${montserrat.variable}`}>
-      <body className="font-sans antialiased bg-arqia-white text-arqia-ink">
+    <html lang="en" className={`${sans.variable} ${montserrat.variable}`}>
+      <body className="font-sans antialiased bg-bone text-ink">
         {children}
       </body>
     </html>

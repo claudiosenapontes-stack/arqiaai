@@ -22,7 +22,7 @@ export function EditorialSplit({
         }>
           <div className="mx-auto w-full max-w-xl">
             <div className="text-xs uppercase tracking-[0.3em] text-neutral-500">{kicker}</div>
-            <h3 className="mt-4 font-serif text-4xl tracking-tight text-neutral-900 md:text-5xl">
+            <h3 className="mt-4 text-4xl tracking-tight text-neutral-900 md:text-5xl">
               {title}
             </h3>
             <p className="mt-5 text-sm leading-relaxed text-neutral-600 md:text-base">{body}</p>

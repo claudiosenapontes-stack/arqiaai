@@ -14,7 +14,7 @@ export default function ServicesPage() {
       <SiteHeader />
 
       <section className="mx-auto max-w-6xl px-6 py-16">
-        <h1 className="font-serif text-5xl tracking-tight">Services</h1>
+        <h1 className="text-[clamp(28px,4vw,52px)] font-extralight uppercase leading-[1.05] tracking-[-0.005em] text-[color:var(--ink)]">Services</h1>
         <p className="mt-4 max-w-2xl text-neutral-600">
           We’ll refine this page next (packages, pricing ranges, timelines, and intake form).
         </p>

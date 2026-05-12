@@ -34,7 +34,7 @@ function Tile({
         <div>
           <div className="text-xs uppercase tracking-[0.25em] text-white/70">Featured</div>
           <div className={
-            'mt-2 font-serif tracking-tight text-white ' +
+            'mt-2 tracking-tight text-white ' +
             (size === 'large' ? 'text-3xl md:text-4xl' : 'text-2xl')
           }>
             {title}

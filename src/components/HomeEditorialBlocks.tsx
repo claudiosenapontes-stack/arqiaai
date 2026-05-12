@@ -50,7 +50,7 @@ export function HomeEditorialBlocks() {
 
                 <div className={reverse ? 'md:col-span-5 md:col-start-2' : 'md:col-span-5 md:col-start-8'}>
                   <div className="text-xs uppercase tracking-[0.3em] text-neutral-500">{b.label}</div>
-                  <h3 className="mt-4 font-serif text-4xl tracking-tight">{b.title}</h3>
+                  <h3 className="mt-4 text-4xl tracking-tight">{b.title}</h3>
                   <p className="mt-4 text-sm leading-relaxed text-neutral-600">{b.desc}</p>
                   <div className="mt-6">
                     <Link

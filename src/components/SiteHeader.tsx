@@ -184,11 +184,21 @@ export function SiteHeader({
             </span>
           </Link>
 
-          {/* Desktop nav (center-ish) */}
-          <nav className={'hidden flex-1 items-center justify-center gap-12 text-[18px] font-light uppercase tracking-[0.28em] md:flex ' + tone}>
+          {/* Desktop nav (center-ish) — matches firm home: 11px tracked caps */}
+          <nav className={'hidden flex-1 items-center justify-center gap-8 text-[11px] font-normal uppercase tracking-[0.22em] md:flex ' + tone}>
             {NAV.map((n) => (
-              <Link key={n.href} href={n.href} className={'transition duration-300 ' + hoverTone}>
+              <Link
+                key={n.href}
+                href={n.href}
+                className={
+                  'group relative pb-[3px] transition duration-300 ' + hoverTone
+                }
+              >
                 {n.label}
+                <span
+                  aria-hidden
+                  className="absolute left-0 -bottom-0 h-px w-0 bg-[color:var(--brass-light)] transition-all duration-300 ease-out group-hover:w-full"
+                />
               </Link>
             ))}
 
@@ -241,18 +251,17 @@ export function SiteHeader({
             ) : null}
           </nav>
 
-          {/* Right: cart */}
+          {/* Right: cart — firm-style tracked caps with subtle brass border */}
           <Link
             href="/cart"
             className={
-              'ml-auto rounded-full px-8 py-3 text-[15px] transition duration-300 ease-out ' +
-              // Brass-gold + glass feel gradient (more premium than a flat fill)
-              'border border-[color:var(--arqia-brass-light)]/45 ' +
-              'text-white/90 backdrop-blur-md ' +
-              'bg-[linear-gradient(135deg,rgba(224,206,169,0.38),rgba(255,255,255,0.12),rgba(183,149,91,0.28))] ' +
-              'shadow-[0_10px_30px_rgba(0,0,0,0.20)] ' +
-              'hover:border-[color:var(--arqia-brass-light)]/70 hover:text-[color:var(--arqia-brass-light)] ' +
-              'hover:shadow-[0_14px_38px_rgba(0,0,0,0.28)] hover:scale-[1.02]'
+              'ml-auto rounded-full px-6 py-2.5 text-[11px] font-normal uppercase tracking-[0.22em] transition duration-300 ease-out ' +
+              'border border-[color:var(--brass-light)]/45 ' +
+              'text-[color:var(--brass-light)] backdrop-blur-md ' +
+              'bg-[linear-gradient(135deg,rgba(224,206,169,0.22),rgba(255,255,255,0.08),rgba(183,149,91,0.18))] ' +
+              'shadow-[0_8px_24px_rgba(0,0,0,0.16)] ' +
+              'hover:border-[color:var(--brass-light)]/70 hover:text-[color:var(--brass-light)] ' +
+              'hover:shadow-[0_12px_32px_rgba(0,0,0,0.22)]'
             }
           >
             View Cart
@@ -262,7 +271,7 @@ export function SiteHeader({
         {/* Mobile nav (second row) */}
         <div
           className={
-            'mt-4 flex flex-wrap gap-x-7 gap-y-3 text-[14px] font-light uppercase tracking-[0.26em] md:hidden ' +
+            'mt-4 flex flex-wrap gap-x-6 gap-y-3 text-[11px] font-normal uppercase tracking-[0.22em] md:hidden ' +
             tone
           }
         >

@@ -14,7 +14,7 @@ function Module({ title, desc }: { title: string; desc: string }) {
   return (
     <div>
       <div className="text-xs uppercase tracking-[0.25em] text-neutral-500">ARQIA</div>
-      <h3 className="mt-3 font-serif text-2xl tracking-tight">{title}</h3>
+      <h3 className="mt-3 text-2xl tracking-tight">{title}</h3>
       <p className="mt-3 text-sm leading-relaxed text-neutral-600">{desc}</p>
     </div>
   )

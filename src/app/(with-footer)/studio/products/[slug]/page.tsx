@@ -41,7 +41,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
   const similars = MOCK_PRODUCTS.filter((x) => x.slug !== product.slug).slice(0, 2)
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-bone">
       {/* Hero */}
       <section className="product-hero-fullbleed relative overflow-hidden bg-black">
         <div className="relative aspect-[21/9] min-h-[520px]">
@@ -52,7 +52,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
           <div className="relative z-10 mx-auto flex h-full max-w-6xl items-end px-6 pb-12 pt-28">
             <div className="max-w-2xl">
               <div className="text-xs uppercase tracking-[0.3em] text-white/70">{product.categoryLabel}</div>
-              <h1 className="mt-3 font-serif text-5xl tracking-tight text-white md:text-6xl">{product.title}</h1>
+              <h1 className="mt-3 text-[clamp(28px,4.4vw,56px)] font-extralight uppercase leading-[1.05] tracking-[-0.005em] text-[color:var(--bone)]">{product.title}</h1>
               {product.subtitle ? <p className="mt-4 text-sm text-white/80 md:text-base">{product.subtitle}</p> : null}
 
               <div className="mt-6 flex flex-wrap items-center gap-3">

@@ -9,17 +9,26 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        olive: "var(--olive)",
+        oliveDark: "var(--olive-dark)",
+        oliveDeep: "var(--olive-deep)",
+        bone: "var(--bone)",
+        boneSoft: "var(--bone-2)",
+        brassLight: "var(--brass-light)",
+        brassDark: "var(--brass-dark)",
+        ink: "var(--ink)",
         arqia: {
-          olive: "var(--arqia-olive)",
-          white: "var(--arqia-white)",
-          ink: "var(--arqia-ink)",
-          brassLight: "var(--arqia-brass-light)",
-          brassDark: "var(--arqia-brass-dark)",
+          olive: "var(--olive)",
+          white: "var(--bone)",
+          ink: "var(--ink)",
+          brassLight: "var(--brass-light)",
+          brassDark: "var(--brass-dark)",
         },
       },
       fontFamily: {
+        sans: ["var(--font-montserrat)", "var(--font-sans)", "ui-sans-serif", "system-ui"],
         serif: ["var(--font-serif)", "ui-serif", "Georgia"],
-        sans: ["var(--font-sans)", "ui-sans-serif", "system-ui"],
+        montserrat: ["var(--font-montserrat)", "ui-sans-serif", "system-ui"],
       },
     },
   },

@@ -11,7 +11,7 @@ export function BlogPreviewSection() {
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <div className="text-xs uppercase tracking-[0.3em] text-neutral-500">Journal</div>
-            <h2 className="mt-3 font-serif text-4xl tracking-tight text-neutral-900 md:text-5xl">
+            <h2 className="mt-3 text-4xl tracking-tight text-neutral-900 md:text-5xl">
               ARQIA Notes
             </h2>
             <p className="mt-4 max-w-2xl text-sm text-neutral-600 md:text-base">
@@ -47,7 +47,7 @@ export function BlogPreviewSection() {
                 <div className="text-xs uppercase tracking-[0.25em] text-neutral-500">
                   {p.date} · {p.readingTime}
                 </div>
-                <div className="mt-3 font-serif text-2xl tracking-tight text-neutral-900">
+                <div className="mt-3 text-2xl tracking-tight text-neutral-900">
                   {p.title}
                 </div>
                 <div className="mt-3 text-sm leading-relaxed text-neutral-600">{p.excerpt}</div>

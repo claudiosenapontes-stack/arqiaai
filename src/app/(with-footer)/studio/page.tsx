@@ -16,35 +16,46 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-bone">
       <SiteHeader overlay />
 
-      {/* Hero (first impression) */}
-      <section className="relative h-[100svh] overflow-hidden bg-black">
+      {/* Hero — Montserrat hierarchy, olive-deep ground (matches firm) */}
+      <section className="relative h-[100svh] overflow-hidden bg-[color:var(--olive-deep)]">
         <div className="absolute inset-0">
-          {/* Static hero image (temporary): avoids iOS viewport/video jitter */}
           <Image
             src="/mock/furniture-1.jpg"
-            alt="ARQIA editorial"
+            alt="ARQIA Studio editorial"
             fill
             priority
             className="object-cover"
           />
-
-          <div aria-hidden className="absolute inset-0 bg-black/35" />
-          <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/8 to-black/50" />
+          <div
+            aria-hidden
+            className="absolute inset-0"
+            style={{
+              background:
+                'linear-gradient(180deg,rgba(80,86,66,.55) 0%,rgba(80,86,66,.15) 30%,rgba(42,45,34,.85) 100%), linear-gradient(90deg,rgba(42,45,34,.4) 0%,transparent 60%)',
+            }}
+          />
         </div>
 
-        <div className="relative z-10 mx-auto flex h-full max-w-6xl items-end px-6 pb-16 pt-28">
+        <div className="relative z-10 mx-auto flex h-full max-w-6xl items-end px-6 pb-20 pt-28 md:px-10">
           <div className="max-w-3xl">
-            <h1 className="font-serif font-light text-4xl leading-tight tracking-tight text-white md:text-6xl">
-              <span className="font-sans font-extralight uppercase tracking-[0.08em] text-[color:var(--arqia-brass-light)] text-3xl md:text-5xl">
-                Architectural Intelligence
+            <div className="text-[10px] font-normal uppercase tracking-[0.32em] text-[color:var(--brass-light)]">
+              ARQIA Studio
+            </div>
+            <h1 className="mt-5 text-[color:var(--bone)]">
+              <span className="block text-[clamp(28px,4.4vw,56px)] font-extralight leading-[1.05] tracking-[-0.005em] uppercase">
+                Furniture for
+                <br />
+                <span className="font-semibold text-[color:var(--brass-light)]">
+                  refined spaces.
+                </span>
               </span>
-              <span className="block">for refined spaces.</span>
             </h1>
-            <p className="mt-5 max-w-xl text-sm text-white/80 md:text-base">
-              Furniture and design services with quiet luxury sensibility.
+            <p className="mt-6 max-w-xl text-[12px] font-light leading-relaxed tracking-[0.04em] text-[color:var(--bone)]/75 md:text-[13px]">
+              Editorial furniture, lighting, decor, and rugs — selected with the same
+              quiet luxury sensibility as our architecture practice.
             </p>
           </div>
         </div>
@@ -62,7 +73,7 @@ export default function Home() {
           <div className="flex items-center px-6 py-14 md:px-16 md:py-16">
             <div className="mx-auto w-full max-w-xl">
               <div className="text-xs uppercase tracking-[0.3em] text-neutral-500">Editorial</div>
-              <h3 className="mt-4 font-serif text-4xl tracking-tight text-neutral-900 md:text-5xl">
+              <h3 className="mt-4 text-4xl tracking-tight text-neutral-900 md:text-5xl">
                 Materials, restraint, and proportion
               </h3>
               <p className="mt-5 text-sm leading-relaxed text-neutral-600 md:text-base">

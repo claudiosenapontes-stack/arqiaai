@@ -85,7 +85,7 @@ export function SimilarCarousel({
                 >
                   <div className="mx-auto w-full max-w-xl">
                     <div className="text-xs uppercase tracking-[0.3em] text-neutral-500">Similar</div>
-                    <div className="mt-4 font-serif text-4xl tracking-tight text-neutral-900 md:text-5xl">
+                    <div className="mt-4 text-4xl tracking-tight text-neutral-900 md:text-5xl">
                       {p.title}
                     </div>
                     {p.subtitle ? (

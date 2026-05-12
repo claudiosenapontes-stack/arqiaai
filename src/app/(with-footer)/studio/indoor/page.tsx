@@ -16,7 +16,7 @@ function Editorial({ title, body, img }: { title: string; body: string; img: str
         <div className="absolute inset-x-0 bottom-0 p-8">
           <div className="max-w-xl">
             <div className="text-[11px] uppercase tracking-[0.3em] text-white/70">Editorial</div>
-            <div className="mt-3 font-serif text-4xl tracking-tight text-white">{title}</div>
+            <div className="mt-3 text-4xl tracking-tight text-white">{title}</div>
             <p className="mt-3 text-sm leading-relaxed text-white/80">{body}</p>
           </div>
         </div>
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 
 export default function IndoorPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-bone">
       <SiteHeader
         filterMenu={{
           label: 'Type',

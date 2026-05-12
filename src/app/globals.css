@@ -1,46 +1,54 @@
 @import "tailwindcss";
 
 :root {
-  --arqia-olive: #505642;
-  --arqia-white: #ffffff;
-  --arqia-ink: #0d0d0d;
+  /* Unified ARQIA palette — shared by firm home and ARQIA Studio. */
+  --olive: #505642;
+  --olive-dark: #3a3e2f;
+  --olive-deep: #2a2d22;
+  --bone: #f7f5f0;
+  --bone-2: #ede9e0;
+  --brass-light: #e0cea9;
+  --brass-dark: #b7955b;
+  --ink: #1c1d18;
+  --line: rgba(80, 86, 66, 0.18);
+  --line-light: rgba(247, 245, 240, 0.18);
 
-  --arqia-brass-light: #E0CEA9;
-  --arqia-brass-dark: #B7955B;
+  /* Legacy aliases — keep so existing `--arqia-*` references keep working. */
+  --arqia-olive: var(--olive);
+  --arqia-ink: var(--ink);
+  --arqia-white: var(--bone);
+  --arqia-brass-light: var(--brass-light);
+  --arqia-brass-dark: var(--brass-dark);
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
-    /* Prevent layout shifts / horizontal scroll jitter */
     scrollbar-gutter: stable;
     overflow-x: hidden;
   }
 
   body {
-    background: var(--arqia-white);
-    color: var(--arqia-ink);
+    background: var(--bone);
+    color: var(--ink);
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    font-weight: 300;
   }
 }
 
-/* iOS/Safari: 100vh can change as the address bar shows/hides, causing visible jitter.
-   Override Tailwind's screen utilities to use stable viewport units when supported. */
 @supports (height: 100svh) {
   .min-h-screen { min-height: 100svh; }
   .h-screen { height: 100svh; }
 }
 
-/* iOS Safari (older): fallback to -webkit-fill-available to avoid address-bar resize jitter. */
 @supports (-webkit-touch-callout: none) {
   html, body { height: -webkit-fill-available; }
   .min-h-screen { min-height: -webkit-fill-available; }
   .h-screen { height: -webkit-fill-available; }
 }
 
-/* Full-bleed utility: break out of max-w containers.
-   Mobile: disable breakout to prevent iOS vw/svw jitter.
-   Desktop: enable full-bleed breakout. */
+/* Full-bleed utility for product hero modules. */
 .product-hero-fullbleed {
   position: relative;
   left: 0;
@@ -52,7 +60,6 @@
 }
 
 @media (max-width: 767px) {
-  /* Hard override to prevent any lingering breakout rules causing jitter */
   .product-hero-fullbleed {
     left: 0 !important;
     transform: none !important;
@@ -70,5 +77,3 @@
     width: 100dvw;
   }
 }
-
-/* (Hero motion was upgraded to real MP4/WebM; keep this file clean.) */

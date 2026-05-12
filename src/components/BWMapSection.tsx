@@ -62,7 +62,7 @@ export function BWMapSection({
       <div className="mx-auto max-w-6xl px-6 pb-8 pt-16">
         <div className="max-w-2xl">
           <div className="text-xs uppercase tracking-[0.3em] text-neutral-500">Visit</div>
-          <h2 className="mt-3 font-serif text-4xl tracking-tight text-neutral-900 md:text-5xl">
+          <h2 className="mt-3 text-4xl tracking-tight text-neutral-900 md:text-5xl">
             Boynton Beach
           </h2>
           <p className="mt-4 text-sm leading-relaxed text-neutral-600 md:text-base">{address}</p>

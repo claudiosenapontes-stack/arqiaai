@@ -112,7 +112,7 @@ export function SignatureScroll3D() {
       <div className="relative z-10 mx-auto flex h-full max-w-6xl items-end px-6 pb-16 pt-28">
         <div className="max-w-xl">
           <div className="text-[11px] font-light uppercase tracking-[0.28em] text-white/75">{beat.eyebrow}</div>
-          <h2 className="mt-4 font-serif text-5xl leading-tight tracking-tight md:text-6xl">{beat.title}</h2>
+          <h2 className="mt-4 text-5xl leading-tight tracking-tight md:text-6xl">{beat.title}</h2>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-white/80 md:text-base">{beat.body}</p>
 
           <div className="mt-10 flex items-center gap-3 text-xs text-white/55">

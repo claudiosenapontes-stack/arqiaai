@@ -25,7 +25,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
   return (
     <main className="mx-auto max-w-3xl px-6 py-14">
       <div className="text-xs uppercase tracking-[0.3em] text-neutral-500">Journal</div>
-      <h1 className="mt-4 font-serif text-5xl tracking-tight">{post.title}</h1>
+      <h1 className="mt-4 text-[clamp(28px,4vw,52px)] font-extralight uppercase leading-[1.05] tracking-[-0.005em] text-[color:var(--ink)]">{post.title}</h1>
       <div className="mt-4 text-sm text-neutral-600">
         {post.date} · {post.readingTime}
       </div>

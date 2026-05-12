@@ -44,7 +44,7 @@ export function ProductHeroCard({
             <div className="w-full px-6 pb-10 pt-16 md:px-10 md:pb-14 md:pt-24">
               <div className="max-w-2xl">
                 <div className="text-xs uppercase tracking-[0.34em] text-white/75 md:text-sm">{category}</div>
-                <div className="mt-3 font-serif text-4xl leading-[1.05] tracking-tight text-white md:text-6xl">
+                <div className="mt-3 text-4xl leading-[1.05] tracking-tight text-white md:text-6xl">
                   {title}
                 </div>
                 <div className="mt-4 space-y-1">

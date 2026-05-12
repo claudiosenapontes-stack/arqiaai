@@ -16,7 +16,7 @@ export default function ProductsPage() {
     <main className="mx-auto max-w-6xl px-6 py-12">
       <div className="flex items-end justify-between gap-6">
         <div>
-          <h1 className="font-serif text-5xl tracking-tight">Shop</h1>
+          <h1 className="text-[clamp(28px,4vw,52px)] font-extralight uppercase leading-[1.05] tracking-[-0.005em] text-[color:var(--ink)]">Shop</h1>
           <p className="mt-3 text-sm text-neutral-600">Furniture curated for refined spaces.</p>
         </div>
         <Link
@@ -46,7 +46,7 @@ export default function ProductsPage() {
             </div>
             <div className="p-6">
               <div className="text-xs uppercase tracking-[0.3em] text-neutral-500">{p.categoryLabel}</div>
-              <div className="mt-2 font-serif text-2xl tracking-tight text-neutral-900">{p.title}</div>
+              <div className="mt-2 text-2xl tracking-tight text-neutral-900">{p.title}</div>
               {p.subtitle ? <div className="mt-2 text-sm text-neutral-600">{p.subtitle}</div> : null}
               <div className="mt-5 text-sm text-neutral-800">
                 <span className="text-neutral-500">Member</span> {formatUsd(p.memberPriceCents)}

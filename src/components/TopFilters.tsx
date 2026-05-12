@@ -13,7 +13,7 @@ export function TopFilters({ title, showControls = true }: { title: string; show
     <div className="border-b border-black/10">
       <div className="mx-auto flex max-w-6xl flex-col gap-5 px-6 pb-10 pt-28 md:pt-32">
         <div>
-          <h1 className="font-serif text-4xl tracking-tight">{title}</h1>
+          <h1 className="text-4xl tracking-tight">{title}</h1>
           <p className="mt-2 max-w-2xl text-sm text-neutral-600">Curated pieces for refined spaces.</p>
         </div>
 

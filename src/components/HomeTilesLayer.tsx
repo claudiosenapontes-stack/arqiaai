@@ -121,7 +121,7 @@ function StackedImageStrip({
 
                     <div
                       className={
-                        'font-serif text-5xl md:text-6xl tracking-tight text-white ' +
+                        'text-5xl md:text-6xl tracking-tight text-white ' +
                         ((topKicker || bigTitle) ? 'mt-2' : 'mt-3')
                       }
                     >
@@ -167,7 +167,7 @@ export function HomeTilesLayer() {
       <div className="mx-auto max-w-6xl px-6 py-16">
         <div>
           <div className="text-xs uppercase tracking-[0.3em] text-neutral-500">Collections</div>
-          <h2 className="mt-3 font-serif text-4xl tracking-tight">Explore collections</h2>
+          <h2 className="mt-3 text-4xl tracking-tight">Explore collections</h2>
           <p className="mt-3 max-w-2xl text-sm text-neutral-600">A visual, editorial way to browse by space.</p>
         </div>
       </div>
@@ -193,7 +193,7 @@ export function HomeTilesLayer() {
         <div className="mx-auto max-w-6xl px-6 py-16">
           <div>
             <div className="text-xs uppercase tracking-[0.3em] text-neutral-500">Services</div>
-            <h2 className="mt-3 font-serif text-4xl tracking-tight">Work with ARQIA</h2>
+            <h2 className="mt-3 text-4xl tracking-tight">Work with ARQIA</h2>
             <p className="mt-4 max-w-2xl text-sm text-neutral-600">
               Design support, trade partnerships, and delivery—built for projects that need precision.
             </p>

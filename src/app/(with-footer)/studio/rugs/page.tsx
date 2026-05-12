@@ -10,10 +10,10 @@ export const metadata: Metadata = {
 
 export default function RugsPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-bone">
       <SiteHeader />
       <section className="mx-auto max-w-6xl px-6 py-16">
-        <h1 className="font-serif text-5xl tracking-tight">Rugs</h1>
+        <h1 className="text-[clamp(28px,4vw,52px)] font-extralight uppercase leading-[1.05] tracking-[-0.005em] text-[color:var(--ink)]">Rugs</h1>
         <p className="mt-4 max-w-2xl text-neutral-600">
           Coming next: a curated selection by room + size + fiber.
         </p>

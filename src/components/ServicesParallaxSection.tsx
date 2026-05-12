@@ -80,7 +80,7 @@ export function ServicesParallaxSection({
                 }
               >
                 <div className="text-xs uppercase tracking-[0.3em] text-white/80">Service</div>
-                <div className="mt-3 font-serif text-2xl text-white">{s.title}</div>
+                <div className="mt-3 text-2xl text-white">{s.title}</div>
                 <div className="mt-3 text-sm text-white/80">{s.subtitle}</div>
                 <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-xs font-light uppercase tracking-[0.25em] text-white/90 transition group-hover:border-[color:var(--arqia-brass-light)]/70 group-hover:text-[color:var(--arqia-brass-light)]">
                   Learn more <span className="transition group-hover:translate-x-0.5">→</span>

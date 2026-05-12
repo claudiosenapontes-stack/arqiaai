@@ -12,7 +12,7 @@ export default function BlogIndexPage() {
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div>
           <div className="text-xs uppercase tracking-[0.3em] text-neutral-500">Journal</div>
-          <h1 className="mt-3 font-serif text-5xl tracking-tight">ARQIA Notes</h1>
+          <h1 className="mt-3 text-[clamp(28px,4vw,52px)] font-extralight uppercase leading-[1.05] tracking-[-0.005em] text-[color:var(--ink)]">ARQIA Notes</h1>
           <p className="mt-4 max-w-2xl text-sm text-neutral-600 md:text-base">
             Essays on materials, proportion, and building rooms with restraint.
           </p>
@@ -46,7 +46,7 @@ export default function BlogIndexPage() {
               <div className="text-xs uppercase tracking-[0.25em] text-neutral-500">
                 {p.date} · {p.readingTime}
               </div>
-              <div className="mt-3 font-serif text-2xl tracking-tight text-neutral-900">{p.title}</div>
+              <div className="mt-3 text-2xl tracking-tight text-neutral-900">{p.title}</div>
               <div className="mt-3 text-sm leading-relaxed text-neutral-600">{p.excerpt}</div>
               <div className="mt-5 inline-flex items-center gap-2 text-xs font-light uppercase tracking-[0.25em] text-neutral-800">
                 Read <span className="transition group-hover:translate-x-0.5">→</span>
